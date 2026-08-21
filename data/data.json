@@ -1,0 +1,91 @@
+{
+  "verbes": [
+    // -u
+    {
+      "romaji": "tsukau",
+      "kana": "つかう",
+      "kanji": "使う",
+      "traduction": "utiliser",
+      "type": "godan"
+    },
+    // -tsu
+    {
+      "romaji": "matsu",
+      "kana": "まつ",
+      "kanji": "待つ",
+      "traduction": "attendre",
+      "type": "godan"
+    },
+    // -ru
+    {
+      "romaji": "hashiru",
+      "kana": "はしる",
+      "kanji": "走る",
+      "traduction": "courir",
+      "type": "godan"
+    },
+    {
+      "romaji": "taberu",
+      "kana": "たべる",
+      "kanji": "食べる",
+      "traduction": "manger",
+      "type": "ichidan"
+    },
+    // -mu
+    {
+      "romaji": "nomu",
+      "kana": "のむ",
+      "kanji": "飲む",
+      "traduction": "boire",
+      "type": "godan"
+    },
+    // -bu
+    {
+      "romaji": "asobu",
+      "kana": "あそぶ",
+      "kanji": "遊ぶ",
+      "traduction": "jouer",
+      "type": "godan"
+    },
+    // -nu
+    {
+      "romaji": "shinu",
+      "kana": "しぬ",
+      "kanji": "死ぬ",
+      "traduction": "mourir",
+      "type": "godan"
+    },
+    // -ku
+    {
+      "romaji": "kiku",
+      "kana": "きく",
+      "kanji": "聞く",
+      "traduction": "écouter",
+      "type": "godan"
+    },
+    {
+      "romaji": "iku",
+      "kana": "いく",
+      "kanji": "行く",
+      "traduction": "aller",
+      "type": "godan",
+      "exception": true
+    },
+    // -gu
+    {
+      "romaji": "oyogu",
+      "kana": "およぐ",
+      "kanji": "泳ぐ",
+      "traduction": "nager",
+      "type": "godan"
+    },
+    // -su
+    {
+      "romaji": "hanasu",
+      "kana": "はなす",
+      "kanji": "話す",
+      "traduction": "parler",
+      "type": "godan"
+    }
+  ]
+}
