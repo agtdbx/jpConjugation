@@ -1,4 +1,4 @@
-from src.verbes.bases import get_base_a, get_base_i, get_base_ta
+from verbes.bases import get_base_a, get_base_i, get_base_ta
 
 def get_godan_passe_formes(verbe_parse: dict) -> dict:
     base_a = get_base_a(verbe_parse)

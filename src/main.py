@@ -1,11 +1,11 @@
-from src.parsing.load import load_json_file
-from src.parsing.verbe import parse_conjugation_data
-from src.verbes.present import  get_godan_present_formes, \
-                                get_ichidan_present_formes, \
-                                get_exception_present_formes
-from src.verbes.passe import    get_godan_passe_formes, \
-                                get_ichidan_passe_formes, \
-                                get_exception_passe_formes
+from parsing.load import load_json_file
+from parsing.verbe import parse_conjugation_data
+from verbes.present import  get_godan_present_formes, \
+                            get_ichidan_present_formes, \
+                            get_exception_present_formes
+from verbes.passe import    get_godan_passe_formes, \
+                            get_ichidan_passe_formes, \
+                            get_exception_passe_formes
 
 if __name__ == "__main__":
     # Get json data
