@@ -1,6 +1,5 @@
 {
   "verbes": [
-    // -u
     {
       "romaji": "tsukau",
       "kana": "つかう",
@@ -8,7 +7,6 @@
       "traduction": "utiliser",
       "type": "godan"
     },
-    // -tsu
     {
       "romaji": "matsu",
       "kana": "まつ",
@@ -16,7 +14,6 @@
       "traduction": "attendre",
       "type": "godan"
     },
-    // -ru
     {
       "romaji": "hashiru",
       "kana": "はしる",
@@ -31,7 +28,27 @@
       "traduction": "manger",
       "type": "ichidan"
     },
-    // -mu
+    {
+      "romaji": "suru",
+      "kana": "する",
+      "kanji": "する",
+      "traduction": "faire",
+      "type": "exception"
+    },
+    {
+      "romaji": "kuru",
+      "kana": "くる",
+      "kanji": "来る",
+      "traduction": "venir",
+      "type": "exception"
+    },
+    {
+      "romaji": "aru",
+      "kana": "ある",
+      "kanji": "ある",
+      "traduction": "exister / avoir (inanimé)",
+      "type": "exception"
+    },
     {
       "romaji": "nomu",
       "kana": "のむ",
@@ -39,7 +56,6 @@
       "traduction": "boire",
       "type": "godan"
     },
-    // -bu
     {
       "romaji": "asobu",
       "kana": "あそぶ",
@@ -47,7 +63,6 @@
       "traduction": "jouer",
       "type": "godan"
     },
-    // -nu
     {
       "romaji": "shinu",
       "kana": "しぬ",
@@ -55,7 +70,6 @@
       "traduction": "mourir",
       "type": "godan"
     },
-    // -ku
     {
       "romaji": "kiku",
       "kana": "きく",
@@ -68,10 +82,8 @@
       "kana": "いく",
       "kanji": "行く",
       "traduction": "aller",
-      "type": "godan",
-      "exception": true
+      "type": "exception"
     },
-    // -gu
     {
       "romaji": "oyogu",
       "kana": "およぐ",
@@ -79,7 +91,6 @@
       "traduction": "nager",
       "type": "godan"
     },
-    // -su
     {
       "romaji": "hanasu",
       "kana": "はなす",
