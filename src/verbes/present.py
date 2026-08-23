@@ -1,6 +1,6 @@
 from verbes.bases import get_base_a, get_base_i
 
-def get_godan_present_formes(verbe_parse: dict) -> dict:
+def get_present_godan_formes(verbe_parse: dict) -> dict:
     base_a = get_base_a(verbe_parse)
     base_i = get_base_i(verbe_parse)
 
@@ -21,7 +21,7 @@ def get_godan_present_formes(verbe_parse: dict) -> dict:
     }
 
 
-def get_ichidan_present_formes(verbe_parse: dict) -> dict:
+def get_present_ichidan_formes(verbe_parse: dict) -> dict:
     # Informel Positif
     forme_ip = verbe_parse["verbe"]
     # Formel Positif
@@ -39,7 +39,7 @@ def get_ichidan_present_formes(verbe_parse: dict) -> dict:
     }
 
 
-def get_exception_present_formes(verbe_parse: dict) -> dict:
+def get_present_exception_formes(verbe_parse: dict) -> dict:
     if verbe_parse["verbe"] == "iku":
         return {
             "ip" : "iku",
