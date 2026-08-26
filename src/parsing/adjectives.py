@@ -9,19 +9,19 @@ def parse_conjugation_data(adjectif_data: dict) -> dict:
         else:
             type = "na"
 
-    # Get radical
-    radical = ""
+    # Get stem
+    stem = ""
     if type == "i":
         # Exception ii et kakkoii
         if adjectif in ["ii", "kakkoii"]:
-            radical = adjectif[:-2] + "yo"
+            stem = adjectif[:-2] + "yo"
         else:
-            radical = adjectif[:-1]
+            stem = adjectif[:-1]
 
         return {
             "adjectif" : adjectif,
             "type" : type,
-            "radical" : radical
+            "stem" : stem
         }
 
     return {

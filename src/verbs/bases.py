@@ -11,7 +11,7 @@ def get_base_a(verbe_parse: dict) -> str:
         "su" : "sa",
     }
 
-    return base_a[verbe_parse["terminaison"]]
+    return base_a[verbe_parse["ending"]]
 
 
 def get_base_e(verbe_parse: dict) -> str:
@@ -27,7 +27,7 @@ def get_base_e(verbe_parse: dict) -> str:
         "su" : "se",
     }
 
-    return base_e[verbe_parse["terminaison"]]
+    return base_e[verbe_parse["ending"]]
 
 
 def get_base_i(verbe_parse: dict) -> str:
@@ -43,7 +43,7 @@ def get_base_i(verbe_parse: dict) -> str:
         "su" : "shi",
     }
 
-    return base_i[verbe_parse["terminaison"]]
+    return base_i[verbe_parse["ending"]]
 
 
 def get_base_o(verbe_parse: dict) -> str:
@@ -59,7 +59,7 @@ def get_base_o(verbe_parse: dict) -> str:
         "su" : "so",
     }
 
-    return base_o[verbe_parse["terminaison"]]
+    return base_o[verbe_parse["ending"]]
 
 
 def get_base_ta(verbe_parse: dict) -> str:
@@ -75,7 +75,7 @@ def get_base_ta(verbe_parse: dict) -> str:
         "su" : "shita",
     }
 
-    return base_ta[verbe_parse["terminaison"]]
+    return base_ta[verbe_parse["ending"]]
 
 
 def get_base_te(verbe_parse: dict) -> str:
@@ -91,4 +91,4 @@ def get_base_te(verbe_parse: dict) -> str:
         "su" : "shite",
     }
 
-    return base_te[verbe_parse["terminaison"]]
+    return base_te[verbe_parse["ending"]]
