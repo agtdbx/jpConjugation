@@ -40,10 +40,6 @@ if __name__ == "__main__":
 
         verbe_parse = parse_conjugation_data(verbe_data)
 
-        verbe = verbe_parse['verbe']
-        terminaison = verbe_parse['terminaison']
-        radical = verbe_parse['radical']
-
         for temps_id in ["pr", "pa", "im", "pro", "vo-pr", "vo-pa", "iv", "po"]:
             temps = ""
             forme_ip = ""

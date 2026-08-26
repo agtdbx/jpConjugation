@@ -2,101 +2,128 @@
   "verbes": [
     {
       "romaji": "tsukau",
-      "kana": "つかう",
       "kanji": "使う",
       "traduction": "utiliser",
       "type": "godan"
     },
     {
       "romaji": "matsu",
-      "kana": "まつ",
       "kanji": "待つ",
       "traduction": "attendre",
       "type": "godan"
     },
     {
       "romaji": "hashiru",
-      "kana": "はしる",
       "kanji": "走る",
       "traduction": "courir",
       "type": "godan"
     },
     {
       "romaji": "taberu",
-      "kana": "たべる",
       "kanji": "食べる",
       "traduction": "manger",
       "type": "ichidan"
     },
     {
       "romaji": "suru",
-      "kana": "する",
       "kanji": "する",
       "traduction": "faire",
       "type": "exception"
     },
     {
       "romaji": "kuru",
-      "kana": "くる",
       "kanji": "来る",
       "traduction": "venir",
       "type": "exception"
     },
     {
       "romaji": "aru",
-      "kana": "ある",
       "kanji": "ある",
       "traduction": "exister / avoir (inanimé)",
       "type": "exception"
     },
     {
       "romaji": "nomu",
-      "kana": "のむ",
       "kanji": "飲む",
       "traduction": "boire",
       "type": "godan"
     },
     {
       "romaji": "asobu",
-      "kana": "あそぶ",
       "kanji": "遊ぶ",
       "traduction": "jouer",
       "type": "godan"
     },
     {
       "romaji": "shinu",
-      "kana": "しぬ",
       "kanji": "死ぬ",
       "traduction": "mourir",
       "type": "godan"
     },
     {
       "romaji": "kiku",
-      "kana": "きく",
       "kanji": "聞く",
       "traduction": "écouter",
       "type": "godan"
     },
     {
       "romaji": "iku",
-      "kana": "いく",
       "kanji": "行く",
       "traduction": "aller",
       "type": "exception"
     },
     {
       "romaji": "oyogu",
-      "kana": "およぐ",
       "kanji": "泳ぐ",
       "traduction": "nager",
       "type": "godan"
     },
     {
       "romaji": "hanasu",
-      "kana": "はなす",
       "kanji": "話す",
       "traduction": "parler",
       "type": "godan"
+    }
+  ],
+
+  "adjectifs" : [
+    {
+      "romaji": "kirei",
+      "kanji": "",
+      "traduction": "joli, beau, propre",
+      "type": "na"
+    },
+    {
+      "romaji": "yuumei",
+      "kanji": "",
+      "traduction": "célèbre",
+      "type": "na"
+    },
+    {
+      "romaji": "kirai",
+      "kanji": "",
+      "traduction": "détester",
+      "type": "na"
+    },
+    {
+      "romaji": "ookii",
+      "kanji": "",
+      "traduction": "grand"
+    },
+    {
+      "romaji": "ii",
+      "kanji": "",
+      "traduction": "bien"
+    },
+    {
+      "romaji": "kakkoii",
+      "kanji": "",
+      "traduction": "cool"
+    },
+    {
+      "romaji": "shizuka",
+      "kanji": "",
+      "traduction": "calme"
     }
   ]
 }
