@@ -1,4 +1,4 @@
-from parsing.load import load_json_file
+from jpconjugation.parsing.load import load_json_file
 
 if __name__ == "__main__":
     # Get json data

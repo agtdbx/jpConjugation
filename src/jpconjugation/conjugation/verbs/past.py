@@ -1,4 +1,4 @@
-from verbs.bases import get_base_a, get_base_i, get_base_ta
+from jpconjugation.conjugation.verbs.bases import get_base_a, get_base_i, get_base_ta
 
 def get_past_forms(verbe_parse: dict) -> dict:
     type = verbe_parse.get("type")

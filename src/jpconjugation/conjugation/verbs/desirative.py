@@ -1,4 +1,4 @@
-from verbs.bases import get_base_i
+from jpconjugation.conjugation.verbs.bases import get_base_i
 
 ###########################################################################################
 # Présent

@@ -1,4 +1,4 @@
-from verbs.bases import get_base_i, get_base_o
+from jpconjugation.conjugation.verbs.bases import get_base_i, get_base_o
 
 def get_volitional_forms(verbe_parse: dict) -> dict:
     type = verbe_parse.get("type")

@@ -1,4 +1,4 @@
-from verbs.bases import get_base_te
+from jpconjugation.conjugation.verbs.bases import get_base_te
 
 def get_progressive_forms(verbe_parse: dict) -> dict:
     type = verbe_parse.get("type")

@@ -89,40 +89,40 @@
   "adjectives" : [
     {
       "romaji": "kirei",
-      "kanji": "",
+      "kanji": "綺麗",
       "traduction": "joli, beau, propre",
       "type": "na"
     },
     {
       "romaji": "yuumei",
-      "kanji": "",
+      "kanji": "有名",
       "traduction": "célèbre",
       "type": "na"
     },
     {
       "romaji": "kirai",
-      "kanji": "",
-      "traduction": "détester",
+      "kanji": "嫌い",
+      "traduction": "détesté",
       "type": "na"
     },
     {
       "romaji": "ookii",
-      "kanji": "",
+      "kanji": "大きい",
       "traduction": "grand"
     },
     {
       "romaji": "ii",
-      "kanji": "",
+      "kanji": "いい",
       "traduction": "bien"
     },
     {
       "romaji": "kakkoii",
-      "kanji": "",
+      "kanji": "かっこいい",
       "traduction": "cool"
     },
     {
       "romaji": "shizuka",
-      "kanji": "",
+      "kanji": "静か",
       "traduction": "calme"
     }
   ]

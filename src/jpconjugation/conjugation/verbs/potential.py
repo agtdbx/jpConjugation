@@ -1,4 +1,4 @@
-from verbs.bases import get_base_e
+from jpconjugation.conjugation.verbs.bases import get_base_e
 
 def get_potential_forms(verbe_parse: dict) -> dict:
     type = verbe_parse.get("type")
