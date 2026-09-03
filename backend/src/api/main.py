@@ -1,8 +1,31 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+# CORS Configuration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Allow React local app
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+@app.get("/api/options")
+def get_options():
+    # Structure de données dictée par le backend pour générer l'UI
+    return {
+        "sections": {
+            "verbs": {
+                "title": "Verbes",
+                "types": ["godan", "ichidan", "exception"],
+                "tenses": ["pr", "pa", "im", "pro", "de-pr", "de-pa", "vo", "po"]
+            },
+            "adjectives": {
+                "title": "Adjectifs",
+                "types": ["ii", "na"],
+                "tenses": ["pr", "pa", "co", "ad"]
+            }
+        }
+    }
