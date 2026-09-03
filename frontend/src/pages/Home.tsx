@@ -10,7 +10,7 @@ export default function Home() {
   // Setup first call at first page render
 
   useEffect(() => {
-    fetch('https://jpconjugation-api.onrender.com/api/options')
+    fetch(`${import.meta.env.VITE_API_URL}/api/options`)
       .then(response => {
         if (!response.ok) throw new Error("Erreur réseau")
         return response.json()

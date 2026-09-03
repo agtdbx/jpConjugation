@@ -17,7 +17,6 @@ app.add_middleware(
 
 @app.get("/api/options")
 def get_options():
-    # Structure de données dictée par le backend pour générer l'UI
     return {
         "sections": {
             "verbs": {
