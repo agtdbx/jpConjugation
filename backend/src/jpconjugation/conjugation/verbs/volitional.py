@@ -1,26 +1,27 @@
+from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.bases import get_base_i, get_base_o
 
-def get_volitional_forms(verbe_parse: dict) -> dict:
-    type = verbe_parse.get("type")
+def get_volitional_forms(verb: Verb) -> dict:
+    type = verb.type
 
     if type == "godan":
-        return _get_volitional_godan_forms(verbe_parse)
+        return _get_volitional_godan_forms(verb)
     elif type == "ichidan":
-        return _get_volitional_ichidan_forms(verbe_parse)
+        return _get_volitional_ichidan_forms(verb)
     elif type == "exception":
-        return _get_volitional_exception_forms(verbe_parse)
+        return _get_volitional_exception_forms(verb)
     else:
         return {}
 
 
-def _get_volitional_godan_forms(verbe_parse: dict) -> dict:
-    base_i = get_base_i(verbe_parse)
-    base_o = get_base_o(verbe_parse)
+def _get_volitional_godan_forms(verb: Verb) -> dict:
+    base_i = get_base_i(verb)
+    base_o = get_base_o(verb)
 
     # Informel Positif
-    form_ip = verbe_parse["stem"] + base_o + "u"
+    form_ip = verb.stem + base_o + "u"
     # Formel Positif
-    form_fp = verbe_parse["stem"] + base_i + "mashou"
+    form_fp = verb.stem + base_i + "mashou"
 
     return {
         "ip" : form_ip,
@@ -28,11 +29,11 @@ def _get_volitional_godan_forms(verbe_parse: dict) -> dict:
     }
 
 
-def _get_volitional_ichidan_forms(verbe_parse: dict) -> dict:
+def _get_volitional_ichidan_forms(verb: Verb) -> dict:
     # Informel Positif
-    form_ip = verbe_parse["stem"] + "you"
+    form_ip = verb.stem + "you"
     # Formel Positif
-    form_fp = verbe_parse["stem"] + "mashou"
+    form_fp = verb.stem + "mashou"
 
     return {
         "ip" : form_ip,
@@ -40,20 +41,20 @@ def _get_volitional_ichidan_forms(verbe_parse: dict) -> dict:
     }
 
 
-def _get_volitional_exception_forms(verbe_parse: dict) -> dict:
-    if verbe_parse["verbe"] == "iku":
-        return _get_volitional_godan_forms(verbe_parse)
-    elif verbe_parse["verbe"] == "suru":
+def _get_volitional_exception_forms(verb: Verb) -> dict:
+    if verb.romaji == "iku":
+        return _get_volitional_godan_forms(verb)
+    elif verb.romaji == "suru":
         return {
             "ip" : "shiyou",
             "fp" : "shimashou",
         }
-    elif verbe_parse["verbe"] == "kuru":
+    elif verb.romaji == "kuru":
         return {
             "ip" : "koyou",
             "fp" : "kimashou",
         }
-    elif verbe_parse["verbe"] == "aru":
+    elif verb.romaji == "aru":
         return {
             "ip" : "arou",
             "fp" : "arimashou",

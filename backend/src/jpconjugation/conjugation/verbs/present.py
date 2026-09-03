@@ -1,30 +1,31 @@
+from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.bases import get_base_a, get_base_i
 
-def get_present_forms(verbe_parse: dict) -> dict:
-    type = verbe_parse.get("type")
+def get_present_forms(verb: Verb) -> dict:
+    type = verb.type
 
     if type == "godan":
-        return _get_present_godan_forms(verbe_parse)
+        return _get_present_godan_forms(verb)
     elif type == "ichidan":
-        return _get_present_ichidan_forms(verbe_parse)
+        return _get_present_ichidan_forms(verb)
     elif type == "exception":
-        return _get_present_exception_forms(verbe_parse)
+        return _get_present_exception_forms(verb)
     else:
         return {}
 
 
-def _get_present_godan_forms(verbe_parse: dict) -> dict:
-    base_a = get_base_a(verbe_parse)
-    base_i = get_base_i(verbe_parse)
+def _get_present_godan_forms(verb: Verb) -> dict:
+    base_a = get_base_a(verb)
+    base_i = get_base_i(verb)
 
     # Informel Positif
-    form_ip = verbe_parse["verbe"]
+    form_ip = verb.romaji
     # Formel Positif
-    form_fp = verbe_parse["stem"] + base_i + "masu"
+    form_fp = verb.stem + base_i + "masu"
     # Informel Négatif
-    form_in = verbe_parse["stem"] + base_a + "nai"
+    form_in = verb.stem + base_a + "nai"
     # Formel Négatif
-    form_fn = verbe_parse["stem"] + base_i + "masen"
+    form_fn = verb.stem + base_i + "masen"
 
     return {
         "ip" : form_ip,
@@ -34,15 +35,15 @@ def _get_present_godan_forms(verbe_parse: dict) -> dict:
     }
 
 
-def _get_present_ichidan_forms(verbe_parse: dict) -> dict:
+def _get_present_ichidan_forms(verb: Verb) -> dict:
     # Informel Positif
-    form_ip = verbe_parse["verbe"]
+    form_ip = verb.romaji
     # Formel Positif
-    form_fp = verbe_parse["stem"] + "masu"
+    form_fp = verb.stem + "masu"
     # Informel Négatif
-    form_in = verbe_parse["stem"] + "nai"
+    form_in = verb.stem + "nai"
     # Formel Négatif
-    form_fn = verbe_parse["stem"] + "masen"
+    form_fn = verb.stem + "masen"
 
     return {
         "ip" : form_ip,
@@ -52,29 +53,29 @@ def _get_present_ichidan_forms(verbe_parse: dict) -> dict:
     }
 
 
-def _get_present_exception_forms(verbe_parse: dict) -> dict:
-    if verbe_parse["verbe"] == "iku":
+def _get_present_exception_forms(verb: dict) -> dict:
+    if verb.romaji == "iku":
         return {
             "ip" : "iku",
             "fp" : "ikimasu",
             "in" : "ikanai",
             "fn" : "ikimasen",
         }
-    elif verbe_parse["verbe"] == "suru":
+    elif verb.romaji == "suru":
         return {
             "ip" : "suru",
             "fp" : "shimasu",
             "in" : "shinai",
             "fn" : "shimasen",
         }
-    elif verbe_parse["verbe"] == "kuru":
+    elif verb.romaji == "kuru":
         return {
             "ip" : "kuru",
             "fp" : "kimasu",
             "in" : "konai",
             "fn" : "kimasen",
         }
-    elif verbe_parse["verbe"] == "aru":
+    elif verb.romaji == "aru":
         return {
             "ip" : "aru",
             "fp" : "arimasu",

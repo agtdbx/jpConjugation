@@ -1,11 +1,13 @@
-from jpconjugation.define import VERB_FORMS, VERB_FORMS_NAME
+from jpconjugation.define import VERBS_TENSES, VERBS_TENSES_NAME
 from jpconjugation.parsing.load import load_json_file
-from jpconjugation.parsing.verbs import parse_conjugation_data
 from jpconjugation.conjugation.verbs.conjugation import conjugate_verb
 
 if __name__ == "__main__":
-    # Get json data
-    json_data = load_json_file("./data/test.json")
+    # Get and parse json data
+    try:
+        data = load_json_file("./data/data.json")
+    except Exception as e:
+        print(f"Error : {e}")
 
     separator = "-" * 111
 
@@ -13,13 +15,12 @@ if __name__ == "__main__":
     print(f"| {"Temps":15} | {"Informel Positif":20} | {"Formel Positif":20} | "+ \
           f"{"Informel Négatif":20} | {"Formel Négatif":20} |")
     print(separator)
-    for verb_data in json_data["verbs"]:
 
-        verb_parse = parse_conjugation_data(verb_data)
+    for verb in data.verbs:
 
-        for form_id in VERB_FORMS:
-            form_name = VERB_FORMS_NAME.get(form_id, "")
-            forms = conjugate_verb(verb_parse, form_id)
+        for form_id in VERBS_TENSES:
+            form_name = VERBS_TENSES_NAME.get(form_id, "")
+            forms = conjugate_verb(verb, form_id)
             form_ip = forms.get("ip", "")
             form_fp = forms.get("fp", "")
             form_in = forms.get("in", "")

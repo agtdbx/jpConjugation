@@ -1,25 +1,26 @@
+from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.bases import get_base_te
 
-def get_progressive_forms(verbe_parse: dict) -> dict:
-    type = verbe_parse.get("type")
+def get_progressive_forms(verb: Verb) -> dict:
+    type = verb.type
 
     if type == "godan":
-        return _get_progressive_godan_forms(verbe_parse)
+        return _get_progressive_godan_forms(verb)
     elif type == "ichidan":
-        return _get_progressive_ichidan_forms(verbe_parse)
+        return _get_progressive_ichidan_forms(verb)
     elif type == "exception":
-        return _get_progressive_exception_forms(verbe_parse)
+        return _get_progressive_exception_forms(verb)
     else:
         return {}
 
 
-def _get_progressive_godan_forms(verbe_parse: dict) -> dict:
-    base_te = get_base_te(verbe_parse)
+def _get_progressive_godan_forms(verb: Verb) -> dict:
+    base_te = get_base_te(verb)
 
     # Informel Positif
-    form_ip = verbe_parse["stem"] + base_te + "iru"
+    form_ip = verb.stem + base_te + "iru"
     # Formel Positif
-    form_fp = verbe_parse["stem"] + base_te + "imasu"
+    form_fp = verb.stem + base_te + "imasu"
 
     return {
         "ip" : form_ip,
@@ -27,11 +28,11 @@ def _get_progressive_godan_forms(verbe_parse: dict) -> dict:
     }
 
 
-def _get_progressive_ichidan_forms(verbe_parse: dict) -> dict:
+def _get_progressive_ichidan_forms(verb: Verb) -> dict:
     # Informel Positif
-    form_ip = verbe_parse["stem"] + "teiru"
+    form_ip = verb.stem + "teiru"
     # Formel Positif
-    form_fp = verbe_parse["stem"] + "teimasu"
+    form_fp = verb.stem + "teimasu"
 
     return {
         "ip" : form_ip,
@@ -39,23 +40,23 @@ def _get_progressive_ichidan_forms(verbe_parse: dict) -> dict:
     }
 
 
-def _get_progressive_exception_forms(verbe_parse: dict) -> dict:
-    if verbe_parse["verbe"] == "iku":
+def _get_progressive_exception_forms(verb: Verb) -> dict:
+    if verb.romaji == "iku":
         return {
             "ip" : "itteiru",
             "fp" : "itteimasu",
         }
-    elif verbe_parse["verbe"] == "suru":
+    elif verb.romaji == "suru":
         return {
             "ip" : "shiteiru",
             "fp" : "shiteimasu",
         }
-    elif verbe_parse["verbe"] == "kuru":
+    elif verb.romaji == "kuru":
         return {
             "ip" : "kiteiru",
             "fp" : "kiteimasu",
         }
-    elif verbe_parse["verbe"] == "aru":
+    elif verb.romaji == "aru":
         return {
             "ip" : "atteiru",
             "fp" : "atteimasu",

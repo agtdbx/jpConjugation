@@ -3,7 +3,7 @@ from jpconjugation.conjugation.adjectives.past import get_past_forms
 from jpconjugation.conjugation.adjectives.connective import get_connective_forms
 from conjugation.adjectives.adverbial import get_adverbial_forms
 
-_ADJECTIVE_FORMS_FUNCTIONS = {
+_ADJECTIVE_TENSES_FUNCTIONS = {
     "pr" : get_present_forms,
     "pa" : get_past_forms,
     "co" : get_connective_forms,
@@ -11,10 +11,10 @@ _ADJECTIVE_FORMS_FUNCTIONS = {
 }
 
 
-def conjugate_adjective(adjective_parse: dict, form_id: str) -> dict:
-    fnct = _ADJECTIVE_FORMS_FUNCTIONS.get(form_id)
+def conjugate_adjective(adjective: Adjective, form_id: str) -> dict:
+    fnct = _ADJECTIVE_TENSES_FUNCTIONS.get(form_id)
 
     if fnct != None:
-        return fnct(adjective_parse)
+        return fnct(adjective)
 
     return {}

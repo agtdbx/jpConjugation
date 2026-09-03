@@ -1,4 +1,10 @@
-VERB_FORMS = [
+VERBS_TYPES = [
+    "godan",
+    "ichidan",
+    "exception"
+]
+
+VERBS_TENSES = [
     "pr",       # Present
     "pa",       # Past
     "im",       # Imperative
@@ -9,15 +15,8 @@ VERB_FORMS = [
     "po"        # Potential
 ]
 
-ADJECTIVES_FORMS = [
-    "pr",       # Present
-    "pa",       # Past
-    "co",       # Connective
-    "ad"        # Adverbial
-]
 
-
-VERB_FORMS_NAME = {
+VERBS_TENSES_NAME = {
     "pr" : "Présent",
     "pa" : "Passé",
     "im" : "Impératif",
@@ -28,7 +27,19 @@ VERB_FORMS_NAME = {
     "po" : "Potentielle"
 }
 
-AJDJECTIVES_FORMS_NAME = {
+ADJECTIVES_TYPES = [
+    "ii",
+    "na"
+]
+
+ADJECTIVES_TENSES = [
+    "pr",       # Present
+    "pa",       # Past
+    "co",       # Connective
+    "ad"        # Adverbial
+]
+
+AJDJECTIVES_TENSES_NAME = {
     "pr" : "Présent",
     "pa" : "Passé",
     "co" : "Liaison",

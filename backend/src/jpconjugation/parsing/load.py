@@ -1,8 +1,7 @@
-import json
+from pathlib import Path
+from jpconjugation.models import JPData
 
-def load_json_file(file_path: str) -> dict:
-    file = open(file_path)
-    file_content = file.read()
-    file.close()
+def load_json_file(file_path: str) -> JPData:
+    file_content = Path(file_path).read_text(encoding="utf-8")
 
-    return json.loads(file_content)
+    return JPData.model_validate_json(file_content)

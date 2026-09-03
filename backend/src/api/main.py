@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from jpconjugation.define import    VERBS_TYPES, VERBS_TENSES, VERBS_TENSES_NAME,\
+                                    ADJECTIVES_TYPES, ADJECTIVES_TENSES, AJDJECTIVES_TENSES_NAME
 
 app = FastAPI()
 
@@ -21,13 +23,15 @@ def get_options():
         "sections": {
             "verbs": {
                 "title": "Verbes",
-                "types": ["godan", "ichidan", "exception"],
-                "tenses": ["pr", "pa", "im", "pro", "de-pr", "de-pa", "vo", "po"]
+                "types": VERBS_TYPES,
+                "tenses": VERBS_TENSES,
+                "names": VERBS_TENSES_NAME
             },
             "adjectives": {
                 "title": "Adjectifs",
-                "types": ["ii", "na"],
-                "tenses": ["pr", "pa", "co", "ad"]
+                "types": ADJECTIVES_TYPES,
+                "tenses": ADJECTIVES_TENSES,
+                "names": AJDJECTIVES_TENSES_NAME
             }
         }
     }

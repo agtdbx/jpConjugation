@@ -1,3 +1,4 @@
+from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.present import get_present_forms
 from jpconjugation.conjugation.verbs.past import get_past_forms
 from jpconjugation.conjugation.verbs.imperative import get_imperative_forms
@@ -6,7 +7,7 @@ from jpconjugation.conjugation.verbs.desirative import get_desirative_present_fo
 from jpconjugation.conjugation.verbs.volitional import get_volitional_forms
 from jpconjugation.conjugation.verbs.potential import get_potential_forms
 
-_VERB_FORMS_FUNCTIONS = {
+_VERB_TENSES_FUNCTIONS = {
     "pr" : get_present_forms,
     "pa" : get_past_forms,
     "im" : get_imperative_forms,
@@ -18,10 +19,10 @@ _VERB_FORMS_FUNCTIONS = {
 }
 
 
-def conjugate_verb(verb_parse: dict, form_id: str) -> dict:
-    fnct = _VERB_FORMS_FUNCTIONS.get(form_id)
+def conjugate_verb(verb: Verb, form_id: str) -> dict:
+    fnct = _VERB_TENSES_FUNCTIONS.get(form_id)
 
     if fnct != None:
-        return fnct(verb_parse)
+        return fnct(verb)
 
     return {}

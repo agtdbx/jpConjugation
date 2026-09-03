@@ -1,19 +1,21 @@
-def get_connective_forms(adjectif_parse: dict) -> dict:
-    type = adjectif_parse.get("type")
+from jpconjugation.models import Adjective
 
-    if type == "i":
-        return _get_connective_i_forms(adjectif_parse)
+def get_connective_forms(adjective: Adjective) -> dict:
+    type = adjective.type
+
+    if type == "ii":
+        return _get_connective_i_forms(adjective)
     elif type == "na":
-        return _get_connective_na_forms(adjectif_parse)
+        return _get_connective_na_forms(adjective)
     else:
         return {}
 
 
-def _get_connective_i_forms(adjectif_parse: dict) -> dict:
+def _get_connective_i_forms(adjective: Adjective) -> dict:
     # Informel Positif
-    form_ip = adjectif_parse["stem"] + "kute"
+    form_ip = adjective.stem + "kute"
     # Informel Négatif
-    form_in = adjectif_parse["stem"] + "kunakute"
+    form_in = adjective.stem + "kunakute"
 
     return {
         "ip" : form_ip,
@@ -21,11 +23,11 @@ def _get_connective_i_forms(adjectif_parse: dict) -> dict:
     }
 
 
-def _get_connective_na_forms(adjectif_parse: dict) -> dict:
+def _get_connective_na_forms(adjective: Adjective) -> dict:
     # Informel Positif
-    form_ip = adjectif_parse["adjectif"] + " de"
+    form_ip = adjective.romaji + " de"
     # Informel Négatif
-    form_in = adjectif_parse["adjectif"] + " janakute"
+    form_in = adjective.romaji + " janakute"
 
     return {
         "ip" : form_ip,

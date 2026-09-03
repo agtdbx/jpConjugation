@@ -1,19 +1,21 @@
-def get_past_forms(adjectif_parse: dict) -> dict:
-    type = adjectif_parse.get("type")
+from jpconjugation.models import Adjective
 
-    if type == "i":
-        return _get_past_i_forms(adjectif_parse)
+def get_past_forms(adjective: Adjective) -> dict:
+    type = adjective.type
+
+    if type == "ii":
+        return _get_past_i_forms(adjective)
     elif type == "na":
-        return _get_past_na_forms(adjectif_parse)
+        return _get_past_na_forms(adjective)
     else:
         return {}
 
 
-def _get_past_i_forms(adjectif_parse: dict) -> dict:
+def _get_past_i_forms(adjective: Adjective) -> dict:
     # Informel Positif
-    form_ip = adjectif_parse["stem"] + "katta"
+    form_ip = adjective.stem + "katta"
     # Informel Négatif
-    form_in = adjectif_parse["stem"] + "kunakatta"
+    form_in = adjective.stem + "kunakatta"
 
     return {
         "ip" : form_ip,
@@ -23,15 +25,15 @@ def _get_past_i_forms(adjectif_parse: dict) -> dict:
     }
 
 
-def _get_past_na_forms(adjectif_parse: dict) -> dict:
+def _get_past_na_forms(adjective: Adjective) -> dict:
     # Informel Positif
-    form_ip = adjectif_parse["adjectif"] + " datta"
+    form_ip = adjective.romaji + " datta"
     # Formel Positif
-    form_fp = adjectif_parse["adjectif"] + " deshita"
+    form_fp = adjective.romaji + " deshita"
     # Informel Négatif
-    form_in = adjectif_parse["adjectif"] + " janakatta"
+    form_in = adjective.romaji + " janakatta"
     # Formel Négatif
-    form_fn = adjectif_parse["adjectif"] + " ja arimasen deshita"
+    form_fn = adjective.romaji + " ja arimasen deshita"
 
     return {
         "ip" : form_ip,

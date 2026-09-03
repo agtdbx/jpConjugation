@@ -1,31 +1,32 @@
+from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.bases import get_base_a, get_base_i, get_base_ta
 
-def get_past_forms(verbe_parse: dict) -> dict:
-    type = verbe_parse.get("type")
+def get_past_forms(verb: Verb) -> dict:
+    type = verb.type
 
     if type == "godan":
-        return _get_past_godan_forms(verbe_parse)
+        return _get_past_godan_forms(verb)
     elif type == "ichidan":
-        return _get_past_ichidan_forms(verbe_parse)
+        return _get_past_ichidan_forms(verb)
     elif type == "exception":
-        return _get_past_exception_forms(verbe_parse)
+        return _get_past_exception_forms(verb)
     else:
         return {}
 
 
-def _get_past_godan_forms(verbe_parse: dict) -> dict:
-    base_a = get_base_a(verbe_parse)
-    base_ta = get_base_ta(verbe_parse)
-    base_i = get_base_i(verbe_parse)
+def _get_past_godan_forms(verb: Verb) -> dict:
+    base_a = get_base_a(verb)
+    base_ta = get_base_ta(verb)
+    base_i = get_base_i(verb)
 
     # Informel Positif
-    form_ip = verbe_parse["stem"] + base_ta
+    form_ip = verb.stem + base_ta
     # Formel Positif
-    form_fp = verbe_parse["stem"] + base_i + "mashita"
+    form_fp = verb.stem + base_i + "mashita"
     # Informel Négatif
-    form_in = verbe_parse["stem"] + base_a + "nakatta"
+    form_in = verb.stem + base_a + "nakatta"
     # Formel Négatif
-    form_fn = verbe_parse["stem"] + base_i + "masen deshita"
+    form_fn = verb.stem + base_i + "masen deshita"
 
     return {
         "ip" : form_ip,
@@ -35,15 +36,15 @@ def _get_past_godan_forms(verbe_parse: dict) -> dict:
     }
 
 
-def _get_past_ichidan_forms(verbe_parse: dict) -> dict:
+def _get_past_ichidan_forms(verb: Verb) -> dict:
     # Informel Positif
-    form_ip = verbe_parse["stem"] + "ta"
+    form_ip = verb.stem + "ta"
     # Formel Positif
-    form_fp = verbe_parse["stem"] + "mashita"
+    form_fp = verb.stem + "mashita"
     # Informel Négatif
-    form_in = verbe_parse["stem"] + "nakatta"
+    form_in = verb.stem + "nakatta"
     # Formel Négatif
-    form_fn = verbe_parse["stem"] + "masen deshita"
+    form_fn = verb.stem + "masen deshita"
 
     return {
         "ip" : form_ip,
@@ -53,29 +54,29 @@ def _get_past_ichidan_forms(verbe_parse: dict) -> dict:
     }
 
 
-def _get_past_exception_forms(verbe_parse: dict) -> dict:
-    if verbe_parse["verbe"] == "iku":
+def _get_past_exception_forms(verb: Verb) -> dict:
+    if verb.romaji == "iku":
         return {
             "ip" : "itta",
             "fp" : "ikimashita",
             "in" : "ikanakatta",
             "fn" : "ikimasen deshita",
         }
-    elif verbe_parse["verbe"] == "suru":
+    elif verb.romaji == "suru":
         return {
             "ip" : "shita",
             "fp" : "shimashita",
             "in" : "shinakatta",
             "fn" : "shimasen deshita",
         }
-    elif verbe_parse["verbe"] == "kuru":
+    elif verb.romaji == "kuru":
         return {
             "ip" : "kita",
             "fp" : "kimashita",
             "in" : "konakatta",
             "fn" : "kimasen deshita",
         }
-    elif verbe_parse["verbe"] == "aru":
+    elif verb.romaji == "aru":
         return {
             "ip" : "atta",
             "fp" : "arimashita",
