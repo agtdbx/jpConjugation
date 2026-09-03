@@ -7,7 +7,9 @@ authors = [
     { name = "Agtdbx", email = "auguste.deroubaix@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "fastapi[standard]>=0.141.1",
+]
 
 [project.scripts]
 jpconjugation = "jpconjugation:main"
