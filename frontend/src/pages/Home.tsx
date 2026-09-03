@@ -10,7 +10,7 @@ export default function Home() {
   // Setup first call at first page render
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/options')
+    fetch('https://jpconjugation-api.onrender.com/api/options')
       .then(response => {
         if (!response.ok) throw new Error("Erreur réseau")
         return response.json()

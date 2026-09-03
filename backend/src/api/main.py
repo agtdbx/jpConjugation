@@ -6,7 +6,10 @@ app = FastAPI()
 # CORS Configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Allow React local app
+    allow_origins=[
+        "http://localhost:5173",
+        "https://jp-conjugation-zeta.vercel.app"
+    ],  # Allow React local app and vercel app
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
