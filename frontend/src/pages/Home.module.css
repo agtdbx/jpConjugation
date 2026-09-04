@@ -1,0 +1,10 @@
+.slider {
+    margin: 2rem 0;
+    padding: 1rem;
+    border-top: 2px solid #eee;
+}
+
+.slider input {
+    width: 100%;
+    max-width: 300px;
+}

@@ -63,15 +63,15 @@ def get_options():
 def generate_conjugation(options: GenerationOptions):
     # Get verbs and adjective according the options
     verbs = []
-    if len(options.verbs_types) != 0 and len(options.verbs_tense) != 0:
+    if len(options.sections.verbs.types) != 0 and len(options.sections.verbs.values) != 0:
         for verb in data.verbs:
-            if verb.type in options.verbs_types:
+            if verb.type in options.sections.verbs.types:
                 verbs.append(verb)
 
     adjectives = []
-    if len(options.adjectives_types) != 0 and len(options.adjectives_tense) != 0:
+    if len(options.sections.adjectives.types) != 0 and len(options.sections.adjectives.values) != 0:
         for adjective in data.adjectives:
-            if adjective.type in options.adjectives_types:
+            if adjective.type in options.sections.adjectives.types:
                 adjectives.append(adjective)
 
     # Check which target is
@@ -91,8 +91,8 @@ def generate_conjugation(options: GenerationOptions):
 
         if target == "verb":
             verb = rd.choice(verbs)
-            form = rd.choice(options.forms)
-            tense = rd.choice(options.verbs_tenses)
+            form = rd.choice(options.sections.forms.values)
+            tense = rd.choice(options.sections.verbs.values)
 
             result = conjugate_verb(verb, tense).get(form)
 
@@ -105,8 +105,8 @@ def generate_conjugation(options: GenerationOptions):
 
         elif target == "adjective":
             adjective = rd.choice(adjectives)
-            form = rd.choice(options.forms)
-            tense = rd.choice(options.adjectives_tenses)
+            form = rd.choice(options.sections.forms.values)
+            tense = rd.choice(options.sections.adjectives.values)
 
             result = conjugate_adjective(adjective, tense).get(form)
 
