@@ -128,7 +128,21 @@ export default function Home() {
   const isSubmitDisabled = !checkIsFormValid();
 
   const hanbleButtonClic = () => {
-    console.log('Click !')
+    fetch(`${import.meta.env.VITE_API_URL}/api/generate`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(options),
+    }).then(res => {
+        if (!res.ok) throw new Error("Erreur réseau")
+        return res.json()
+      }).then(exercices => {
+        console.log(exercices);
+      })
+      .catch(err => {
+        setError(err.message);
+      });
   }
 
   // Display data
