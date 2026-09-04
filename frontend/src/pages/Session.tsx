@@ -1,4 +1,4 @@
-import styles from './Session.module.css';
+// import styles from './Session.module.css';
 import { useState } from 'react';
 import ExerciceCard from '../components/ExerciceCard';
 
