@@ -19,8 +19,8 @@ _VERB_TENSES_FUNCTIONS = {
 }
 
 
-def conjugate_verb(verb: Verb, form_id: str) -> dict:
-    fnct = _VERB_TENSES_FUNCTIONS.get(form_id)
+def conjugate_verb(verb: Verb, tense_id: str) -> dict:
+    fnct = _VERB_TENSES_FUNCTIONS.get(tense_id)
 
     if fnct != None:
         return fnct(verb)

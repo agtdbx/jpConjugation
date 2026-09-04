@@ -1,13 +1,20 @@
-from pydantic import BaseModel, Field, model_validator
-from typing import Literal, Optional
+from pydantic import BaseModel, Field, field_validator, model_validator
+from typing import Optional
+from jpconjugation.define import VERBS_TYPES, ADJECTIVES_TYPES
 
 class Verb(BaseModel):
     romaji: str = Field(..., min_length=1)
     kanji: str = Field(..., min_length=1)
     traduction: str = Field(..., min_length=1)
 
-    # Check if type is one of thoses
-    type: Literal["godan", "ichidan", "exception"]
+    type: str
+
+    @field_validator('type')
+    @classmethod
+    def validate_forms(cls, value):
+        if value not in VERBS_TYPES:
+            raise ValueError(f"Type invalide: {value}. Autorisées: {list(VERBS_TYPES.keys())}")
+        return value
 
     # Fields to compute
     stem: str = ""
@@ -32,7 +39,14 @@ class Adjective(BaseModel):
     romaji: str = Field(..., min_length=1)
     kanji: str = Field(..., min_length=1)
     traduction: str = Field(..., min_length=1)
-    type: Optional[Literal["ii", "na"]] = None
+    type: Optional[str] = None
+
+    @field_validator('type')
+    @classmethod
+    def validate_type(cls, value):
+        if value is not None and value not in ADJECTIVES_TYPES:
+            raise ValueError(f"Type invalide: {value}. Autorisés: {list(ADJECTIVES_TYPES.keys())}")
+        return value
 
     stem: str = ""
 

@@ -1,4 +1,4 @@
-from jpconjugation.define import ADJECTIVES_TENSES, AJDJECTIVES_TENSES_NAME
+from jpconjugation.define import ADJECTIVES_TENSES
 from jpconjugation.parsing.load import load_json_file
 from jpconjugation.conjugation.adjectives.conjugation import conjugate_adjective
 
@@ -17,14 +17,13 @@ if __name__ == "__main__":
           f"{"Informel Négatif":20} | {"Formel Négatif":30} |")
     print(separator)
     for adjective in data.adjectives:
-        for form_id in ADJECTIVES_TENSES:
-            form_name = AJDJECTIVES_TENSES_NAME.get(form_id, "")
-            forms = conjugate_adjective(adjective, form_id)
+        for tense_id, tense_name in ADJECTIVES_TENSES.items():
+            forms = conjugate_adjective(adjective, tense_id)
             form_ip = forms.get("ip", "")
             form_fp = forms.get("fp", "")
             form_in = forms.get("in", "")
             form_fn = forms.get("fn", "")
 
-            print(f"| {form_name:15} | {form_ip:20} | {form_fp:20} | {form_in:20} | {form_fn:30} |")
+            print(f"| {tense_name:15} | {form_ip:20} | {form_fp:20} | {form_in:20} | {form_fn:30} |")
 
         print(separator)

@@ -1,47 +1,37 @@
-VERBS_TYPES = [
-    "godan",
-    "ichidan",
-    "exception"
-]
-
-VERBS_TENSES = [
-    "pr",       # Present
-    "pa",       # Past
-    "im",       # Imperative
-    "pro",      # Progressive
-    "de-pr",    # Desirative present
-    "de-pa",    # Desirative past
-    "vo",       # Volitional
-    "po"        # Potential
-]
-
-
-VERBS_TENSES_NAME = {
-    "pr" : "Présent",
-    "pa" : "Passé",
-    "im" : "Impératif",
-    "pro" : "Progressif",
-    "de-pr" : "Volonté présent",
-    "de-pa" : "Volonté passé",
-    "vo" : "Invitation",
-    "po" : "Potentielle"
+VERBS_TYPES = {
+    "godan" : "Godan",
+    "ichidan" : "Ichidan",
+    "exception" : "Exception"
 }
 
-ADJECTIVES_TYPES = [
-    "ii",
-    "na"
-]
+VERBS_TENSES = {
+    "pr" : "Présent",            # Present
+    "pa" : "Passé",              # Past
+    "im" : "Impératif",          # Imperative
+    "pro" : "Progressif",        # Progressive
+    "de-pr" : "Volonté présent", # Desirative present
+    "de-pa" : "Volonté passé",   # Desirative past
+    "vo" : "Invitation",         # Volitional
+    "po" : "Potentielle"         # Potential
+}
 
-ADJECTIVES_TENSES = [
-    "pr",       # Present
-    "pa",       # Past
-    "co",       # Connective
-    "ad"        # Adverbial
-]
 
-AJDJECTIVES_TENSES_NAME = {
-    "pr" : "Présent",
-    "pa" : "Passé",
-    "co" : "Liaison",
-    "ad" : "Adverbiale"
+ADJECTIVES_TYPES = {
+    "ii" : "ii",
+    "na" : "na"
+}
+
+ADJECTIVES_TENSES = {
+    "pr" : "Présent",   # Present
+    "pa" : "Passé",     # Past
+    "co" : "Liaison",   # Connective
+    "ad" : "Adverbiale" # Adverbial
+}
+
+
+FORMS = {
+    "ip" : "Informel Positif",
+    "fp" : "Formel Positif",
+    "in" : "Informel Négatif",
+    "fn" : "Formel Négatif"
 }
