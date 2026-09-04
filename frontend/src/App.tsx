@@ -1,14 +1,20 @@
-import { Routes, Route } from 'react-router-dom'
+import { useState } from 'react';
 import Home from './pages/Home'
-import Conjugation from './pages/Conjugation'
+import Session from './pages/Session'
 
 function App() {
+  const [exercices, setExercices] = useState<any[] | null>(null);
+
+  if (!exercices) {
+    return <Home onStart={(data) => setExercices(data)} />;
+  }
+
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/conjugation" element={<Conjugation />} />
-    </Routes>
-  )
+    <Session
+      exercices={exercices}
+      onFinish={() => setExercices(null)}
+    />
+  );
 }
 
 export default App

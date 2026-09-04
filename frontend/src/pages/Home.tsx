@@ -4,12 +4,16 @@ import { useLocalStorage } from "../hooks/useLocalStorage"
 import Section from "../components/Section";
 import Button from "../components/Button";
 
+interface HomeProps {
+  onStart: (data: any[]) => void;
+}
+
 interface Options {
   number_conjugation: number;
   sections: Record<string, { types: string[], values: string[] }>;
 }
 
-export default function Home() {
+export default function Home({ onStart }: HomeProps) {
   // Create states
   const [schema, setSchema] = useState<any>(null)
   const [options, setOptions] = useLocalStorage<Options>('jp-conjugation-options', {
@@ -138,7 +142,7 @@ export default function Home() {
         if (!res.ok) throw new Error("Erreur réseau")
         return res.json()
       }).then(exercices => {
-        console.log(exercices);
+        onStart(exercices);
       })
       .catch(err => {
         setError(err.message);
