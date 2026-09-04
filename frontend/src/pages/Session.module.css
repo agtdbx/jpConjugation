@@ -1,0 +1,20 @@
+.container {
+  background-color: #1e2128;
+  border: 1px solid #2d313b;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.container h2 {
+  margin-top: 0;
+  border-bottom: 2px solid #2d313b;
+  padding-bottom: 0.75rem;
+}
+
+.container h3 {
+  font-size: 1.1rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}

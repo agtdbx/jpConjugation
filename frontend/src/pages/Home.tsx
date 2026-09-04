@@ -58,7 +58,7 @@ export default function Home({ onStart }: HomeProps) {
   }, [])
 
   // Display loading text
-  if (loading) return <div>Chargement des options depuis le serveur...</div>
+  if (loading) return <div>Chargement des options depuis le serveur... (~50 secondes)</div>
   // Display error
   if (error) return <div>Erreur : {error}</div>
 

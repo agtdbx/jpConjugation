@@ -1,19 +1,30 @@
 .container {
-  border: 1px solid #ccc;
-  margin: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  background-color: #10b981;
+  color: #ffffff;
+  border: none;
+  margin: 1.5rem 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
   cursor: pointer;
   display: inline-block;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.container:hover {
-  background-color: lightblue;
+.container:hover:not(.disable) {
+  background-color: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
 }
 
 .disable, .disable:hover {
-  background-color: lightgray;
+  background-color: #2d313b;
+  color: #6b7280;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .text {

@@ -1,16 +1,77 @@
 .container {
+  background-color: #1e2128;
+  border: 1px solid #2d313b;
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  margin: 2rem auto;
 }
 
 .rules {
+  margin-bottom: 2rem;
+}
+
+.rules p:first-child {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: #f3f4f6;
+  letter-spacing: 0.05em;
+}
+
+.rules p {
+  margin: 0.25rem 0;
+  color: #a5b4fc;
+  font-size: 1.1rem;
 }
 
 .userResponse {
+  width: 100%;
+  max-width: 350px;
+  padding: 1rem;
+  font-size: 1.5rem;
+  background-color: #121418;
+  border: 2px solid #374151;
+  border-radius: 8px;
+  color: #ffffff;
+  text-align: center;
+  transition: border-color 0.2s ease;
+  outline: none;
+  margin-bottom: 1.5rem;
+}
+
+.userResponse:focus {
+  border-color: #6366f1;
+}
+
+.userResponse:read-only {
+  background-color: #1a1c23;
+  color: #9ca3af;
 }
 
 .right {
-  color: lightgreen;
+  color: #34d399;
+  font-weight: 600;
+  font-size: 1.25rem;
+  animation: popIn 0.3s ease-out forwards;
 }
 
 .wrong {
-  color: lightcoral;
+  color: #f87171;
+  font-weight: 600;
+  font-size: 1.25rem;
+  animation: shake 0.4s ease-in-out forwards;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
 }

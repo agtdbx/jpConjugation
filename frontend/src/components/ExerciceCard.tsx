@@ -16,7 +16,7 @@ export default function ExerciceCard({ data, onNext }: ExerciceCardProps) {
   const [isValidate, setValidate] = useState(false);
   const [userResponse, setUserResponse] = useState("");
 
-  const isUserRight = (userResponse.trim().toLowerCase() === data.result.toLowerCase());
+  const isUserRight = (data.result && userResponse.trim().toLowerCase() === data.result.toLowerCase());
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserResponse(e.target.value)

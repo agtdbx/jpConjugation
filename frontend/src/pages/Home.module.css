@@ -1,10 +1,23 @@
 .slider {
-    margin: 2rem 0;
-    padding: 1rem;
-    border-top: 2px solid #eee;
+  background-color: #1e2128;
+  border: 1px solid #2d313b;
+  border-radius: 12px;
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
 }
 
-.slider input {
-    width: 100%;
-    max-width: 300px;
+.slider h3 {
+  margin-top: 0;
+  color: #a5b4fc;
+}
+
+.slider input[type="range"] {
+  width: 100%;
+  max-width: 400px;
+  accent-color: #6366f1;
+  cursor: pointer;
+  height: 6px;
+  background: #374151;
+  border-radius: 4px;
 }
