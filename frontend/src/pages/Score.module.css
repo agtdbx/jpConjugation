@@ -1,0 +1,54 @@
+.container {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-dark);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: 0 10px 25px var(--shadow);
+  max-width: 400px;
+  margin: 4rem auto;
+}
+
+.title {
+  font-size: 2rem;
+  margin-top: 0;
+  color: var(--text-title);
+  margin-bottom: 2rem;
+}
+
+.scoreText {
+  font-size: 1.5rem;
+  color: var(--text-title);
+  margin-bottom: 0.5rem;
+}
+
+.scoreText strong {
+  color: var(--success);
+  font-size: 2.5rem;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.percentage {
+  color: var(--text-accent);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.progressBar {
+  width: 100%;
+  height: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.progressBar::-webkit-progress-bar {
+  background-color: var(--bg-element);
+}
+
+.progressBar::-webkit-progress-value {
+  background-color: var(--primary);
+  border-radius: 6px;
+  transition: width 0.5s ease;
+}

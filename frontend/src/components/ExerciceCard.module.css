@@ -1,10 +1,10 @@
 .container {
-  background-color: #1e2128;
-  border: 1px solid #2d313b;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-dark);
   border-radius: 16px;
   padding: 2.5rem;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 25px var(--shadow);
   max-width: 500px;
   margin: 2rem auto;
 }
@@ -17,13 +17,13 @@
   font-size: 3rem;
   font-weight: 700;
   margin: 0 0 1rem 0;
-  color: #f3f4f6;
+  color: var(--text-title);
   letter-spacing: 0.05em;
 }
 
 .rules p {
   margin: 0.25rem 0;
-  color: #a5b4fc;
+  color: var(--text-accent);
   font-size: 1.1rem;
 }
 
@@ -32,10 +32,10 @@
   max-width: 350px;
   padding: 1rem;
   font-size: 1.5rem;
-  background-color: #121418;
-  border: 2px solid #374151;
+  background-color: var(--bg-main);
+  border: 2px solid var(--border-light);
   border-radius: 8px;
-  color: #ffffff;
+  color: var(--text-main);
   text-align: center;
   transition: border-color 0.2s ease;
   outline: none;
@@ -43,23 +43,36 @@
 }
 
 .userResponse:focus {
-  border-color: #6366f1;
+  border-color: var(--primary);
 }
 
 .userResponse:read-only {
-  background-color: #1a1c23;
-  color: #9ca3af;
+  background-color: var(--bg-input-readonly);
+  color: var(--text-muted);
+}
+
+.explanation {
+  background-color: var(--border-dark);
+  border-left: 4px solid var(--primary);
+  padding: 1rem;
+  border-radius: 0 8px 8px 0;
+  margin-top: 1.5rem;
+  color: var(--text-hint);
+  font-size: 0.95rem;
+  text-align: left;
+  line-height: 1.4;
+  animation: popIn 0.3s ease-out forwards;
 }
 
 .right {
-  color: #34d399;
+  color: var(--success);
   font-weight: 600;
   font-size: 1.25rem;
   animation: popIn 0.3s ease-out forwards;
 }
 
 .wrong {
-  color: #f87171;
+  color: var(--error);
   font-weight: 600;
   font-size: 1.25rem;
   animation: shake 0.4s ease-in-out forwards;

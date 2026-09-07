@@ -1,12 +1,44 @@
+:root {
+  /* Backgrounds */
+  --bg-main: #121418;
+  --bg-card: #1e2128;
+  --bg-input-readonly: #1a1c23;
+  --bg-element: #374151;
+
+  /* Border */
+  --border-light: #374151;
+  --border-dark: #2d313b;
+
+  /* Texts */
+  --text-title: #f3f4f6;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --text-accent: #a5b4fc;
+  --text-hint: #d1d5db;
+  --text-button: #ffffff;
+
+  /* Action and feedback */
+  --primary: #6366f1;
+  --success: #34d399;
+  --disable-button: #6b7280;
+  --success-button: #10b981;
+  --success-button-hover: #059669;
+  --error: #f87171;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --shadow-soft: rgba(0, 0, 0, 0.2);
+  --shadow-primary: rgba(99, 102, 241, 0.4);
+  --shadow-success: rgba(16, 185, 129, 0.4);
+}
+
 body {
-  background-color: #121418;
-  color: #e5e7eb;
+  background-color: var(--bg-main);
+  color: var(--text-main);
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 2rem;
 }
 
 h1, h2, h3 {
-  color: #f3f4f6;
+  color: var(--text-title);
   font-weight: 600;
 }

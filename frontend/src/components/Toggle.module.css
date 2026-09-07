@@ -11,20 +11,20 @@
 }
 
 .toggledOn {
-  background-color: #6366f1;
-  color: #ffffff;
-  box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
+  background-color: var(--primary);
+  color: var(--text-button);
+  box-shadow: 0 0 12px var(--shadow-primary);
 }
 
 .toggledOff {
-  background-color: #2d313b;
-  color: #9ca3af;
-  border-color: #374151;
+  background-color: var(--border-dark);
+  color: var(--text-muted);
+  border-color: var(--border-light);
 }
 
 .toggledOff:hover {
-  background-color: #374151;
-  color: #f3f4f6;
+  background-color: var(--bg-element);
+  color: var(--text-title);
 }
 
 .text {

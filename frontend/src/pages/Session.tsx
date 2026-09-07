@@ -1,4 +1,4 @@
-// import styles from './Session.module.css';
+import styles from './Session.module.css';
 import { useState } from 'react';
 import Score from '../pages/Score'
 import ExerciceCard from '../components/ExerciceCard';
@@ -33,8 +33,8 @@ export default function Session({ options, exercices, onFinish }: SessionProps) 
   const currentExercice = exercices[currentIndex];
 
   return (
-    <div>
-      <p>Progression : {currentIndex + 1} / {exercices.length}</p>
+    <div className={styles.wrapper}>
+      <p className={styles.progressText}>Progression : {currentIndex + 1} / {exercices.length}</p>
 
       <ExerciceCard
         options={options}

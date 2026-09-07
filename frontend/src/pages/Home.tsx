@@ -152,10 +152,12 @@ export default function Home({ options, setOptions, onStart }: HomeProps) {
 
   // Display data
   return (
-    <div>
-      <h1>Configuration de la session</h1>
-      <div>
-        <div className={`${styles.slider}`}>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Configuration de la session</h1>
+
+      <div className={styles.settingsGrid}>
+
+        <div className={`${styles.optionGroup} ${styles.fullWidth}`}>
           <h3>Nombre d'exercices : {options.number_conjugation}</h3>
           <input
             type="range"
@@ -163,28 +165,37 @@ export default function Home({ options, setOptions, onStart }: HomeProps) {
             max="50"
             value={options.number_conjugation}
             onChange={handleNumberChange}
+            className={styles.slider}
           />
         </div>
-        <div>
-          <h3>Écritures du verbe/adjectif à conjuguer</h3>
+
+        <div className={styles.optionGroup}>
+          <h3>Écritures du mot à conjuguer</h3>
           <select
             value={options.displayMode}
             onChange={handleViewChange}
+            className={styles.select}
           >
             <option value="romaji">Romaji</option>
             <option value="kanji">Kanji</option>
             <option value="traduction">Traduction</option>
           </select>
         </div>
-        <div>
-          <h3>Afficher la règle de conjugaison en cas d'erreur</h3>
-          <input
-            type="checkbox"
-            checked={options.displayRules}
-            onChange={handleSwitchChange}
-          />
+
+        <div className={styles.optionGroup}>
+          <div className={styles.checkboxWrapper}>
+            <h3 style={{ margin: 0 }}>Afficher la règle en cas d'erreur</h3>
+            <input
+              type="checkbox"
+              checked={options.displayRules}
+              onChange={handleSwitchChange}
+              className={styles.checkbox}
+            />
+          </div>
         </div>
+
       </div>
+
       {schema && Object.entries(schema.sections).map(([key, sectionData]) => (
         <Section
           key={key}
@@ -194,6 +205,7 @@ export default function Home({ options, setOptions, onStart }: HomeProps) {
           onToggle={handleToggle}
         />
       ))}
+
       <Button
         text={"Passer aux exercices"}
         isDisable={isSubmitDisabled}

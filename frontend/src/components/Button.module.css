@@ -1,6 +1,6 @@
 .container {
-  background-color: #10b981;
-  color: #ffffff;
+  background-color: var(--success-button);
+  color: var(--text-button);
   border: none;
   margin: 1.5rem 0.5rem;
   padding: 0.75rem 2rem;
@@ -14,14 +14,14 @@
 }
 
 .container:hover:not(.disable) {
-  background-color: #059669;
+  background-color: var(--success-button-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 4px 12px var(--shadow-success);
 }
 
 .disable, .disable:hover {
-  background-color: #2d313b;
-  color: #6b7280;
+  background-color: var(--border-dark);
+  color: var(--disable-button);
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
