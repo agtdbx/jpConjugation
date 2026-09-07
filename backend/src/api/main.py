@@ -97,7 +97,9 @@ def generate_conjugation(options: GenerationOptions):
                         continue
 
                     available_conjugations.append({
-                        "target": verb.romaji,
+                        "romaji": verb.romaji,
+                        "kanji": verb.kanji,
+                        "traduction": verb.traduction,
                         "form": FORMS[form],
                         "tense": VERBS_TENSES[tense],
                         "result": result
@@ -119,7 +121,9 @@ def generate_conjugation(options: GenerationOptions):
                         continue
 
                     available_conjugations.append({
-                        "target": adjective.romaji,
+                        "romaji": adjective.romaji,
+                        "kanji": adjective.kanji,
+                        "traduction": adjective.traduction,
                         "form": FORMS[form],
                         "tense": ADJECTIVES_TENSES[tense],
                         "result": result

@@ -1,25 +1,18 @@
 import styles from './Home.module.css';
 import { useState, useEffect } from 'react'
-import { useLocalStorage } from "../hooks/useLocalStorage"
 import Section from "../components/Section";
 import Button from "../components/Button";
+import { type Options } from "../App"
 
 interface HomeProps {
+  options: Options;
+  setOptions: (data: React.SetStateAction<Options>) => void;
   onStart: (data: any[]) => void;
 }
 
-interface Options {
-  number_conjugation: number;
-  sections: Record<string, { types: string[], values: string[] }>;
-}
-
-export default function Home({ onStart }: HomeProps) {
+export default function Home({ options, setOptions, onStart }: HomeProps) {
   // Create states
   const [schema, setSchema] = useState<any>(null)
-  const [options, setOptions] = useLocalStorage<Options>('jp-conjugation-options', {
-    number_conjugation: 10,
-    sections: {}
-  })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -91,6 +84,10 @@ export default function Home({ onStart }: HomeProps) {
     }
   };
 
+  const handleViewChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setOptions(prev => ({ ...prev, displayMode: e.target.value }));
+  };
+
   const checkIsFormValid = () => {
     // If loading or error, disable
     if (!schema || !options.sections || Object.keys(options.sections).length === 0) return false;
@@ -153,15 +150,28 @@ export default function Home({ onStart }: HomeProps) {
   return (
     <div>
       <h1>Configuration de la session</h1>
-      <div className={`${styles.slider}`}>
-        <h3>Nombre d'exercices : {options.number_conjugation}</h3>
-        <input
-          type="range"
-          min="1"
-          max="50"
-          value={options.number_conjugation}
-          onChange={handleNumberChange}
-        />
+      <div>
+        <div className={`${styles.slider}`}>
+          <h3>Nombre d'exercices : {options.number_conjugation}</h3>
+          <input
+            type="range"
+            min="1"
+            max="50"
+            value={options.number_conjugation}
+            onChange={handleNumberChange}
+          />
+        </div>
+        <div>
+          <h3>Écritures du verbe/adjectif à conjuguer</h3>
+          <select
+            value={options.displayMode}
+            onChange={handleViewChange}
+          >
+            <option value="romaji">Romaji</option>
+            <option value="kanji">Kanji</option>
+            <option value="traduction">Traduction</option>
+          </select>
+        </div>
       </div>
       {schema && Object.entries(schema.sections).map(([key, sectionData]) => (
         <Section
