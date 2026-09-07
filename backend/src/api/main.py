@@ -4,8 +4,8 @@ import random as rd
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from jpconjugation.define import (
-    VERBS_TYPES, VERBS_TENSES,
-    ADJECTIVES_TYPES, ADJECTIVES_TENSES,
+    VERBS_TYPES, VERBS_TENSES, VERBS_ALLOWED_FORMS,
+    ADJECTIVES_TYPES, ADJECTIVES_TENSES, ADJECTIVES_ALLOWED_FORMS,
     FORMS
 )
 from jpconjugation.parsing.load import load_json_file
@@ -67,63 +67,69 @@ def generate_conjugation(options: GenerationOptions):
 
     # Get verbs and adjective according the options
     verbs = []
-    if len(verbs_section.types) != 0 and len(verbs_section.values) != 0:
+    if verbs_section and len(verbs_section.types) != 0 and len(verbs_section.values) != 0:
         for verb in data.verbs:
             if verb.type in verbs_section.types:
                 verbs.append(verb)
 
     adjectives = []
-    if len(adjectives_section.types) != 0 and len(adjectives_section.values) != 0:
+    if adjectives_section and len(adjectives_section.types) != 0 and len(adjectives_section.values) != 0:
         for adjective in data.adjectives:
             if adjective.type in adjectives_section.types:
                 adjectives.append(adjective)
 
-    # Compute all possible combinations
-    available_combinations = []
+    # Compute all possible conjugations
+    available_conjugations = []
 
     if verbs_section and verbs:
         for verb in verbs:
-            for form in forms_section.values:
-                for tense in verbs_section.values:
-                    available_combinations.append(("verb", verb, form, tense))
+            for tense in verbs_section.values:
+                verb_conjugations = conjugate_verb(verb, tense)
+                if not verb_conjugations or len(verb_conjugations) == 0:
+                    continue
+
+                for form in forms_section.values:
+                    if not form in VERBS_ALLOWED_FORMS[tense]:
+                        continue
+
+                    result = verb_conjugations.get(form)
+                    if not result:
+                        continue
+
+                    available_conjugations.append({
+                        "target": verb.romaji,
+                        "form": FORMS[form],
+                        "tense": VERBS_TENSES[tense],
+                        "result": result
+                    })
 
     if adjectives_section and adjectives:
         for adjective in adjectives:
-            for form in forms_section.values:
-                for tense in adjectives_section.values:
-                    available_combinations.append(("adjective", adjective, form, tense))
+            for tense in adjectives_section.values:
+                adjective_conjugations = conjugate_adjective(adjective, tense)
+                if not adjective_conjugations or len(adjective_conjugations) == 0:
+                    continue
 
-    if not available_combinations:
+                for form in forms_section.values:
+                    if not form in ADJECTIVES_ALLOWED_FORMS[tense]:
+                        continue
+
+                    result = adjective_conjugations.get(form)
+                    if not result:
+                        continue
+
+                    available_conjugations.append({
+                        "target": adjective.romaji,
+                        "form": FORMS[form],
+                        "tense": ADJECTIVES_TENSES[tense],
+                        "result": result
+                    })
+
+    if not available_conjugations:
         raise HTTPException(status_code=400, detail="Aucune combinaison possible avec ces filtres")
 
     # Compute nb to generate
-    nb_to_generate = min(options.number_conjugation, len(available_combinations))
+    nb_to_generate = min(options.number_conjugation, len(available_conjugations))
 
-    # Suffle and get all combinations
-    selected_combinations = rd.sample(available_combinations, nb_to_generate)
-
-    conjugations = []
-
-    for target_type, word, form, tense in selected_combinations:
-
-        if target_type == "verb":
-            result = conjugate_verb(word, tense).get(form)
-
-            conjugations.append({
-                "target": word.romaji,
-                "form": FORMS[form],
-                "tense": VERBS_TENSES[tense],
-                "result": result
-            })
-
-        elif target_type == "adjective":
-            result = conjugate_adjective(word, tense).get(form)
-
-            conjugations.append({
-                "target": word.romaji,
-                "form": FORMS[form],
-                "tense": ADJECTIVES_TENSES[tense],
-                "result": result
-            })
-
-    return conjugations
+    # Suffle and get all conjugations
+    return rd.sample(available_conjugations, nb_to_generate)

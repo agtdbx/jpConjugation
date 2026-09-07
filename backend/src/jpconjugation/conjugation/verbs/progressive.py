@@ -17,26 +17,20 @@ def get_progressive_forms(verb: Verb) -> dict:
 def _get_progressive_godan_forms(verb: Verb) -> dict:
     base_te = get_base_te(verb)
 
-    # Informel Positif
-    form_ip = verb.stem + base_te + "iru"
-    # Formel Positif
-    form_fp = verb.stem + base_te + "imasu"
-
     return {
-        "ip" : form_ip,
-        "fp" : form_fp,
+        "ip" : verb.stem + base_te + "iru",
+        "fp" : verb.stem + base_te + "imasu",
+        "in" : verb.stem + base_te + "inai",
+        "fn" : verb.stem + base_te + "imasen",
     }
 
 
 def _get_progressive_ichidan_forms(verb: Verb) -> dict:
-    # Informel Positif
-    form_ip = verb.stem + "teiru"
-    # Formel Positif
-    form_fp = verb.stem + "teimasu"
-
     return {
-        "ip" : form_ip,
-        "fp" : form_fp,
+        "ip" : verb.stem + "teiru",
+        "fp" : verb.stem + "teimasu",
+        "in" : verb.stem + "teinai",
+        "fn" : verb.stem + "teimasen",
     }
 
 
@@ -45,21 +39,29 @@ def _get_progressive_exception_forms(verb: Verb) -> dict:
         return {
             "ip" : "itteiru",
             "fp" : "itteimasu",
+            "in" : "itteinai",
+            "fn" : "itteimasen",
         }
     elif verb.romaji == "suru":
         return {
             "ip" : "shiteiru",
             "fp" : "shiteimasu",
+            "in" : "shiteinai",
+            "fn" : "shiteimasen",
         }
     elif verb.romaji == "kuru":
         return {
             "ip" : "kiteiru",
             "fp" : "kiteimasu",
+            "in" : "kiteinai",
+            "fn" : "kiteimasen",
         }
     elif verb.romaji == "aru":
         return {
             "ip" : "atteiru",
             "fp" : "atteimasu",
+            "in" : "atteinai",
+            "fn" : "atteimasen",
         }
 
     return {}

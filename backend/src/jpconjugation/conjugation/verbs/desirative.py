@@ -28,7 +28,9 @@ def _get_desirative_present_godan_forms(verb: Verb) -> dict:
 
     return {
         "ip" : form_ip,
+        "fp" : form_ip + " desu",
         "in" : form_in,
+        "fn" : form_in + " desu",
     }
 
 
@@ -40,7 +42,10 @@ def _get_desirative_present_ichidan_forms(verb: Verb) -> dict:
 
     return {
         "ip" : form_ip,
+        "fp" : form_ip + " desu",
         "in" : form_in,
+        "fn" : form_in + " desu",
+
     }
 
 
@@ -48,17 +53,23 @@ def _get_desirative_present_exception_forms(verb: Verb) -> dict:
     if verb.romaji == "iku":
         return {
             "ip" : "ikitai",
+            "fp" : "ikitai desu",
             "in" : "ikitakunai",
+            "fn" : "ikitakunai desu",
         }
     elif verb.romaji == "suru":
         return {
             "ip" : "shitai",
+            "fp" : "shitai desu",
             "in" : "shitakunai",
+            "fn" : "shitakunai desu",
         }
     elif verb.romaji == "kuru":
         return {
             "ip" : "kitai",
+            "fp" : "kitai desu",
             "in" : "kitakunai",
+            "fn" : "kitakunai desu",
         }
 
     return {}
@@ -90,7 +101,9 @@ def _get_desirative_past_godan_forms(verb: Verb) -> dict:
 
     return {
         "ip" : form_ip,
+        "fp" : form_ip + " desu",
         "in" : form_in,
+        "fn" : form_in + " desu",
     }
 
 
@@ -102,7 +115,9 @@ def _get_desirative_past_ichidan_forms(verb: Verb) -> dict:
 
     return {
         "ip" : form_ip,
+        "fp" : form_ip + " desu",
         "in" : form_in,
+        "fn" : form_in + " desu",
     }
 
 
@@ -110,17 +125,23 @@ def _get_desirative_past_exception_forms(verb: Verb) -> dict:
     if verb.romaji == "iku":
         return {
             "ip" : "ikitakatta",
+            "fp" : "ikitakatta desu",
             "in" : "ikitakunakatta",
+            "fn" : "ikitakunakatta desu",
         }
     elif verb.romaji == "suru":
         return {
             "ip" : "shitakatta",
+            "fp" : "shitakatta desu",
             "in" : "shitakunakatta",
+            "fn" : "shitakunakatta desu",
         }
     elif verb.romaji == "kuru":
         return {
             "ip" : "kitakatta",
+            "fp" : "kitakatta desu",
             "in" : "kitakunakatta",
+            "fn" : "kitakunakatta desu",
         }
 
     return {}

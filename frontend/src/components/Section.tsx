@@ -22,7 +22,7 @@ export default function Section({ sectionKey, schema, options, onToggle }: Secti
 
       {/* Display types if needed */}
       {Object.keys(schema.types).length > 0 && (
-        <div>
+        <div className={`${styles.type}`}>
           {Object.entries(schema.types).map(([id, label]) => (
             <Toggle
               key={id}

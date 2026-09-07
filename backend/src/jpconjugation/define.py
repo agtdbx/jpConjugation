@@ -15,6 +15,17 @@ VERBS_TENSES = {
     "po" : "Potentielle"         # Potential
 }
 
+VERBS_ALLOWED_FORMS = {
+    "pr" : ["ip", "fp", "in", "fn"],
+    "pa" : ["ip", "fp", "in", "fn"],
+    "im" : ["ip", "fp", "in", "fn"],
+    "pro" : ["ip", "fp", "in", "fn"],
+    "de-pr" : ["ip", "fp", "in", "fn"],
+    "de-pa" : ["ip", "fp", "in", "fn"],
+    "vo" : ["ip", "fp"],
+    "po" : ["ip", "fp", "in", "fn"],
+}
+
 
 ADJECTIVES_TYPES = {
     "ii" : "ii",
@@ -26,6 +37,13 @@ ADJECTIVES_TENSES = {
     "pa" : "Passé",     # Past
     "co" : "Liaison",   # Connective
     "ad" : "Adverbiale" # Adverbial
+}
+
+ADJECTIVES_ALLOWED_FORMS = {
+    "pr" : ["ip", "fp", "in", "fn"],
+    "pa" : ["ip", "fp", "in", "fn"],
+    "co" : ["ip", "in"],
+    "ad" : ["ip"],
 }
 
 

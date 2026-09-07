@@ -2,4 +2,11 @@
     border: 1px solid #ccc;
     margin: 1rem;
     padding: 1rem;
+    text-align: center;
+}
+
+.type {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
 }
