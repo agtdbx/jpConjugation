@@ -28,7 +28,7 @@ VERBS_ALLOWED_FORMS = {
 
 
 ADJECTIVES_TYPES = {
-    "ii" : "ii",
+    "i" : "i",
     "na" : "na"
 }
 
@@ -45,6 +45,11 @@ ADJECTIVES_ALLOWED_FORMS = {
     "co" : ["ip", "in"],
     "ad" : ["ip"],
 }
+
+ADJECTIVES_EXCEPTIONS = [
+    "ii",
+    "kakkoii",
+]
 
 
 FORMS = {

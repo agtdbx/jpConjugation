@@ -6,6 +6,7 @@ import { useLocalStorage } from "./hooks/useLocalStorage"
 export interface Options {
   number_conjugation: number;
   displayMode: string;
+  displayRules: boolean;
   sections: Record<string, { types: string[], values: string[] }>;
 }
 
@@ -14,6 +15,7 @@ function App() {
   const [options, setOptions] = useLocalStorage<Options>('jp-conjugation-options', {
     number_conjugation: 10,
     displayMode: "romaji",
+    displayRules: true,
     sections: {}
   })
 

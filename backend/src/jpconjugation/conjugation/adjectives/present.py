@@ -1,9 +1,31 @@
 from jpconjugation.models import Adjective
+from jpconjugation.define import ADJECTIVES_EXCEPTIONS
+
+def get_present_rules(adjective: Adjective) -> dict:
+    if adjective.type == "i":
+        exception = ""
+        if adjective.romaji in ADJECTIVES_EXCEPTIONS:
+            exception = f" /!\\Radical '{adjective.stem}'/!\\"
+        return {
+            "ip": f"Forme du dictionnaire.{exception}",
+            "fp": f"Pour un i adjectif, on ajoute ' desu'.{exception}",
+            "in": f"Pour un i adjectif, on enlève 'i' au radical et on ajoute 'kunai'.{exception}",
+            "fn": f"Pour un i adjectif, on enlève 'i' au radical et on ajoute 'kunai desu'.{exception}",
+        }
+    elif adjective.type == "na":
+        return {
+            "ip": "Pour un na adjectif, on ajoute ' da'",
+            "fp": "Pour un na adjectif, on ajoute ' desu'",
+            "in": "Pour un na adjectif, on ajoute ' janai'",
+            "fn": "Pour un na adjectif, on ajoute ' ja arimasen'",
+        }
+    return {}
+
 
 def get_present_forms(adjective: Adjective) -> dict:
     type = adjective.type
 
-    if type == "ii":
+    if type == "i":
         return _get_present_i_forms(adjective)
     elif type == "na":
         return _get_present_na_forms(adjective)

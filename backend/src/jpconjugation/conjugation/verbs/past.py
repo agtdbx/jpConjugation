@@ -1,6 +1,31 @@
 from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.bases import get_base_a, get_base_i, get_base_ta
 
+def get_past_rules(verb: Verb) -> dict:
+    if verb.type == "godan":
+        return {
+            "ip": "Pour un verbe Godan, on prend la forme en TA.",
+            "fp": "Pour un verbe Godan, on prend la forme en I et on ajoute 'mashita'.",
+            "in": "Pour un verbe Godan, on prend la forme en A et on ajoute 'nakatta'.",
+            "fn": "Pour un verbe Godan, on prend la forme en I et on ajoute 'masen deshita'."
+        }
+    elif verb.type == "ichidan":
+        return {
+            "ip": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'ta'.",
+            "fp": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'mashita'.",
+            "in": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'nakatta'.",
+            "fn": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'masen deshita'."
+        }
+    elif verb.type == "exception":
+        return {
+            "ip": f"Exception ({verb.romaji}) : La forme est irrégulière.",
+            "fp": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'mashita'.",
+            "in": f"Exception ({verb.romaji}) : On utilise l'exception en A + 'nakatta'.",
+            "fn": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'masen deshita'."
+        }
+    return {}
+
+
 def get_past_forms(verb: Verb) -> dict:
     type = verb.type
 

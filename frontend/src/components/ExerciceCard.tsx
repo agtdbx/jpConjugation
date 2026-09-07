@@ -11,6 +11,7 @@ interface ExerciceCardProps {
     traduction: string;
     form: string;
     tense: string;
+    rules: string;
     result: string;
   };
   onNext: (isCorrect: boolean) => void;
@@ -63,6 +64,7 @@ export default function ExerciceCard({ options, data, onNext }: ExerciceCardProp
         className={`${styles.userResponse}`} />
       {isValidate && isUserRight && <p className={`${styles.right}`}>Bonne réponse !</p>}
       {isValidate && !isUserRight && <p className={`${styles.wrong}`}>Mauvaise réponse ({data.result})</p>}
+      {isValidate && !isUserRight && options.displayRules && <p className={`${styles.rules}`}>{data.rules}</p>}
       {!isValidate && <Button
         text="Valider"
         isDisable={userResponse.trim() === ""}

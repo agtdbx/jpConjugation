@@ -1,6 +1,25 @@
 from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.bases import get_base_i, get_base_o
 
+def get_volitional_rules(verb: Verb) -> dict:
+    if verb.type == "godan":
+        return {
+            "ip": "Pour un verbe Godan, on prend la forme en O et on ajoute 'u'.",
+            "fp": "Pour un verbe Godan, on prend la forme en I et on ajoute 'mashou'.",
+        }
+    elif verb.type == "ichidan":
+        return {
+            "ip": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'you'.",
+            "fp": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'mashou'.",
+        }
+    elif verb.type == "exception":
+        return {
+            "ip": f"Exception ({verb.romaji}) : La forme est irrégulière.",
+            "fp": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'mashou'.",
+        }
+    return {}
+
+
 def get_volitional_forms(verb: Verb) -> dict:
     type = verb.type
 

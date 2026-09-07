@@ -1,6 +1,31 @@
 from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.bases import get_base_a, get_base_te
 
+def get_imperative_rules(verb: Verb) -> dict:
+    if verb.type == "godan":
+        return {
+            "ip": "Pour un verbe Godan, on prend la forme en TE.",
+            "fp": "Pour un verbe Godan, on prend la forme en TE et on ajoute ' kudasai'.",
+            "in": "Pour un verbe Godan, on prend la forme en A et on ajoute 'naide'.",
+            "fn": "Pour un verbe Godan, on prend la forme en A et on ajoute 'naide kudasai'."
+        }
+    elif verb.type == "ichidan":
+        return {
+            "ip": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'te'.",
+            "fp": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'te kudasai'.",
+            "in": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'naide'.",
+            "fn": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'naide kudasai'."
+        }
+    elif verb.type == "exception":
+        return {
+            "ip": f"Exception ({verb.romaji}) : On utilise l'exception en TE.",
+            "fp": f"Exception ({verb.romaji}) : On utilise l'exception en TE + ' kudasai'.",
+            "in": f"Exception ({verb.romaji}) : On utilise l'exception en A + 'naide'.",
+            "fn": f"Exception ({verb.romaji}) : On utilise l'exception en A + 'naide kudasai'."
+        }
+    return {}
+
+
 def get_imperative_forms(verb: Verb) -> dict:
     type = verb.type
 

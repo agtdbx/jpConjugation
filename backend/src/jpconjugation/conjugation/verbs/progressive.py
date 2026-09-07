@@ -1,6 +1,31 @@
 from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.bases import get_base_te
 
+def get_progressive_rules(verb: Verb) -> dict:
+    if verb.type == "godan":
+        return {
+            "ip": "Pour un verbe Godan, on prend la forme en TE et on ajoute 'iru'.",
+            "fp": "Pour un verbe Godan, on prend la forme en TE et on ajoute 'imasu'.",
+            "in": "Pour un verbe Godan, on prend la forme en TE et on ajoute 'inai'.",
+            "fn": "Pour un verbe Godan, on prend la forme en TE et on ajoute 'imasen'."
+        }
+    elif verb.type == "ichidan":
+        return {
+            "ip": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'teiru'.",
+            "fp": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'teimasu'.",
+            "in": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'teinai'.",
+            "fn": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'teimasen'."
+        }
+    elif verb.type == "exception":
+        return {
+            "ip": f"Exception ({verb.romaji}) : La forme est irrégulière.",
+            "fp": f"Exception ({verb.romaji}) : On utilise l'exception en TE + 'imasu'.",
+            "in": f"Exception ({verb.romaji}) : On utilise l'exception en TE + 'inai'.",
+            "fn": f"Exception ({verb.romaji}) : On utilise l'exception en TE + 'imasen'."
+        }
+    return {}
+
+
 def get_progressive_forms(verb: Verb) -> dict:
     type = verb.type
 

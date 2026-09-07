@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field, field_validator, model_validator
 from typing import Optional
-from jpconjugation.define import VERBS_TYPES, ADJECTIVES_TYPES
+from jpconjugation.define import VERBS_TYPES, ADJECTIVES_TYPES, ADJECTIVES_EXCEPTIONS
 
 class Verb(BaseModel):
     romaji: str = Field(..., min_length=1)
@@ -53,10 +53,10 @@ class Adjective(BaseModel):
     @model_validator(mode='after')
     def compute_type_and_stem(self):
         if not self.type:
-            self.type = "ii" if self.romaji.endswith("i") else "na"
+            self.type = "i" if self.romaji.endswith("i") else "na"
 
-        if self.type == "ii":
-            if self.romaji in ["ii", "kakkoii"]:
+        if self.type == "i":
+            if self.romaji in ADJECTIVES_EXCEPTIONS:
                 self.stem = self.romaji[:-2] + "yo"
             else:
                 self.stem = self.romaji[:-1]

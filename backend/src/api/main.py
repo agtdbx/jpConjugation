@@ -9,8 +9,8 @@ from jpconjugation.define import (
     FORMS
 )
 from jpconjugation.parsing.load import load_json_file
-from jpconjugation.conjugation.verbs.conjugation import conjugate_verb
-from jpconjugation.conjugation.adjectives.conjugation import conjugate_adjective
+from jpconjugation.conjugation.verbs.conjugation import conjugate_verb, get_verb_rules
+from jpconjugation.conjugation.adjectives.conjugation import conjugate_adjective, get_adjective_rules
 from api.models import GenerationOptions
 
 MAX_CONJUGATIONS = 50
@@ -88,6 +88,8 @@ def generate_conjugation(options: GenerationOptions):
                 if not verb_conjugations or len(verb_conjugations) == 0:
                     continue
 
+                rules = get_verb_rules(verb, tense)
+
                 for form in forms_section.values:
                     if not form in VERBS_ALLOWED_FORMS[tense]:
                         continue
@@ -102,6 +104,7 @@ def generate_conjugation(options: GenerationOptions):
                         "traduction": verb.traduction,
                         "form": FORMS[form],
                         "tense": VERBS_TENSES[tense],
+                        "rules": rules.get(form, "Missing rules"),
                         "result": result
                     })
 
@@ -111,6 +114,8 @@ def generate_conjugation(options: GenerationOptions):
                 adjective_conjugations = conjugate_adjective(adjective, tense)
                 if not adjective_conjugations or len(adjective_conjugations) == 0:
                     continue
+
+                rules = get_adjective_rules(adjective, tense)
 
                 for form in forms_section.values:
                     if not form in ADJECTIVES_ALLOWED_FORMS[tense]:
@@ -126,6 +131,7 @@ def generate_conjugation(options: GenerationOptions):
                         "traduction": adjective.traduction,
                         "form": FORMS[form],
                         "tense": ADJECTIVES_TENSES[tense],
+                        "rules": rules.get(form, "Missing rules"),
                         "result": result
                     })
 

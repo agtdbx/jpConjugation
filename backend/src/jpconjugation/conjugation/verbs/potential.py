@@ -1,6 +1,31 @@
 from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.bases import get_base_e
 
+def get_potential_rules(verb: Verb) -> dict:
+    if verb.type == "godan":
+        return {
+            "ip": "Pour un verbe Godan, on prend la forme en E et on ajoute 'ru'.",
+            "fp": "Pour un verbe Godan, on prend la forme en E et on ajoute 'masu'.",
+            "in": "Pour un verbe Godan, on prend la forme en E et on ajoute 'nai'.",
+            "fn": "Pour un verbe Godan, on prend la forme en E et on ajoute 'masen'."
+        }
+    elif verb.type == "ichidan":
+        return {
+            "ip": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'rareru'.",
+            "fp": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'raremasu'.",
+            "in": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'rarenai'.",
+            "fn": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'raremasen'."
+        }
+    elif verb.type == "exception":
+        return {
+            "ip": f"Exception ({verb.romaji}) : La forme est irrégulière.",
+            "fp": f"Exception ({verb.romaji}) : La forme est irrégulière.",
+            "in": f"Exception ({verb.romaji}) : La forme est irrégulière.",
+            "fn": f"Exception ({verb.romaji}) : La forme est irrégulière.."
+        }
+    return {}
+
+
 def get_potential_forms(verb: Verb) -> dict:
     type = verb.type
 

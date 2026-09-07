@@ -88,6 +88,10 @@ export default function Home({ options, setOptions, onStart }: HomeProps) {
     setOptions(prev => ({ ...prev, displayMode: e.target.value }));
   };
 
+  const handleSwitchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setOptions(prev => ({ ...prev, displayRules: e.target.checked }));
+  };
+
   const checkIsFormValid = () => {
     // If loading or error, disable
     if (!schema || !options.sections || Object.keys(options.sections).length === 0) return false;
@@ -171,6 +175,14 @@ export default function Home({ options, setOptions, onStart }: HomeProps) {
             <option value="kanji">Kanji</option>
             <option value="traduction">Traduction</option>
           </select>
+        </div>
+        <div>
+          <h3>Afficher la règle de conjugaison en cas d'erreur</h3>
+          <input
+            type="checkbox"
+            checked={options.displayRules}
+            onChange={handleSwitchChange}
+          />
         </div>
       </div>
       {schema && Object.entries(schema.sections).map(([key, sectionData]) => (
