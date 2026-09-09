@@ -1,129 +1,950 @@
 {
-  "verbs": [
-    {
-      "romaji": "tsukau",
-      "kanji": "使う",
-      "traduction": "utiliser",
-      "type": "godan"
-    },
-    {
-      "romaji": "matsu",
-      "kanji": "待つ",
-      "traduction": "attendre",
-      "type": "godan"
-    },
-    {
-      "romaji": "hashiru",
-      "kanji": "走る",
-      "traduction": "courir",
-      "type": "godan"
-    },
-    {
-      "romaji": "taberu",
-      "kanji": "食べる",
-      "traduction": "manger",
-      "type": "ichidan"
-    },
-    {
-      "romaji": "suru",
-      "kanji": "する",
-      "traduction": "faire",
-      "type": "exception"
-    },
-    {
-      "romaji": "kuru",
-      "kanji": "来る",
-      "traduction": "venir",
-      "type": "exception"
-    },
-    {
-      "romaji": "aru",
-      "kanji": "ある",
-      "traduction": "exister / avoir (inanimé)",
-      "type": "exception"
-    },
-    {
-      "romaji": "nomu",
-      "kanji": "飲む",
-      "traduction": "boire",
-      "type": "godan"
-    },
-    {
-      "romaji": "asobu",
-      "kanji": "遊ぶ",
-      "traduction": "jouer",
-      "type": "godan"
-    },
-    {
-      "romaji": "shinu",
-      "kanji": "死ぬ",
-      "traduction": "mourir",
-      "type": "godan"
-    },
-    {
-      "romaji": "kiku",
-      "kanji": "聞く",
-      "traduction": "écouter",
-      "type": "godan"
-    },
-    {
-      "romaji": "iku",
-      "kanji": "行く",
-      "traduction": "aller",
-      "type": "exception"
-    },
-    {
-      "romaji": "oyogu",
-      "kanji": "泳ぐ",
-      "traduction": "nager",
-      "type": "godan"
-    },
-    {
-      "romaji": "hanasu",
-      "kanji": "話す",
-      "traduction": "parler",
-      "type": "godan"
-    }
-  ],
-
-  "adjectives" : [
-    {
-      "romaji": "kirei",
-      "kanji": "綺麗",
-      "traduction": "joli, beau, propre",
-      "type": "na"
-    },
-    {
-      "romaji": "yuumei",
-      "kanji": "有名",
-      "traduction": "célèbre",
-      "type": "na"
-    },
-    {
-      "romaji": "kirai",
-      "kanji": "嫌い",
-      "traduction": "détesté",
-      "type": "na"
-    },
-    {
-      "romaji": "ookii",
-      "kanji": "大きい",
-      "traduction": "grand"
-    },
-    {
-      "romaji": "ii",
-      "kanji": "いい",
-      "traduction": "bien"
-    },
-    {
-      "romaji": "kakkoii",
-      "kanji": "かっこいい",
-      "traduction": "cool"
-    },
-    {
-      "romaji": "shizuka",
-      "kanji": "静か",
-      "traduction": "calme"
-    }
-  ]
+    "verbs": [
+        {
+            "romaji": "miru",
+            "kanji": "見る",
+            "traduction": "Voir",
+            "type": "ichidan",
+            "stem": "mi",
+            "ending": "ru"
+        },
+        {
+            "romaji": "yomu",
+            "kanji": "読む",
+            "traduction": "Lire",
+            "type": "godan",
+            "stem": "yo",
+            "ending": "mu"
+        },
+        {
+            "romaji": "kau",
+            "kanji": "買う",
+            "traduction": "Acheter",
+            "type": "godan",
+            "stem": "ka",
+            "ending": "u"
+        },
+        {
+            "romaji": "hanasu",
+            "kanji": "話す",
+            "traduction": "Parler",
+            "type": "godan",
+            "stem": "hana",
+            "ending": "su"
+        },
+        {
+            "romaji": "taberu",
+            "kanji": "食べる",
+            "traduction": "Manger",
+            "type": "ichidan",
+            "stem": "tabe",
+            "ending": "ru"
+        },
+        {
+            "romaji": "nomu",
+            "kanji": "飲む",
+            "traduction": "Boire",
+            "type": "godan",
+            "stem": "no",
+            "ending": "mu"
+        },
+        {
+            "romaji": "iku",
+            "kanji": "行く",
+            "traduction": "Aller",
+            "type": "godan",
+            "stem": "i",
+            "ending": "ku"
+        },
+        {
+            "romaji": "kuru",
+            "kanji": "来る",
+            "traduction": "Venir",
+            "type": "exception",
+            "stem": "ku",
+            "ending": "ru"
+        },
+        {
+            "romaji": "oyogu",
+            "kanji": "泳ぐ",
+            "traduction": "Nager",
+            "type": "godan",
+            "stem": "oyo",
+            "ending": "gu"
+        },
+        {
+            "romaji": "hashiru",
+            "kanji": "走る",
+            "traduction": "Courir",
+            "type": "godan",
+            "stem": "hashi",
+            "ending": "ru"
+        },
+        {
+            "romaji": "kakaru",
+            "kanji": "掛かる",
+            "traduction": "Prendre (temps / argent), suspendre",
+            "type": "godan",
+            "stem": "kaka",
+            "ending": "ru"
+        },
+        {
+            "romaji": "aru",
+            "kanji": "ある",
+            "traduction": "Être, exister, se trouver (non vivant)",
+            "type": "godan",
+            "stem": "a",
+            "ending": "ru"
+        },
+        {
+            "romaji": "iru",
+            "kanji": "いる",
+            "traduction": "Être, être présent, exister, se trouver (vivant)",
+            "type": "ichidan",
+            "stem": "i",
+            "ending": "ru"
+        },
+        {
+            "romaji": "hikkosu",
+            "kanji": "引っ越す",
+            "traduction": "Déménager",
+            "type": "godan",
+            "stem": "hikko",
+            "ending": "su"
+        },
+        {
+            "romaji": "iu",
+            "kanji": "言う",
+            "traduction": "Dire, appeler, nommer",
+            "type": "godan",
+            "stem": "i",
+            "ending": "u"
+        },
+        {
+            "romaji": "neru",
+            "kanji": "寝る",
+            "traduction": "Dormir, se coucher",
+            "type": "ichidan",
+            "stem": "ne",
+            "ending": "ru"
+        },
+        {
+            "romaji": "tsukuru",
+            "kanji": "作る",
+            "traduction": "Créer, fabriquer (petit chose / imaginaire)",
+            "type": "godan",
+            "stem": "tsuku",
+            "ending": "ru"
+        },
+        {
+            "romaji": "tsukuru",
+            "kanji": "創る",
+            "traduction": "Créer, faire (en premier / de l'art)",
+            "type": "godan",
+            "stem": "tsuku",
+            "ending": "ru"
+        },
+        {
+            "romaji": "tsukuru",
+            "kanji": "造る",
+            "traduction": "Créer, construire (grande chose)",
+            "type": "godan",
+            "stem": "tsuku",
+            "ending": "ru"
+        },
+        {
+            "romaji": "okiru",
+            "kanji": "起きる",
+            "traduction": "Se lever, se réveiller",
+            "type": "ichidan",
+            "stem": "oki",
+            "ending": "ru"
+        },
+        {
+            "romaji": "dekakeru",
+            "kanji": "出掛ける",
+            "traduction": "Sortir (de chez soi)",
+            "type": "ichidan",
+            "stem": "dekake",
+            "ending": "ru"
+        },
+        {
+            "romaji": "asobu",
+            "kanji": "遊ぶ",
+            "traduction": "Jouer, s'amuser",
+            "type": "godan",
+            "stem": "aso",
+            "ending": "bu"
+        },
+        {
+            "romaji": "kiku",
+            "kanji": "聞く",
+            "traduction": "Entendre, écouter (passivement)",
+            "type": "godan",
+            "stem": "ki",
+            "ending": "ku"
+        },
+        {
+            "romaji": "suru",
+            "kanji": "する",
+            "traduction": "Faire",
+            "type": "exception",
+            "stem": "su",
+            "ending": "ru"
+        },
+        {
+            "romaji": "sumu",
+            "kanji": "住む",
+            "traduction": "Habiter, vivre",
+            "type": "godan",
+            "stem": "su",
+            "ending": "mu"
+        },
+        {
+            "romaji": "utau",
+            "kanji": "歌う",
+            "traduction": "Chanter",
+            "type": "godan",
+            "stem": "uta",
+            "ending": "u"
+        },
+        {
+            "romaji": "naru",
+            "kanji": "成る",
+            "traduction": "Devenir, grandir",
+            "type": "godan",
+            "stem": "na",
+            "ending": "ru"
+        },
+        {
+            "romaji": "matsu",
+            "kanji": "待つ",
+            "traduction": "Attendre",
+            "type": "godan",
+            "stem": "ma",
+            "ending": "tsu"
+        },
+        {
+            "romaji": "yasumu",
+            "kanji": "休む",
+            "traduction": "Se reposer",
+            "type": "godan",
+            "stem": "yasu",
+            "ending": "mu"
+        },
+        {
+            "romaji": "yameru",
+            "kanji": "止める",
+            "traduction": "Arrêter, abandonner",
+            "type": "ichidan",
+            "stem": "yame",
+            "ending": "ru"
+        },
+        {
+            "romaji": "ikiru",
+            "kanji": "生きる",
+            "traduction": "Vivre",
+            "type": "ichidan",
+            "stem": "iki",
+            "ending": "ru"
+        },
+        {
+            "romaji": "hajimeru",
+            "kanji": "始める",
+            "traduction": "Commencer, ouvrir",
+            "type": "ichidan",
+            "stem": "hajime",
+            "ending": "ru"
+        },
+        {
+            "romaji": "kuwaeru",
+            "kanji": "加える",
+            "traduction": "Ajouter, inclure",
+            "type": "ichidan",
+            "stem": "kuwae",
+            "ending": "ru"
+        },
+        {
+            "romaji": "yuderu",
+            "kanji": "茹でる",
+            "traduction": "Cuire à l'eau, (faire) bouillir",
+            "type": "ichidan",
+            "stem": "yude",
+            "ending": "ru"
+        },
+        {
+            "romaji": "sodatsu",
+            "kanji": "育つ",
+            "traduction": "Grandir, pousser",
+            "type": "godan",
+            "stem": "soda",
+            "ending": "tsu"
+        },
+        {
+            "romaji": "majiru",
+            "kanji": "交じる",
+            "traduction": "Se mêler, s'entremêler, se fondre",
+            "type": "godan",
+            "stem": "maji",
+            "ending": "ru"
+        },
+        {
+            "romaji": "bakeru",
+            "kanji": "化ける",
+            "traduction": "Se transformer",
+            "type": "ichidan",
+            "stem": "bake",
+            "ending": "ru"
+        },
+        {
+            "romaji": "sodateru",
+            "kanji": "育てる",
+            "traduction": "Élever, éduquer",
+            "type": "ichidan",
+            "stem": "sodate",
+            "ending": "ru"
+        },
+        {
+            "romaji": "arau",
+            "kanji": "洗う",
+            "traduction": "Laver",
+            "type": "godan",
+            "stem": "ara",
+            "ending": "u"
+        },
+        {
+            "romaji": "kaku",
+            "kanji": "書く",
+            "traduction": "Écrire, rédiger",
+            "type": "godan",
+            "stem": "ka",
+            "ending": "ku"
+        },
+        {
+            "romaji": "deru",
+            "kanji": "出る",
+            "traduction": "Sortir",
+            "type": "ichidan",
+            "stem": "de",
+            "ending": "ru"
+        },
+        {
+            "romaji": "iru",
+            "kanji": "入る",
+            "traduction": "Entrer, rentrer dans, être inclu, s'insérer",
+            "type": "godan",
+            "stem": "i",
+            "ending": "ru"
+        },
+        {
+            "romaji": "furu",
+            "kanji": "降る",
+            "traduction": "Tomber (pluie / neige)",
+            "type": "godan",
+            "stem": "fu",
+            "ending": "ru"
+        },
+        {
+            "romaji": "shiru",
+            "kanji": "知る",
+            "traduction": "Savoir, connaître",
+            "type": "godan",
+            "stem": "shi",
+            "ending": "ru"
+        },
+        {
+            "romaji": "dekiru",
+            "kanji": "出来る",
+            "traduction": "Pouvoir (faire qqch), être de possible, réussir à",
+            "type": "ichidan",
+            "stem": "deki",
+            "ending": "ru"
+        },
+        {
+            "romaji": "wakaru",
+            "kanji": "分かる",
+            "traduction": "Comprendre",
+            "type": "godan",
+            "stem": "waka",
+            "ending": "ru"
+        },
+        {
+            "romaji": "omou",
+            "kanji": "思う",
+            "traduction": "Penser",
+            "type": "godan",
+            "stem": "omo",
+            "ending": "u"
+        },
+        {
+            "romaji": "kiku",
+            "kanji": "訊く",
+            "traduction": "Demander (un renseignement)",
+            "type": "godan",
+            "stem": "ki",
+            "ending": "ku"
+        },
+        {
+            "romaji": "oshieru",
+            "kanji": "教える",
+            "traduction": "Enseigner",
+            "type": "ichidan",
+            "stem": "oshie",
+            "ending": "ru"
+        },
+        {
+            "romaji": "motsu",
+            "kanji": "持つ",
+            "traduction": "Tenir, posséder",
+            "type": "godan",
+            "stem": "mo",
+            "ending": "tsu"
+        },
+        {
+            "romaji": "ageru",
+            "kanji": "上げる",
+            "traduction": "Donner",
+            "type": "ichidan",
+            "stem": "age",
+            "ending": "ru"
+        },
+        {
+            "romaji": "morau",
+            "kanji": "貰う",
+            "traduction": "Recevoir",
+            "type": "godan",
+            "stem": "mora",
+            "ending": "u"
+        },
+        {
+            "romaji": "noru",
+            "kanji": "乗る",
+            "traduction": "Monter (dans un véhicule)",
+            "type": "godan",
+            "stem": "no",
+            "ending": "ru"
+        },
+        {
+            "romaji": "shinu",
+            "kanji": "死ぬ",
+            "traduction": "Mourir",
+            "type": "godan",
+            "stem": "shi",
+            "ending": "nu"
+        },
+        {
+            "romaji": "nugu",
+            "kanji": "脱ぐ",
+            "traduction": "Se déshabiller",
+            "type": "godan",
+            "stem": "nu",
+            "ending": "gu"
+        },
+        {
+            "romaji": "yaru",
+            "kanji": "やる",
+            "traduction": "Faire (une activité)",
+            "type": "godan",
+            "stem": "ya",
+            "ending": "ru"
+        },
+        {
+            "romaji": "nigeru",
+            "kanji": "逃げる",
+            "traduction": "S'enfuir",
+            "type": "ichidan",
+            "stem": "nige",
+            "ending": "ru"
+        },
+        {
+            "romaji": "shimeru",
+            "kanji": "閉める",
+            "traduction": "Fermer",
+            "type": "ichidan",
+            "stem": "shime",
+            "ending": "ru"
+        },
+        {
+            "romaji": "kikoeru",
+            "kanji": "聞こえる",
+            "traduction": "Être audible, s'entendre, se faire entendre",
+            "type": "ichidan",
+            "stem": "kikoe",
+            "ending": "ru"
+        },
+        {
+            "romaji": "tsuku",
+            "kanji": "着く",
+            "traduction": "Arriver, atteindre",
+            "type": "godan",
+            "stem": "tsu",
+            "ending": "ku"
+        },
+        {
+            "romaji": "kowareru",
+            "kanji": "壊れる",
+            "traduction": "Se casser, se briser",
+            "type": "ichidan",
+            "stem": "koware",
+            "ending": "ru"
+        },
+        {
+            "romaji": "tsukau",
+            "kanji": "使う",
+            "traduction": "Employer, utiliser",
+            "type": "godan",
+            "stem": "tsuka",
+            "ending": "u"
+        },
+        {
+            "romaji": "toru",
+            "kanji": "撮る",
+            "traduction": "Prendre (une photo)",
+            "type": "godan",
+            "stem": "to",
+            "ending": "ru"
+        },
+        {
+            "romaji": "au",
+            "kanji": "会う",
+            "traduction": "Rencontrer",
+            "type": "godan",
+            "stem": "a",
+            "ending": "u"
+        },
+        {
+            "romaji": "suwaru",
+            "kanji": "すわる",
+            "traduction": "S'asseoir",
+            "type": "godan",
+            "stem": "suwa",
+            "ending": "ru"
+        },
+        {
+            "romaji": "okureru",
+            "kanji": "遅れる",
+            "traduction": "Être en retard",
+            "type": "ichidan",
+            "stem": "okure",
+            "ending": "ru"
+        },
+        {
+            "romaji": "wataru",
+            "kanji": "渡る",
+            "traduction": "traverser, franchir",
+            "type": "godan",
+            "stem": "wata",
+            "ending": "ru"
+        },
+        {
+            "romaji": "kiru",
+            "kanji": "切る",
+            "traduction": "couper, éteindre",
+            "type": "godan",
+            "stem": "ki",
+            "ending": "ru"
+        },
+        {
+            "romaji": "aruku",
+            "kanji": "歩く",
+            "traduction": "marcher",
+            "type": "godan",
+            "stem": "aru",
+            "ending": "ku"
+        }
+    ],
+    "adjectives": [
+        {
+            "romaji": "furui",
+            "kanji": "古い",
+            "traduction": "Vieux, ancien",
+            "type": "i",
+            "stem": "furu"
+        },
+        {
+            "romaji": "atarashii",
+            "kanji": "新しい",
+            "traduction": "Nouveau, récent",
+            "type": "i",
+            "stem": "atarashi"
+        },
+        {
+            "romaji": "ookii",
+            "kanji": "大きい",
+            "traduction": "Grand, gros",
+            "type": "i",
+            "stem": "ooki"
+        },
+        {
+            "romaji": "chiisai",
+            "kanji": "小さい",
+            "traduction": "Petit",
+            "type": "i",
+            "stem": "chiisa"
+        },
+        {
+            "romaji": "nagai",
+            "kanji": "長い",
+            "traduction": "Long",
+            "type": "i",
+            "stem": "naga"
+        },
+        {
+            "romaji": "mijikai",
+            "kanji": "短い",
+            "traduction": "Court",
+            "type": "i",
+            "stem": "mijika"
+        },
+        {
+            "romaji": "takai",
+            "kanji": "高い",
+            "traduction": "Cher (prix)",
+            "type": "i",
+            "stem": "taka"
+        },
+        {
+            "romaji": "yasui",
+            "kanji": "廉い",
+            "traduction": "Par cher",
+            "type": "i",
+            "stem": "yasu"
+        },
+        {
+            "romaji": "yuumei",
+            "kanji": "有名",
+            "traduction": "Célèbre",
+            "type": "na",
+            "stem": "yuumei"
+        },
+        {
+            "romaji": "oshare",
+            "kanji": "お洒落",
+            "traduction": "Élégant, classe",
+            "type": "na",
+            "stem": "oshare"
+        },
+        {
+            "romaji": "oishii",
+            "kanji": "美味しい",
+            "traduction": "Bon, délicieux",
+            "type": "i",
+            "stem": "oishi"
+        },
+        {
+            "romaji": "kirei",
+            "kanji": "綺麗",
+            "traduction": "Joli, beau, propre",
+            "type": "na",
+            "stem": "kirei"
+        },
+        {
+            "romaji": "kawaii",
+            "kanji": "可愛い",
+            "traduction": "Mignon, joli",
+            "type": "i",
+            "stem": "kawai"
+        },
+        {
+            "romaji": "tooi",
+            "kanji": "遠い",
+            "traduction": "Loin, éloigné",
+            "type": "i",
+            "stem": "too"
+        },
+        {
+            "romaji": "chikai",
+            "kanji": "近い",
+            "traduction": "Près",
+            "type": "i",
+            "stem": "chika"
+        },
+        {
+            "romaji": "hayai",
+            "kanji": "速い",
+            "traduction": "Rapide",
+            "type": "i",
+            "stem": "haya"
+        },
+        {
+            "romaji": "semai",
+            "kanji": "狭い",
+            "traduction": "Étroit",
+            "type": "i",
+            "stem": "sema"
+        },
+        {
+            "romaji": "hiroi",
+            "kanji": "広い",
+            "traduction": "Large, spacieux",
+            "type": "i",
+            "stem": "hiro"
+        },
+        {
+            "romaji": "suki",
+            "kanji": "好き",
+            "traduction": "Aimé, apprécié",
+            "type": "na",
+            "stem": "suki"
+        },
+        {
+            "romaji": "ii",
+            "kanji": "いい",
+            "traduction": "Bien, bon",
+            "type": "i",
+            "stem": "yo"
+        },
+        {
+            "romaji": "suteki",
+            "kanji": "素敵",
+            "traduction": "Joli, adorable",
+            "type": "na",
+            "stem": "suteki"
+        },
+        {
+            "romaji": "hoshii",
+            "kanji": "欲しい",
+            "traduction": "Désir, voulu",
+            "type": "i",
+            "stem": "hoshi"
+        },
+        {
+            "romaji": "ダサi",
+            "kanji": "ダサい",
+            "traduction": "Ringard",
+            "type": "i",
+            "stem": "ダサ"
+        },
+        {
+            "romaji": "atamagaii",
+            "kanji": "頭がいい",
+            "traduction": "Intelligent",
+            "type": "i",
+            "stem": "atamagai"
+        },
+        {
+            "romaji": "urusai",
+            "kanji": "煩い",
+            "traduction": "Agaçant, bruyant",
+            "type": "i",
+            "stem": "urusa"
+        },
+        {
+            "romaji": "isogashii",
+            "kanji": "忙しい",
+            "traduction": "Occupé, pressé",
+            "type": "i",
+            "stem": "isogashi"
+        },
+        {
+            "romaji": "shizuka",
+            "kanji": "静か",
+            "traduction": "Calme, silencieux",
+            "type": "na",
+            "stem": "shizuka"
+        },
+        {
+            "romaji": "nigiyaka",
+            "kanji": "賑やか",
+            "traduction": "Animé, bruyant",
+            "type": "na",
+            "stem": "nigiyaka"
+        },
+        {
+            "romaji": "omoshiroi",
+            "kanji": "面白い",
+            "traduction": "Intéressant, amusant",
+            "type": "i",
+            "stem": "omoshiro"
+        },
+        {
+            "romaji": "akarui",
+            "kanji": "明るい",
+            "traduction": "Éclairé, clair",
+            "type": "i",
+            "stem": "akaru"
+        },
+        {
+            "romaji": "kakkoii",
+            "kanji": "かっこいい",
+            "traduction": "Cool",
+            "type": "i",
+            "stem": "kakkoyo"
+        },
+        {
+            "romaji": "yasashii",
+            "kanji": "優しい",
+            "traduction": "Gentil",
+            "type": "i",
+            "stem": "yasashi"
+        },
+        {
+            "romaji": "atsui",
+            "kanji": "熱い",
+            "traduction": "Chaud, brûlant",
+            "type": "i",
+            "stem": "atsu"
+        },
+        {
+            "romaji": "hen",
+            "kanji": "変",
+            "traduction": "Bizarre, étrange",
+            "type": "na",
+            "stem": "hen"
+        },
+        {
+            "romaji": "benri",
+            "kanji": "便利",
+            "traduction": "Utile",
+            "type": "na",
+            "stem": "benri"
+        },
+        {
+            "romaji": "kantan",
+            "kanji": "簡単",
+            "traduction": "Simple, facile",
+            "type": "na",
+            "stem": "kantan"
+        },
+        {
+            "romaji": "majime",
+            "kanji": "真面目",
+            "traduction": "Sérieux",
+            "type": "na",
+            "stem": "majime"
+        },
+        {
+            "romaji": "tsuyoi",
+            "kanji": "強い",
+            "traduction": "Fort",
+            "type": "i",
+            "stem": "tsuyo"
+        },
+        {
+            "romaji": "warui",
+            "kanji": "悪い",
+            "traduction": "Mauvais, méchant",
+            "type": "i",
+            "stem": "waru"
+        },
+        {
+            "romaji": "hosoi",
+            "kanji": "細い",
+            "traduction": "Mince",
+            "type": "i",
+            "stem": "hoso"
+        },
+        {
+            "romaji": "futsuu",
+            "kanji": "普通",
+            "traduction": "Normal",
+            "type": "na",
+            "stem": "futsuu"
+        },
+        {
+            "romaji": "takusan",
+            "kanji": "沢山",
+            "traduction": "Beaucoup",
+            "type": "na",
+            "stem": "takusan"
+        },
+        {
+            "romaji": "omoi",
+            "kanji": "重い",
+            "traduction": "Lourd",
+            "type": "i",
+            "stem": "omo"
+        },
+        {
+            "romaji": "itai",
+            "kanji": "痛い",
+            "traduction": "Douloureux",
+            "type": "i",
+            "stem": "ita"
+        },
+        {
+            "romaji": "tanoshii",
+            "kanji": "楽しい",
+            "traduction": "Agréable, amusant, joyeux",
+            "type": "i",
+            "stem": "tanoshi"
+        },
+        {
+            "romaji": "kowai",
+            "kanji": "怖い",
+            "traduction": "Effrayant",
+            "type": "i",
+            "stem": "kowa"
+        },
+        {
+            "romaji": "muzukashii",
+            "kanji": "難しい",
+            "traduction": "Difficile, dur",
+            "type": "i",
+            "stem": "muzukashi"
+        },
+        {
+            "romaji": "sugoi",
+            "kanji": "凄い",
+            "traduction": "Superbe, super",
+            "type": "i",
+            "stem": "sugo"
+        },
+        {
+            "romaji": "kirai",
+            "kanji": "嫌い",
+            "traduction": "Détesté",
+            "type": "na",
+            "stem": "kirai"
+        },
+        {
+            "romaji": "anzen",
+            "kanji": "安全",
+            "traduction": "Sûr (pas dangereux)",
+            "type": "na",
+            "stem": "anzen"
+        },
+        {
+            "romaji": "jouzu",
+            "kanji": "上手",
+            "traduction": "Habile, compétent",
+            "type": "na",
+            "stem": "jouzu"
+        },
+        {
+            "romaji": "fushigi",
+            "kanji": "不思議",
+            "traduction": "Bizarre, étrange",
+            "type": "na",
+            "stem": "fushigi"
+        },
+        {
+            "romaji": "sabishii",
+            "kanji": "寂しい",
+            "traduction": "Solitaire, souffrant de solitude",
+            "type": "i",
+            "stem": "sabishi"
+        },
+        {
+            "romaji": "shoppai",
+            "kanji": "しょっぱい",
+            "traduction": "Salé",
+            "type": "i",
+            "stem": "shoppa"
+        },
+        {
+            "romaji": "daisuki",
+            "kanji": "大好き",
+            "traduction": "Adoré",
+            "type": "na",
+            "stem": "daisuki"
+        },
+        {
+            "romaji": "abunai",
+            "kanji": "あぶない",
+            "traduction": "Dangereux / risqué",
+            "type": "i",
+            "stem": "abuna"
+        }
+    ]
 }

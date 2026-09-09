@@ -39,12 +39,12 @@ class Adjective(BaseModel):
     romaji: str = Field(..., min_length=1)
     kanji: str = Field(..., min_length=1)
     traduction: str = Field(..., min_length=1)
-    type: Optional[str] = None
+    type: str = Field(..., min_length=1)
 
     @field_validator('type')
     @classmethod
     def validate_type(cls, value):
-        if value is not None and value not in ADJECTIVES_TYPES:
+        if value not in ADJECTIVES_TYPES:
             raise ValueError(f"Type invalide: {value}. Autorisés: {list(ADJECTIVES_TYPES.keys())}")
         return value
 

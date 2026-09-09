@@ -17,7 +17,7 @@ MAX_CONJUGATIONS = 50
 try:
     data = load_json_file("./data/data.json")
 except Exception as e:
-    print(f"Error : {e}")
+    print(f"Error: {e}")
     sys.exit()
 else:
     print("Data loaded")
