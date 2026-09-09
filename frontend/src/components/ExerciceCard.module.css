@@ -7,6 +7,7 @@
   box-shadow: 0 10px 25px var(--shadow);
   max-width: 500px;
   margin: 2rem auto;
+  box-sizing: border-box;
 }
 
 .rules {
@@ -40,6 +41,7 @@
   transition: border-color 0.2s ease;
   outline: none;
   margin-bottom: 1.5rem;
+  box-sizing: border-box;
 }
 
 .userResponse:focus {
