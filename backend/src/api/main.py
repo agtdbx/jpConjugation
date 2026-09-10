@@ -31,7 +31,7 @@ app.add_middleware(
 )
 
 @app.get("/api/options")
-def get_options():
+def options():
     return get_conjugation_options()
 
 
