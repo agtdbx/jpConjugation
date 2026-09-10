@@ -1,13 +1,17 @@
 from pydantic import BaseModel, Field, field_validator, model_validator
 from typing import Optional
-from jpconjugation.define import VERBS_TYPES, ADJECTIVES_TYPES, ADJECTIVES_EXCEPTIONS
+from jpconjugation.define import (
+    VERBS_TYPES, VERBS_ENDINGS,
+    ADJECTIVES_TYPES, ADJECTIVES_EXCEPTIONS
+)
 
 class Verb(BaseModel):
     romaji: str = Field(..., min_length=1)
     kanji: str = Field(..., min_length=1)
     traduction: str = Field(..., min_length=1)
-
-    type: str
+    type: str = Field(..., min_length=1)
+    stem: Optional[str] = None
+    ending: Optional[str] = None
 
     @field_validator('type')
     @classmethod
@@ -16,22 +20,21 @@ class Verb(BaseModel):
             raise ValueError(f"Type invalide: {value}. Autorisées: {list(VERBS_TYPES.keys())}")
         return value
 
-    # Fields to compute
-    stem: str = ""
-    ending: str = ""
-
-    # How to compute fields
+    # Compute fields if needed
     @model_validator(mode='after')
     def compute_stem_and_ending(self):
-        for term in ["tsu", "ru", "mu", "nu", "bu", "ku", "gu", "su", "u"]:
-            if self.romaji.endswith(term):
-                self.ending = term
-                break
+        if not self.ending:
+            for term in VERBS_ENDINGS:
+                if self.romaji.endswith(term):
+                    self.ending = term
+                    break
 
         if not self.ending:
             raise ValueError(f"Aucune terminaison trouvée pour le verbe '{self.romaji}'")
 
-        self.stem = self.romaji[:-len(self.ending)]
+        if not self.stem:
+            self.stem = self.romaji[:-len(self.ending)]
+
         return self
 
 
@@ -56,8 +59,8 @@ class Adjective(BaseModel):
             self.type = "i" if self.romaji.endswith("i") else "na"
 
         if self.type == "i":
-            if self.romaji in ADJECTIVES_EXCEPTIONS:
-                self.stem = self.romaji[:-2] + "yo"
+            if self.romaji in ADJECTIVES_EXCEPTIONS.keys():
+                self.stem = ADJECTIVES_EXCEPTIONS[self.romaji]
             else:
                 self.stem = self.romaji[:-1]
         else:

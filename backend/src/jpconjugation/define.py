@@ -28,6 +28,8 @@ VERBS_ALLOWED_FORMS = {
     "po" : ["ip", "fp", "in", "fn"],
 }
 
+VERBS_ENDINGS = ["tsu", "ru", "mu", "nu", "bu", "ku", "gu", "su", "u"]
+
 
 ADJECTIVES_TYPES = {
     "i" : "i",
@@ -48,10 +50,10 @@ ADJECTIVES_ALLOWED_FORMS = {
     "ad" : ["ip"],
 }
 
-ADJECTIVES_EXCEPTIONS = [
-    "ii",
-    "kakkoii",
-]
+ADJECTIVES_EXCEPTIONS = {
+    "ii" : "yo",
+    "kakkoii" : "kakkoyo",
+}
 
 
 FORMS = {

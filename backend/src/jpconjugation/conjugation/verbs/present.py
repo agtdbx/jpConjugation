@@ -18,7 +18,7 @@ def get_present_rules(verb: Verb) -> dict:
         }
     elif verb.type == "exception":
         return {
-            "ip": f"Exception ({verb.romaji}) : La forme est irrégulière.",
+            "ip": f"Exception ({verb.romaji}) : Forme du dictionnaire.",
             "fp": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'masu'.",
             "in": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'nai'.",
             "fn": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'masen'."

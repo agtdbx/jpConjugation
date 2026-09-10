@@ -3,28 +3,6 @@ import pytest
 from pydantic import ValidationError
 from jpconjugation.parsing.load import load_data_json
 
-FAKE_DATA_OK = {
-    "verbs": [
-        {
-            "romaji": "miru",
-            "kanji": "見る",
-            "traduction": "Voir",
-            "type": "ichidan",
-            "stem": "mi",
-            "ending": "ru"
-        }
-    ],
-    "adjectives": [
-        {
-            "romaji": "furui",
-            "kanji": "古い",
-            "traduction": "Vieux, ancien",
-            "type": "i",
-            "stem": "furu"
-        },
-    ]}
-
-
 def test_bad_file():
     with pytest.raises(FileNotFoundError):
         load_data_json("i'm an error file path !")
@@ -65,7 +43,28 @@ def test_file_empty_lists(tmp_path):
 def test_load_json_file_success(tmp_path):
     # Create fake file
     test_file = tmp_path / "test_data.json"
-    test_file.write_text(json.dumps(FAKE_DATA_OK), encoding="utf-8")
+    fake_data = {
+        "verbs": [
+            {
+                "romaji": "miru",
+                "kanji": "見る",
+                "traduction": "Voir",
+                "type": "ichidan",
+                "stem": "mi",
+                "ending": "ru"
+            }
+        ],
+        "adjectives": [
+            {
+                "romaji": "furui",
+                "kanji": "古い",
+                "traduction": "Vieux, ancien",
+                "type": "i",
+                "stem": "furu"
+            },
+        ]
+    }
+    test_file.write_text(json.dumps(fake_data), encoding="utf-8")
 
     # Parse data
     data = load_data_json(str(test_file))
