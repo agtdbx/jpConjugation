@@ -2,11 +2,11 @@ import styles from './Session.module.css';
 import { useState } from 'react';
 import Score from '../pages/Score'
 import ExerciceCard from '../components/ExerciceCard';
-import { type Options } from "../App"
+import { type Options, type ExerciceData } from "../App"
 
 interface SessionProps {
   options: Options;
-  exercices: any[];
+  exercices: ExerciceData[];
   onFinish: () => void;
 }
 

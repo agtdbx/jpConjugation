@@ -3,6 +3,26 @@ import Home from './pages/Home'
 import Session from './pages/Session'
 import { useLocalStorage } from "./hooks/useLocalStorage"
 
+export interface ExerciceData {
+  romaji: string;
+  kanji: string;
+  traduction: string;
+  form: string;
+  tense: string;
+  rules: string;
+  result: string;
+}
+
+export interface SectionSchema {
+  title: string;
+  types: Record<string, string>;
+  values: Record<string, string>;
+}
+
+export interface SchemaData {
+  sections: Record<string, SectionSchema>;
+}
+
 export interface Options {
   number_conjugation: number;
   displayMode: string;
@@ -11,7 +31,7 @@ export interface Options {
 }
 
 function App() {
-  const [exercices, setExercices] = useState<any[] | null>(null);
+  const [exercices, setExercices] = useState<ExerciceData[] | null>(null);
   const [options, setOptions] = useLocalStorage<Options>('jp-conjugation-options', {
     number_conjugation: 10,
     displayMode: "romaji",

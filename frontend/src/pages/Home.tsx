@@ -2,17 +2,17 @@ import styles from './Home.module.css';
 import { useState, useEffect } from 'react'
 import Section from "../components/Section";
 import Button from "../components/Button";
-import { type Options } from "../App"
+import { type Options, type ExerciceData, type SchemaData } from "../App"
 
 interface HomeProps {
   options: Options;
   setOptions: (data: React.SetStateAction<Options>) => void;
-  onStart: (data: any[]) => void;
+  onStart: (data: ExerciceData[]) => void;
 }
 
 export default function Home({ options, setOptions, onStart }: HomeProps) {
   // Create states
-  const [schema, setSchema] = useState<any>(null)
+  const [schema, setSchema] = useState<SchemaData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -48,7 +48,7 @@ export default function Home({ options, setOptions, onStart }: HomeProps) {
         setError(err.message);
         setLoading(false);
       })
-  }, [])
+  }, [setOptions])
 
   // Display loading text
   if (loading) return <div>Chargement des options depuis le serveur... (~50 secondes)</div>
@@ -200,7 +200,7 @@ export default function Home({ options, setOptions, onStart }: HomeProps) {
         <Section
           key={key}
           sectionKey={key}
-          schema={sectionData as any}
+          schema={sectionData}
           options={options.sections[key]}
           onToggle={handleToggle}
         />
