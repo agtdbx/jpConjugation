@@ -29,7 +29,6 @@ def generate_conjugations(data: JPData, options: GenerationOptions) -> list:
     if verbs_section and verbs:
         for verb in verbs:
             for tense in verbs_section.values:
-                print(f"conjugate {verb.romaji} to {tense}")
                 verb_conjugations = conjugate_verb(verb, tense)
                 if not verb_conjugations or len(verb_conjugations) == 0:
                     continue
