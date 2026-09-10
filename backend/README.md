@@ -17,3 +17,8 @@ uv run fastapi dev src/api/main.py
 ```bash
 uv run src/data_update/main.py <chemin/vers/fichierAnki.apkg>
 ```
+
+## Test
+```bash
+uv run pytest src/tests
+```

@@ -2,14 +2,14 @@ import sys
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from jpconjugation.parsing.load import load_json_file
+from jpconjugation.parsing.load import load_data_json
 from api.models import GenerationOptions
 from api.endpoints.options import get_conjugation_options
 from api.endpoints.generate_conjugations import generate_conjugations
 
 MAX_CONJUGATIONS = 50
 try:
-    data = load_json_file("./data/data.json")
+    data = load_data_json("./data/data.json")
 except Exception as e:
     print(f"Error: {e}")
     sys.exit()

@@ -1,3 +1,5 @@
+DATA_FILE_PATH = "./data/data.json"
+
 VERBS_TYPES = {
     "godan" : "Godan",
     "ichidan" : "Ichidan",

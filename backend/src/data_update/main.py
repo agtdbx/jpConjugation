@@ -5,7 +5,7 @@ import zipfile
 import sqlite3
 import tempfile
 
-from jpconjugation.parsing.load import load_json_file
+from jpconjugation.parsing.load import load_data_json
 from jpconjugation.models import Verb, Adjective
 from jpconjugation.define import VERBS_TYPES, ADJECTIVES_TYPES
 from data_update.parsing import clean_anki_html, get_word_parts_from_card
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     # Get and parse json data
     try:
-        json_data = load_json_file("./data/data.json")
+        json_data = load_data_json()
     except Exception as e:
         print(f"Error: {e}")
         sys.exit()
