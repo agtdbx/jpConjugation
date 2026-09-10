@@ -1,5 +1,4 @@
 from pydantic import BaseModel, Field, field_validator, model_validator
-from typing import Optional
 from jpconjugation.define import (
     VERBS_TYPES, VERBS_ENDINGS,
     ADJECTIVES_TYPES, ADJECTIVES_EXCEPTIONS
@@ -10,8 +9,8 @@ class Verb(BaseModel):
     kanji: str = Field(..., min_length=1)
     traduction: str = Field(..., min_length=1)
     type: str = Field(..., min_length=1)
-    stem: Optional[str] = None
-    ending: Optional[str] = None
+    stem: str = ""
+    ending: str = ""
 
     @field_validator('type')
     @classmethod

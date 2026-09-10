@@ -225,7 +225,7 @@ VERBS_IM_HA = [
     ("exception", "iku", "ike", "ikuna"),
 ]
 @pytest.mark.parametrize("verb_type, romaji, form_ip, form_in", VERBS_IM_HA)
-def test_conjugate_verbs_imperative_soft(
+def test_conjugate_verbs_imperative_hard(
         verb_type: str,
         romaji: str,
         form_ip: str,
