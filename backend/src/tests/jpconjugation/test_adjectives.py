@@ -32,9 +32,11 @@ def test_adjectives_stem_na():
     assert adjectives.stem == "ai"
 
 
-@pytest.mark.parametrize("exception", ADJECTIVES_EXCEPTIONS.items())
-def test_adjectives_stem_exception(exception:str):
-    romaji, stem = exception
+@pytest.mark.parametrize("romaji, stem", ADJECTIVES_EXCEPTIONS.items())
+def test_adjectives_stem_exception(
+        romaji: str,
+        stem:str
+        ):
     adjectives = Adjective(romaji=romaji, kanji="k", traduction="t", type="i")
 
     assert adjectives.stem == stem
@@ -81,23 +83,83 @@ def test_adjectives_na_rules(
         assert "na adjectif" in rule.lower()
 
 
-# ADJECTIVES_PRESENT = [
-#     ("i", "furui", "furui", "furui desu", "furukunai", "furukunai desu"),
-#     ("na", "kirei", "kirei da", "kirei desu", "kirei janai", "kirei ja arimasen"),
-# ]
-# @pytest.mark.parametrize("type, romaji, form_ip, form_fp, form_in, form_fn", ADJECTIVES_PRESENT)
-# def test_conjugate_adjectives_present(
-#         type: str,
-#         romaji: str,
-#         form_ip: str,
-#         form_fp: str,
-#         form_in: str,
-#         form_fn: str
-#         ):
-#     adjective = Adjective(romaji=romaji, kanji="k", traduction="t", type=type)
-#     forms = conjugate_adjective(adjective, tense_id="pr")
+ADJECTIVES_PR = [
+    ("i", "furui", "furui", "furui desu", "furukunai", "furukunai desu"),
+    ("na", "kirei", "kirei da", "kirei desu", "kirei janai", "kirei ja arimasen"),
+]
+@pytest.mark.parametrize("adj_type, romaji, form_ip, form_fp, form_in, form_fn", ADJECTIVES_PR)
+def test_conjugate_adjectives_present(
+        adj_type: str,
+        romaji: str,
+        form_ip: str,
+        form_fp: str,
+        form_in: str,
+        form_fn: str
+        ):
+    adjective = Adjective(romaji=romaji, kanji="k", traduction="t", type=adj_type)
+    forms = conjugate_adjective(adjective, tense_id="pr")
 
-#     assert forms.get("ip") == form_ip
-#     assert forms.get("fp") == form_fp
-#     assert forms.get("in") == form_in
-#     assert forms.get("fn") == form_fn
+    assert len(forms) == 4
+    assert forms.get("ip") == form_ip
+    assert forms.get("fp") == form_fp
+    assert forms.get("in") == form_in
+    assert forms.get("fn") == form_fn
+
+
+ADJECTIVES_PA = [
+    ("i", "furui", "furukatta", "furukatta desu", "furukunakatta", "furukunakatta desu"),
+    ("na", "kirei", "kirei datta", "kirei deshita", "kirei janakatta", "kirei ja arimasen deshita"),
+]
+@pytest.mark.parametrize("adj_type, romaji, form_ip, form_fp, form_in, form_fn", ADJECTIVES_PA)
+def test_conjugate_adjectives_past(
+        adj_type: str,
+        romaji: str,
+        form_ip: str,
+        form_fp: str,
+        form_in: str,
+        form_fn: str
+        ):
+    adjective = Adjective(romaji=romaji, kanji="k", traduction="t", type=adj_type)
+    forms = conjugate_adjective(adjective, tense_id="pa")
+
+    assert len(forms) == 4
+    assert forms.get("ip") == form_ip
+    assert forms.get("fp") == form_fp
+    assert forms.get("in") == form_in
+    assert forms.get("fn") == form_fn
+
+
+ADJECTIVES_CO = [
+    ("i", "furui", "furukute", "furukunakute"),
+    ("na", "kirei", "kirei de", "kirei janakute"),
+]
+@pytest.mark.parametrize("adj_type, romaji, form_ip, form_in", ADJECTIVES_CO)
+def test_conjugate_adjectives_connective(
+        adj_type: str,
+        romaji: str,
+        form_ip: str,
+        form_in: str,
+        ):
+    adjective = Adjective(romaji=romaji, kanji="k", traduction="t", type=adj_type)
+    forms = conjugate_adjective(adjective, tense_id="co")
+
+    assert len(forms) == 2
+    assert forms.get("ip") == form_ip
+    assert forms.get("in") == form_in
+
+
+ADJECTIVES_AD = [
+    ("i", "furui", "furuku"),
+    ("na", "kirei", "kirei ni"),
+]
+@pytest.mark.parametrize("adj_type, romaji, form_ip", ADJECTIVES_AD)
+def test_conjugate_adjectives_adverbial(
+        adj_type: str,
+        romaji: str,
+        form_ip: str,
+        ):
+    adjective = Adjective(romaji=romaji, kanji="k", traduction="t", type=adj_type)
+    forms = conjugate_adjective(adjective, tense_id="ad")
+
+    assert len(forms) == 1
+    assert forms.get("ip") == form_ip
