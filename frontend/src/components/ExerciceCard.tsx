@@ -45,17 +45,35 @@ export default function ExerciceCard({ options, data, onNext }: ExerciceCardProp
     }
   };
 
+  const getDisplayWord = () => {
+    if (options.displayMode === "romaji") return data.romaji;
+    else if (options.displayMode === "kanji") return data.kanji;
+    else if (options.displayMode === "traduction") return data.traduction;
+    else return "Error";
+  }
+
+  const getDisplayWordStyle = (displayWord: string) => {
+    if (displayWord.length > 20) return styles.textLong;
+    if (displayWord.length > 10) return styles.textMedium;
+    return "";
+  }
+
+  const displayWord = getDisplayWord();
+  const displayWordStyle = getDisplayWordStyle(displayWord);
+
   return (
     <div className={`${styles.container}`}>
       <div className={`${styles.rules}`}>
-        {options.displayMode === "romaji" && <p>{data.romaji}</p>}
-        {options.displayMode === "kanji" && <p>{data.kanji}</p>}
-        {options.displayMode === "traduction" && <p>{data.traduction}</p>}
+        <p className={`${displayWordStyle}`}>{displayWord}</p>
         <p>{data.form}</p>
         <p>{data.tense}</p>
       </div>
       <input
         type="text"
+        autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="none"
+        spellCheck={false}
         readOnly={isValidate}
         value={userResponse}
         onChange={handleInputChange}

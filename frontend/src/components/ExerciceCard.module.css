@@ -15,7 +15,7 @@
 }
 
 .rules p:first-child {
-  font-size: clamp(1.5rem, 6vw, 3rem);
+  font-size: 3rem;
   font-weight: 700;
   margin: 0 0 1rem 0;
   color: var(--text-title);
@@ -23,6 +23,14 @@
   overflow-wrap: break-word;
   word-wrap: break-word;
   line-height: 1.2;
+}
+
+.textMedium {
+  font-size: 2rem !important;
+}
+
+.textLong {
+  font-size: 1.5rem !important;
 }
 
 .rules p {
