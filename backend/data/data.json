@@ -54,7 +54,7 @@
             "traduction": "Aller",
             "type": "godan",
             "stem": "i",
-            "ending": "ku"
+            "ending": "exception"
         },
         {
             "romaji": "kuru",
@@ -92,7 +92,7 @@
             "romaji": "aru",
             "kanji": "ある",
             "traduction": "Être, exister, se trouver (non vivant)",
-            "type": "godan",
+            "type": "exception",
             "stem": "a",
             "ending": "ru"
         },

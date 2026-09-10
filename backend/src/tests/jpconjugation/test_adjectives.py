@@ -83,6 +83,13 @@ def test_adjectives_na_rules(
         assert "na adjectif" in rule.lower()
 
 
+def test_conjugate_adjectives_bad_tense():
+    adjective = Adjective(romaji="ai", kanji="k", traduction="t", type="i")
+    forms = conjugate_adjective(adjective, tense_id="test")
+
+    assert len(forms) == 0
+
+
 ADJECTIVES_PR = [
     ("i", "furui", "furui", "furui desu", "furukunai", "furukunai desu"),
     ("na", "kirei", "kirei da", "kirei desu", "kirei janai", "kirei ja arimasen"),
