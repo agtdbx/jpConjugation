@@ -1,19 +1,10 @@
-import os
 import sys
-import json
-import zipfile
-import sqlite3
-import tempfile
-
+from tqdm import tqdm
 from jpconjugation.parsing.load import load_data_json
-from jpconjugation.models import Verb, Adjective
-from jpconjugation.define import VERBS_TYPES, ADJECTIVES_TYPES
-from data_update.parsing import clean_anki_html, get_word_parts_from_card
-from data_update.jisho_api import (
-    get_verb_type_from_jisho,
-    get_adjective_type_from_jisho
-)
-
+from data_update.parsing import clean_anki_html
+from data_update.verbs import get_verb_if_needed
+from data_update.adjectives import get_adjective_if_needed
+from data_update.anki_file import get_anki_cards_from_file
 
 if __name__ == "__main__":
     # Check number of parameter
@@ -47,93 +38,47 @@ if __name__ == "__main__":
     nb_new_verbs = 0
     nb_new_adjectives = 0
 
-    # Get new verbs and adjectives
-    with tempfile.TemporaryDirectory() as tmpdir:
-        # Unzip file
-        with zipfile.ZipFile(file_path, 'r') as zip_ref:
-            # Get db name
-            if "collection.anki21" in zip_ref.namelist():
-                db_name = "collection.anki21"
-            else:
-                db_name =  "collection.anki2"
-            # Get db
-            zip_ref.extract(db_name, tmpdir)
-            db_path = os.path.join(tmpdir, db_name)
+    # Init card generator
+    card_generator = get_anki_cards_from_file(file_path)
 
-        # Connect to db
-        conn = sqlite3.connect(db_path)
-        cursor = conn.cursor()
+    # Get number of cards
+    cards_number = next(card_generator)
 
-        # Get deck data
-        cursor.execute("SELECT decks FROM col LIMIT 1")
-        decks_json = cursor.fetchone()[0]
-        decks_data = json.loads(decks_json)
+    # Setup progress bar
+    with tqdm(total=cards_number, desc="Import Anki", unit="carte") as pbar:
+        # Get new verbs and adjectives
+        for card in card_generator:
+            # Update progress bar
+            pbar.update(1)
 
-        # Build deck name dict from deck data
-        deck_names = {int(deck_id): deck_info['name'] for deck_id, deck_info in decks_data.items()}
+            deck_name = card["deck_name"]
+            recto = card["recto"]
+            verso = card["verso"]
 
-        # Get all card in verb and adjective deck
-        cursor.execute("SELECT n.flds, c.did FROM notes as n LEFT JOIN cards as c ON n.id=c.nid")
-
-        for row in cursor.fetchall():
-            champs_carte = row[0].split('\x1f')
-            deck_id = row[1]
-
-            deck_name = deck_names.get(deck_id, "Unknown deck")
-
-            recto = clean_anki_html(champs_carte[0]).strip()
-            verso = clean_anki_html(champs_carte[1]).strip()
+            added_word = None
 
             if "2 - verbes" in deck_name.lower():
-                parts = get_word_parts_from_card(recto, verso)
-                if not parts:
-                    continue
-                kanji, romaji, traduction = parts
-
-                if kanji in current_verbs:
+                verb = get_verb_if_needed(current_verbs, recto, verso)
+                if not verb:
                     continue
 
-                type = get_verb_type_from_jisho(recto)
-                if type not in VERBS_TYPES.keys():
-                    continue
-
-                print(f"Add {kanji}")
                 nb_new_verbs += 1
+                added_word = verb.kanji
 
-                json_data.verbs.append(Verb(
-                    kanji=kanji,
-                    romaji=romaji,
-                    type=type,
-                    traduction=traduction))
-                continue
+                json_data.verbs.append(verb)
 
             elif "3 - adjectifs" in deck_name.lower():
-                parts = get_word_parts_from_card(recto, verso)
-                if not parts:
-                    continue
-                kanji, romaji, traduction = parts
-
-                if kanji in current_adjectives:
+                adjective = get_adjective_if_needed(current_adjectives, recto, verso)
+                if not adjective:
                     continue
 
-                type = get_adjective_type_from_jisho(recto)
-                if type not in ADJECTIVES_TYPES.keys():
-                    continue
-
-                print(f"Add {kanji}")
                 nb_new_adjectives += 1
+                added_word = adjective.kanji
 
-                json_data.adjectives.append(Adjective(
-                        kanji=kanji,
-                        romaji=romaji,
-                        type=type,
-                        traduction=traduction))
-                continue
+                json_data.adjectives.append(adjective)
 
-            else:
-                continue
-
-        conn.close()
+            if added_word:
+                pbar.set_postfix_str(f"Dernier ajout: {added_word}")
 
     # Write new verbs and adjectives into data file
     json_string = json_data.model_dump_json(indent=4)
