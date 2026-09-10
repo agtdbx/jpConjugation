@@ -1,8 +1,8 @@
 import pytest
 from pydantic import ValidationError
 from jpconjugation.define import (
-    VERBS_TYPES, VERBS_ENDINGS,
-    VERBS_ALLOWED_FORMS
+    VERBS_TYPES, VERBS_ALLOWED_FORMS,
+    VERBS_ENDINGS
 )
 from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.conjugation import conjugate_verb, get_verb_rules
@@ -170,7 +170,7 @@ def test_conjugate_verbs_past(
     assert forms.get("fn", "") == form_fn
 
 
-VERBS_IM = [
+VERBS_IM_SO = [
     ("godan", "matsu", "matte", "matte kudasai", "matanaide", "matanaide kudasai"),
     ("godan", "hashiru", "hashitte", "hashitte kudasai", "hashiranaide", "hashiranaide kudasai"),
     ("godan", "nomu", "nonde", "nonde kudasai", "nomanaide", "nomanaide kudasai"),
@@ -186,8 +186,8 @@ VERBS_IM = [
     ("exception", "aru", "", "", "", ""),
     ("exception", "iku", "itte", "itte kudasai", "ikanaide", "ikanaide kudasai"),
 ]
-@pytest.mark.parametrize("verb_type, romaji, form_ip, form_fp, form_in, form_fn", VERBS_IM)
-def test_conjugate_verbs_imperative(
+@pytest.mark.parametrize("verb_type, romaji, form_ip, form_fp, form_in, form_fn", VERBS_IM_SO)
+def test_conjugate_verbs_imperative_soft(
         verb_type: str,
         romaji: str,
         form_ip: str,
@@ -196,7 +196,7 @@ def test_conjugate_verbs_imperative(
         form_fn: str
         ):
     verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
-    forms = conjugate_verb(verb, tense_id="im")
+    forms = conjugate_verb(verb, tense_id="im-so")
 
     if romaji == "aru":
         assert len(forms) == 0
@@ -206,6 +206,40 @@ def test_conjugate_verbs_imperative(
     assert forms.get("fp", "") == form_fp
     assert forms.get("in", "") == form_in
     assert forms.get("fn", "") == form_fn
+
+
+VERBS_IM_HA = [
+    ("godan", "matsu", "mate", "matsuna"),
+    ("godan", "hashiru", "hashire", "hashiruna"),
+    ("godan", "nomu", "nome", "nomuna"),
+    ("godan", "shinu", "shine", "shinuna"),
+    ("godan", "asobu", "asobe", "asobuna"),
+    ("godan", "kiku", "kike", "kikuna"),
+    ("godan", "oyogu", "oyoge", "oyoguna"),
+    ("godan", "hanasu", "hanase", "hanasuna"),
+    ("godan", "tsukau", "tsukae", "tsukauna"),
+    ("ichidan", "taberu", "tabero", "taberuna"),
+    ("exception", "suru", "shiro", "suruna"),
+    ("exception", "kuru", "koi", "kuruna"),
+    ("exception", "aru", "", ""),
+    ("exception", "iku", "ike", "ikuna"),
+]
+@pytest.mark.parametrize("verb_type, romaji, form_ip, form_in", VERBS_IM_HA)
+def test_conjugate_verbs_imperative_soft(
+        verb_type: str,
+        romaji: str,
+        form_ip: str,
+        form_in: str,
+        ):
+    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
+    forms = conjugate_verb(verb, tense_id="im-ha")
+
+    if romaji == "aru":
+        assert len(forms) == 0
+    else:
+        assert len(forms) == 2
+    assert forms.get("ip", "") == form_ip
+    assert forms.get("in", "") == form_in
 
 
 VERBS_PRO = [

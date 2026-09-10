@@ -1,7 +1,10 @@
 from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.present import get_present_forms, get_present_rules
 from jpconjugation.conjugation.verbs.past import get_past_forms, get_past_rules
-from jpconjugation.conjugation.verbs.imperative import get_imperative_forms, get_imperative_rules
+from jpconjugation.conjugation.verbs.imperative import (
+    get_imperative_soft_forms, get_imperative_soft_rules,
+    get_imperative_hard_forms, get_imperative_hard_rules
+)
 from jpconjugation.conjugation.verbs.progressive import get_progressive_forms, get_progressive_rules
 from jpconjugation.conjugation.verbs.desirative import (
     get_desirative_present_forms, get_desirative_present_rules,
@@ -13,7 +16,8 @@ from jpconjugation.conjugation.verbs.potential import get_potential_forms, get_p
 _VERB_TENSES_FUNCTIONS = {
     "pr" : get_present_forms,
     "pa" : get_past_forms,
-    "im" : get_imperative_forms,
+    "im-so" : get_imperative_soft_forms,
+    "im-ha" : get_imperative_hard_forms,
     "pro" : get_progressive_forms,
     "de-pr" : get_desirative_present_forms,
     "de-pa" : get_desirative_past_forms,
@@ -24,7 +28,8 @@ _VERB_TENSES_FUNCTIONS = {
 _VERB_TENSES_RULES = {
     "pr" : get_present_rules,
     "pa" : get_past_rules,
-    "im" : get_imperative_rules,
+    "im-so" : get_imperative_soft_rules,
+    "im-ha" : get_imperative_hard_rules,
     "pro" : get_progressive_rules,
     "de-pr" : get_desirative_present_rules,
     "de-pa" : get_desirative_past_rules,

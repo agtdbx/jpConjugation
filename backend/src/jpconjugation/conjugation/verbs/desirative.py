@@ -2,7 +2,7 @@ from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.bases import get_base_i
 
 ###########################################################################################
-# Présent
+# Present
 ###########################################################################################
 
 def get_desirative_present_rules(verb: Verb) -> dict:
@@ -100,7 +100,7 @@ def _get_desirative_present_exception_forms(verb: Verb) -> dict:
     return {}
 
 ###########################################################################################
-# Passé
+# Past
 ###########################################################################################
 
 def get_desirative_past_rules(verb: Verb) -> dict:

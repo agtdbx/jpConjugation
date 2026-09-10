@@ -9,7 +9,8 @@ VERBS_TYPES = {
 VERBS_TENSES = {
     "pr" : "Présent",            # Present
     "pa" : "Passé",              # Past
-    "im" : "Impératif",          # Imperative
+    "im-so" : "Impératif doux",  # Imperative soft
+    "im-ha" : "Impératif dur",   # Imperative hard
     "pro" : "Progressif",        # Progressive
     "de-pr" : "Volonté présent", # Desirative present
     "de-pa" : "Volonté passé",   # Desirative past
@@ -20,7 +21,8 @@ VERBS_TENSES = {
 VERBS_ALLOWED_FORMS = {
     "pr" : ["ip", "fp", "in", "fn"],
     "pa" : ["ip", "fp", "in", "fn"],
-    "im" : ["ip", "fp", "in", "fn"],
+    "im-so" : ["ip", "fp", "in", "fn"],
+    "im-ha" : ["ip", "in"],
     "pro" : ["ip", "fp", "in", "fn"],
     "de-pr" : ["ip", "fp", "in", "fn"],
     "de-pa" : ["ip", "fp", "in", "fn"],

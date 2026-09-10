@@ -52,9 +52,9 @@
             "romaji": "iku",
             "kanji": "行く",
             "traduction": "Aller",
-            "type": "godan",
+            "type": "exception",
             "stem": "i",
-            "ending": "exception"
+            "ending": "ku"
         },
         {
             "romaji": "kuru",
