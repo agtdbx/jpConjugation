@@ -1,24 +1,10 @@
-.container {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-dark);
-    border-radius: 12px;
-    margin: 1rem 0;
-    padding: 1.5rem 1rem;
+.wrapper {
+  box-sizing: border-box;
+}
+
+.progressText {
     text-align: center;
-    width: 100%;
-    box-sizing: border-box;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-}
-
-.container h2 {
-    margin-top: 0;
-    color: var(--text-title);
-    margin-bottom: 1.5rem;
     font-size: 1.5rem;
-}
-
-.type {
-    border-bottom: 1px solid var(--border-dark);
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
+    color: var(--text-title);
+    margin-bottom: 0.5rem;
 }

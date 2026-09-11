@@ -21,7 +21,14 @@ export default function ExerciceCard({ options, data, onNext }: ExerciceCardProp
   const [isValidate, setValidate] = useState(false);
   const [userResponse, setUserResponse] = useState("");
 
-  const isUserRight = (data.result !== undefined && userResponse.trim().toLowerCase() === data.result.toLowerCase());
+  const checkUserInput = () => {
+    if (!data.result || !userResponse) return (false);
+
+    const userInputNormalize = userResponse.trim().replace(/\s+/g, ' ').toLowerCase();
+
+    return (userInputNormalize === data.result.toLowerCase());
+  }
+  const isUserRight = checkUserInput();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserResponse(e.target.value)
@@ -65,11 +72,12 @@ export default function ExerciceCard({ options, data, onNext }: ExerciceCardProp
     <div className={`${styles.container}`}>
       <div className={`${styles.rules}`}>
         <p className={`${displayWordStyle}`}>{displayWord}</p>
-        <p>{data.form}</p>
         <p>{data.tense}</p>
+        <p>{data.form}</p>
       </div>
       <input
         type="text"
+        maxLength={40}
         autoComplete="off"
         autoCorrect="off"
         autoCapitalize="none"
