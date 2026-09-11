@@ -27,7 +27,7 @@ def _contains_kana(line: str) -> bool:
 
 
 def get_word_parts_from_card(recto: str, verso: str) -> tuple[str, str, str] | None:
-    kanji = recto
+    kanji = recto.strip()
     lines = verso.splitlines()
     if len(lines) == 0:
         return None
@@ -41,6 +41,6 @@ def get_word_parts_from_card(recto: str, verso: str) -> tuple[str, str, str] | N
         else:
             kana = kanji
             traduction = lines[0].strip()
-    romaji = jaconv.kana2alphabet(kana)
+    romaji = jaconv.kana2alphabet(jaconv.kata2alphabet(kana))
 
     return kanji, romaji, traduction
