@@ -1,33 +1,30 @@
 from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.bases import get_base_i, get_base_o
+from jpconjugation.conjugation.verbs.rules import build_core_rules
 
 def get_volitional_rules(verb: Verb) -> dict:
-    if verb.type == "godan":
-        return {
-            "ip": "Pour un verbe Godan, on prend la forme en O et on ajoute 'u'.",
-            "fp": "Pour un verbe Godan, on prend la forme en I et on ajoute 'mashou'.",
+    return build_core_rules(
+        verb=verb,
+        godan_rules={
+            "ip": "on prend la forme en O et on ajoute 'u'",
+            "fp": "on prend la forme en I et on ajoute 'mashou'",
+        },
+        ichidan_rules={
+            "ip": "on enlève 'ru' au radical et on ajoute 'you'",
+            "fp": "on enlève 'ru' au radical et on ajoute 'mashou'",
+        },
+        exception_rules={
+            "fp": "On utilise l'exception en I + 'mashou'",
         }
-    elif verb.type == "ichidan":
-        return {
-            "ip": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'you'.",
-            "fp": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'mashou'.",
-        }
-    elif verb.type == "exception":
-        return {
-            "ip": f"Exception ({verb.romaji}) : La forme est irrégulière.",
-            "fp": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'mashou'.",
-        }
-    return {}
+    )
 
 
 def get_volitional_forms(verb: Verb) -> dict:
-    type = verb.type
-
-    if type == "godan":
+    if verb.type == "godan":
         return _get_volitional_godan_forms(verb)
-    elif type == "ichidan":
+    elif verb.type == "ichidan":
         return _get_volitional_ichidan_forms(verb)
-    elif type == "exception":
+    elif verb.type == "exception":
         return _get_volitional_exception_forms(verb)
     else:
         return {}

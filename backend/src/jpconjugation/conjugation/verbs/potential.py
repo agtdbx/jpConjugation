@@ -1,98 +1,85 @@
 from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.bases import get_base_e
+from jpconjugation.conjugation.verbs.present import _get_present_ichidan_forms
+from jpconjugation.conjugation.verbs.past import _get_past_ichidan_forms
+from jpconjugation.conjugation.verbs.rules import build_derived_rules, SUFFIXES_PRESENT, SUFFIXES_PAST
 
-def get_potential_rules(verb: Verb) -> dict:
+
+###########################################################################################
+# Stem
+###########################################################################################
+
+def _get_potential_stem(verb: Verb) -> str:
     if verb.type == "godan":
-        return {
-            "ip": "Pour un verbe Godan, on prend la forme en E et on ajoute 'ru'.",
-            "fp": "Pour un verbe Godan, on prend la forme en E et on ajoute 'masu'.",
-            "in": "Pour un verbe Godan, on prend la forme en E et on ajoute 'nai'.",
-            "fn": "Pour un verbe Godan, on prend la forme en E et on ajoute 'masen'."
-        }
+        return verb.stem + get_base_e(verb)
     elif verb.type == "ichidan":
-        return {
-            "ip": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'rareru'.",
-            "fp": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'raremasu'.",
-            "in": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'rarenai'.",
-            "fn": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'raremasen'."
-        }
+        return verb.stem + "rare"
     elif verb.type == "exception":
-        return {
-            "ip": f"Exception ({verb.romaji}) : La forme est irrégulière.",
-            "fp": f"Exception ({verb.romaji}) : La forme est irrégulière.",
-            "in": f"Exception ({verb.romaji}) : La forme est irrégulière.",
-            "fn": f"Exception ({verb.romaji}) : La forme est irrégulière.."
-        }
-    return {}
+        if verb.romaji == "iku":
+            return verb.stem + get_base_e(verb)
+        elif verb.romaji == "suru":
+            return "deki"
+        elif verb.romaji == "kuru":
+            return "korare"
+
+    return ""
+
+###########################################################################################
+# Present
+###########################################################################################
+
+def get_potential_present_rules(verb: Verb) -> dict:
+    return build_derived_rules(
+            verb=verb,
+            godan_action="prend la forme en E",
+            ichidan_action="enlève 'ru' au radical",
+            base_suffixes=SUFFIXES_PRESENT,
+            ichidan_prefix="rare",
+    )
 
 
-def get_potential_forms(verb: Verb) -> dict:
-    type = verb.type
-
-    if type == "godan":
-        return _get_potential_godan_forms(verb)
-    elif type == "ichidan":
-        return _get_potential_ichidan_forms(verb)
-    elif type == "exception":
-        return _get_potential_exception_forms(verb)
-    else:
+def get_potential_present_forms(verb: Verb) -> dict:
+    potential_stem = _get_potential_stem(verb)
+    if not potential_stem:
         return {}
 
+    fake_verb = Verb(
+        romaji=potential_stem + "ru",
+        kanji=verb.kanji,
+        traduction=verb.traduction,
+        type="ichidan",
+        stem=potential_stem,
+        ending="ru"
+    )
 
-def _get_potential_godan_forms(verb: Verb) -> dict:
-    base_e = get_base_e(verb)
+    return _get_present_ichidan_forms(fake_verb)
 
-    # Informel Positif
-    form_ip = verb.stem + base_e + "ru"
-    # Formel Positif
-    form_fp = verb.stem + base_e + "masu"
-    # Informel Négatif
-    form_in = verb.stem + base_e + "nai"
-    # Formel Négatif
-    form_fn = verb.stem + base_e + "masen"
+###########################################################################################
+# Past
+###########################################################################################
 
-    return {
-        "ip" : form_ip,
-        "fp" : form_fp,
-        "in" : form_in,
-        "fn" : form_fn,
-    }
-
-
-def _get_potential_ichidan_forms(verb: Verb) -> dict:
-    # Informel Positif
-    form_ip = verb.stem + "rareru"
-    # Formel Positif
-    form_fp = verb.stem + "raremasu"
-    # Informel Négatif
-    form_in = verb.stem + "rarenai"
-    # Formel Négatif
-    form_fn = verb.stem + "raremasen"
-
-    return {
-        "ip" : form_ip,
-        "fp" : form_fp,
-        "in" : form_in,
-        "fn" : form_fn,
-    }
+def get_potential_past_rules(verb: Verb) -> dict:
+    return build_derived_rules(
+            verb=verb,
+            godan_action="prend la forme en E",
+            ichidan_action="enlève 'ru' au radical",
+            base_suffixes=SUFFIXES_PAST,
+            ichidan_prefix="rare",
+    )
 
 
-def _get_potential_exception_forms(verb: Verb) -> dict:
-    if verb.romaji == "iku":
-        return _get_potential_godan_forms(verb)
-    elif verb.romaji == "suru":
-        return {
-            "ip" : "dekiru",
-            "fp" : "dekimasu",
-            "in" : "dekinai",
-            "fn" : "dekimasen",
-        }
-    elif verb.romaji == "kuru":
-        return {
-            "ip" : "korareru",
-            "fp" : "koraremasu",
-            "in" : "korarenai",
-            "fn" : "koraremasen",
-        }
+def get_potential_past_forms(verb: Verb) -> dict:
+    potential_stem = _get_potential_stem(verb)
+    if not potential_stem:
+        return {}
 
-    return {}
+    fake_verb = Verb(
+        romaji=potential_stem + "ru",
+        kanji=verb.kanji,
+        traduction=verb.traduction,
+        type="ichidan",
+        stem=potential_stem,
+        ending="ru"
+    )
+
+    return _get_past_ichidan_forms(fake_verb)

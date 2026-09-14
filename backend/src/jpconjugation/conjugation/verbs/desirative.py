@@ -1,43 +1,41 @@
 from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.bases import get_base_i
+from jpconjugation.conjugation.verbs.rules import build_core_rules
 
 ###########################################################################################
 # Present
 ###########################################################################################
 
 def get_desirative_present_rules(verb: Verb) -> dict:
-    if verb.type == "godan":
-        return {
-            "ip": "Pour un verbe Godan, on prend la forme en I et on ajoute 'tai'.",
-            "fp": "Pour un verbe Godan, on prend la forme en I et on ajoute 'tai desu'.",
-            "in": "Pour un verbe Godan, on prend la forme en I et on ajoute 'takunai'.",
-            "fn": "Pour un verbe Godan, on prend la forme en I et on ajoute 'takunai desu'."
+    return build_core_rules(
+        verb=verb,
+        godan_rules={
+            "ip": "on prend la forme en I et on ajoute 'tai'",
+            "fp": "on prend la forme en I et on ajoute 'tai desu'",
+            "in": "on prend la forme en I et on ajoute 'takunai'",
+            "fn": "on prend la forme en I et on ajoute 'takunai desu'",
+        },
+        ichidan_rules={
+            "ip": "on enlève 'ru' au radical et on ajoute 'tai'",
+            "fp": "on enlève 'ru' au radical et on ajoute 'tai desu'",
+            "in": "on enlève 'ru' au radical et on ajoute 'takunai'",
+            "fn": "on enlève 'ru' au radical et on ajoute 'takunai desu'",
+        },
+        exception_rules={
+            "ip": "On utilise l'exception en I + 'tai'",
+            "fp": "On utilise l'exception en I + 'tai desu'",
+            "in": "On utilise l'exception en I + 'takunai'",
+            "fn": "On utilise l'exception en I + 'takunai desu'",
         }
-    elif verb.type == "ichidan":
-        return {
-            "ip": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'tai'.",
-            "fp": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'tai desu'.",
-            "in": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'takunai'.",
-            "fn": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'takunai desu'."
-        }
-    elif verb.type == "exception":
-        return {
-            "ip": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'tai'.",
-            "fp": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'tai desu'.",
-            "in": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'takunai'.",
-            "fn": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'takunai desu'."
-        }
-    return {}
+    )
 
 
 def get_desirative_present_forms(verb: Verb) -> dict:
-    type = verb.type
-
-    if type == "godan":
+    if verb.type == "godan":
         return _get_desirative_present_godan_forms(verb)
-    elif type == "ichidan":
+    elif verb.type == "ichidan":
         return _get_desirative_present_ichidan_forms(verb)
-    elif type == "exception":
+    elif verb.type == "exception":
         return _get_desirative_present_exception_forms(verb)
     else:
         return {}
@@ -104,38 +102,35 @@ def _get_desirative_present_exception_forms(verb: Verb) -> dict:
 ###########################################################################################
 
 def get_desirative_past_rules(verb: Verb) -> dict:
-    if verb.type == "godan":
-        return {
-            "ip": "Pour un verbe Godan, on prend la forme en I et on ajoute 'takatta'.",
-            "fp": "Pour un verbe Godan, on prend la forme en I et on ajoute 'takatta desu'.",
-            "in": "Pour un verbe Godan, on prend la forme en I et on ajoute 'takunakatta'.",
-            "fn": "Pour un verbe Godan, on prend la forme en I et on ajoute 'takunakatta desu'."
+    return build_core_rules(
+        verb=verb,
+        godan_rules={
+            "ip": "on prend la forme en I et on ajoute 'takatta'",
+            "fp": "on prend la forme en I et on ajoute 'takatta desu'",
+            "in": "on prend la forme en I et on ajoute 'takunakatta'",
+            "fn": "on prend la forme en I et on ajoute 'takunakatta desu'",
+        },
+        ichidan_rules={
+            "ip": "on enlève 'ru' au radical et on ajoute 'takatta'",
+            "fp": "on enlève 'ru' au radical et on ajoute 'takatta desu'",
+            "in": "on enlève 'ru' au radical et on ajoute 'takunakatta'",
+            "fn": "on enlève 'ru' au radical et on ajoute 'takunakatta desu'",
+        },
+        exception_rules={
+            "ip": "On utilise l'exception en I + 'takatta'",
+            "fp": "On utilise l'exception en I + 'takatta desu'",
+            "in": "On utilise l'exception en I + 'takunakatta'",
+            "fn": "On utilise l'exception en I + 'takunakatta desu'",
         }
-    elif verb.type == "ichidan":
-        return {
-            "ip": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'takatta'.",
-            "fp": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'takatta desu'.",
-            "in": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'takunakatta'.",
-            "fn": "Pour un verbe Ichidan, on enlève 'ru' au radical et on ajoute 'takunakatta desu'."
-        }
-    elif verb.type == "exception":
-        return {
-            "ip": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'takatta'.",
-            "fp": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'takatta desu'.",
-            "in": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'takunakatta'.",
-            "fn": f"Exception ({verb.romaji}) : On utilise l'exception en I + 'takunakatta desu'."
-        }
-    return {}
+    )
 
 
 def get_desirative_past_forms(verb: Verb) -> dict:
-    type = verb.type
-
-    if type == "godan":
+    if verb.type == "godan":
         return _get_desirative_past_godan_forms(verb)
-    elif type == "ichidan":
+    elif verb.type == "ichidan":
         return _get_desirative_past_ichidan_forms(verb)
-    elif type == "exception":
+    elif verb.type == "exception":
         return _get_desirative_past_exception_forms(verb)
     else:
         return {}
