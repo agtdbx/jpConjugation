@@ -518,3 +518,99 @@ def test_conjugate_verbs_conditional_tara(
 
     assert len(forms) == 1
     assert forms.get("ip", "") == form_ip
+
+
+VERBS_PAS = [
+    ("godan", "matsu", "matareru"),
+    ("godan", "hashiru", "hashirareru"),
+    ("godan", "nomu", "nomareru"),
+    ("godan", "shinu", "shinareru"),
+    ("godan", "asobu", "asobareru"),
+    ("godan", "kiku", "kikareru"),
+    ("godan", "oyogu", "oyogareru"),
+    ("godan", "hanasu", "hanasareru"),
+    ("godan", "tsukau", "tsukawareru"),
+    ("ichidan", "taberu", "taberareru"),
+    ("exception", "iku", "ikareru"),
+    ("exception", "suru", "sareru"),
+    ("exception", "kuru", "korareru"),
+    ("exception", "aru", ""),
+]
+@pytest.mark.parametrize("verb_type, romaji, form_ip", VERBS_PAS)
+def test_conjugate_verbs_passive(
+        verb_type: str,
+        romaji: str,
+        form_ip: str,
+        ):
+    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
+    forms = conjugate_verb(verb, tense_id="pas")
+
+    if romaji == "aru":
+        assert len(forms) == 0
+    else:
+        assert len(forms) == 1
+    assert forms.get("ip", "") == form_ip
+
+
+VERBS_CA = [
+    ("godan", "matsu", "mataseru"),
+    ("godan", "hashiru", "hashiraseru"),
+    ("godan", "nomu", "nomaseru"),
+    ("godan", "shinu", "shinaseru"),
+    ("godan", "asobu", "asobaseru"),
+    ("godan", "kiku", "kikaseru"),
+    ("godan", "oyogu", "oyogaseru"),
+    ("godan", "hanasu", "hanasaseru"),
+    ("godan", "tsukau", "tsukawaseru"),
+    ("ichidan", "taberu", "tabesaseru"),
+    ("exception", "iku", "ikaseru"),
+    ("exception", "suru", "saseru"),
+    ("exception", "kuru", "koraseru"),
+    ("exception", "aru", ""),
+]
+@pytest.mark.parametrize("verb_type, romaji, form_ip", VERBS_CA)
+def test_conjugate_verbs_causative(
+        verb_type: str,
+        romaji: str,
+        form_ip: str,
+        ):
+    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
+    forms = conjugate_verb(verb, tense_id="ca")
+
+    if romaji == "aru":
+        assert len(forms) == 0
+    else:
+        assert len(forms) == 1
+    assert forms.get("ip", "") == form_ip
+
+
+VERBS_CA_PAS = [
+    ("godan", "matsu", "mataserareru"),
+    ("godan", "hashiru", "hashiraserareru"),
+    ("godan", "nomu", "nomaserareru"),
+    ("godan", "shinu", "shinaserareru"),
+    ("godan", "asobu", "asobaserareru"),
+    ("godan", "kiku", "kikaserareru"),
+    ("godan", "oyogu", "oyogaserareru"),
+    ("godan", "hanasu", "hanasaserareru"),
+    ("godan", "tsukau", "tsukawaserareru"),
+    ("ichidan", "taberu", "tabesaserareru"),
+    ("exception", "iku", "ikaserareru"),
+    ("exception", "suru", "saserareru"),
+    ("exception", "kuru", "koraserareru"),
+    ("exception", "aru", ""),
+]
+@pytest.mark.parametrize("verb_type, romaji, form_ip", VERBS_CA_PAS)
+def test_conjugate_verbs_causative_passive(
+        verb_type: str,
+        romaji: str,
+        form_ip: str,
+        ):
+    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
+    forms = conjugate_verb(verb, tense_id="ca-pas")
+
+    if romaji == "aru":
+        assert len(forms) == 0
+    else:
+        assert len(forms) == 1
+    assert forms.get("ip", "") == form_ip

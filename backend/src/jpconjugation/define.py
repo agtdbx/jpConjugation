@@ -19,10 +19,9 @@ VERBS_TENSES = {
     "po-pa" :  "Potentiel passé",    # Potential past
     "co-ba" :  "Conditionnel -ba",   # Conditional -ba
     "co-ta" :  "Conditionnel -tara", # Conditional -tara
-
-    # "pas" :    "Passif",             # Passive
-    # "ca" :     "Causatif",           # Causative
-    # "ca-pas" : "Causatif passif",    # Causative passive
+    "pas" :    "Passif",             # Passive
+    "ca" :     "Causatif",           # Causative
+    "ca-pas" : "Causatif passif",    # Causative passive
 }
 
 VERBS_ALLOWED_FORMS = {
@@ -38,10 +37,9 @@ VERBS_ALLOWED_FORMS = {
     "po-pa" :  ["ip", "fp", "in", "fn"],
     "co-ba" :  ["ip", "in"],
     "co-ta" :  ["ip"],
-
-    # "pas" :    ["ip", "fp", "in", "fn"],
-    # "ca" :     ["ip", "fp", "in", "fn"],
-    # "ca-pas" : ["ip", "fp", "in", "fn"],
+    "pas" :    ["ip"],
+    "ca" :     ["ip"],
+    "ca-pas" : ["ip"],
 }
 
 VERBS_ENDINGS = ["tsu", "ru", "mu", "nu", "bu", "ku", "gu", "su", "u"]

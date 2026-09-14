@@ -9,18 +9,18 @@ from jpconjugation.conjugation.verbs.rules import build_derived_rules, SUFFIXES_
 # Stem
 ###########################################################################################
 
-def _get_potential_stem(verb: Verb) -> str:
+def _get_potential_verb(verb: Verb) -> str:
     if verb.type == "godan":
-        return verb.stem + get_base_e(verb)
+        return verb.stem + get_base_e(verb) + "ru"
     elif verb.type == "ichidan":
-        return verb.stem + "rare"
+        return verb.stem + "rareru"
     elif verb.type == "exception":
         if verb.romaji == "iku":
-            return verb.stem + get_base_e(verb)
+            return verb.stem + get_base_e(verb) + "ru"
         elif verb.romaji == "suru":
-            return "deki"
+            return "dekiru"
         elif verb.romaji == "kuru":
-            return "korare"
+            return "korareru"
 
     return ""
 
@@ -30,25 +30,25 @@ def _get_potential_stem(verb: Verb) -> str:
 
 def get_potential_present_rules(verb: Verb) -> dict:
     return build_derived_rules(
-            verb=verb,
-            godan_action="prend la forme en E",
-            ichidan_action="enlève 'ru' au radical",
-            base_suffixes=SUFFIXES_PRESENT,
-            ichidan_prefix="rare",
+        verb=verb,
+        godan_action="prend la forme en E",
+        ichidan_action="enlève 'ru' au radical",
+        base_suffixes=SUFFIXES_PRESENT,
+        ichidan_prefix="rare",
     )
 
 
 def get_potential_present_forms(verb: Verb) -> dict:
-    potential_stem = _get_potential_stem(verb)
-    if not potential_stem:
+    potential_verb = _get_potential_verb(verb)
+    if not potential_verb:
         return {}
 
     fake_verb = Verb(
-        romaji=potential_stem + "ru",
+        romaji=potential_verb,
         kanji=verb.kanji,
         traduction=verb.traduction,
         type="ichidan",
-        stem=potential_stem,
+        stem=potential_verb[:-2],
         ending="ru"
     )
 
@@ -60,25 +60,25 @@ def get_potential_present_forms(verb: Verb) -> dict:
 
 def get_potential_past_rules(verb: Verb) -> dict:
     return build_derived_rules(
-            verb=verb,
-            godan_action="prend la forme en E",
-            ichidan_action="enlève 'ru' au radical",
-            base_suffixes=SUFFIXES_PAST,
-            ichidan_prefix="rare",
+        verb=verb,
+        godan_action="prend la forme en E",
+        ichidan_action="enlève 'ru' au radical",
+        base_suffixes=SUFFIXES_PAST,
+        ichidan_prefix="rare",
     )
 
 
 def get_potential_past_forms(verb: Verb) -> dict:
-    potential_stem = _get_potential_stem(verb)
-    if not potential_stem:
+    potential_verb = _get_potential_verb(verb)
+    if not potential_verb:
         return {}
 
     fake_verb = Verb(
-        romaji=potential_stem + "ru",
+        romaji=potential_verb,
         kanji=verb.kanji,
         traduction=verb.traduction,
         type="ichidan",
-        stem=potential_stem,
+        stem=potential_verb[:-2],
         ending="ru"
     )
 

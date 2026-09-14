@@ -23,35 +23,35 @@ def get_progressive_rules(verb: Verb) -> dict:
 
 
 def get_progressive_forms(verb: Verb) -> dict:
-    progressive_stem = _get_progressive_stem(verb)
-    if not progressive_stem:
+    progressive_verb = _get_progressive_verb(verb)
+    if not progressive_verb:
         return {}
 
     fake_verb = Verb(
-        romaji=progressive_stem + "ru",
+        romaji=progressive_verb,
         kanji=verb.kanji,
         traduction=verb.traduction,
         type="ichidan",
-        stem=progressive_stem,
+        stem=progressive_verb[:-2],
         ending="ru"
     )
 
     return _get_present_ichidan_forms(fake_verb)
 
 
-def _get_progressive_stem(verb: Verb) -> str:
+def _get_progressive_verb(verb: Verb) -> str:
     if verb.type == "godan":
-        return verb.stem + get_base_te(verb) + "i"
+        return verb.stem + get_base_te(verb) + "iru"
     elif verb.type == "ichidan":
-        return verb.stem + "tei"
+        return verb.stem + "teiru"
     elif verb.type == "exception":
         if verb.romaji == "iku":
-            return "ittei"
+            return "itteiru"
         elif verb.romaji == "suru":
-            return "shitei"
+            return "shiteiru"
         elif verb.romaji == "kuru":
-            return "kitei"
+            return "kiteiru"
         elif verb.romaji == "aru":
-            return "attei"
+            return "atteiru"
 
     return ""

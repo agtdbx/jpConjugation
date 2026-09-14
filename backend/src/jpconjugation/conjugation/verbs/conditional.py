@@ -80,7 +80,7 @@ def _get_conditional_ba_exception_forms(verb: Verb) -> dict:
 def get_conditional_tara_rules(verb: Verb) -> dict:
     return build_derived_rules(
         verb=verb,
-        godan_action="on prend la conjugaison au passé et on ajoute 'ra'",
+        godan_action="on prend la conjugaison au passé",
         ichidan_action="on prend la conjugaison au passé",
         base_suffixes={"ip": "ra"},
         exception_rules={

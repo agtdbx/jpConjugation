@@ -19,6 +19,11 @@ from jpconjugation.conjugation.verbs.conditional import (
     get_conditional_ba_forms, get_conditional_ba_rules,
     get_conditional_tara_forms, get_conditional_tara_rules,
 )
+from jpconjugation.conjugation.verbs.passive import get_passive_forms, get_passive_rules
+from jpconjugation.conjugation.verbs.causative import (
+    get_causative_forms, get_causative_rules,
+    get_causative_passive_forms, get_causative_passive_rules,
+)
 
 _VERB_TENSES_FUNCTIONS = {
     "pr" : get_present_forms,
@@ -33,6 +38,9 @@ _VERB_TENSES_FUNCTIONS = {
     "po-pa" : get_potential_past_forms,
     "co-ba" : get_conditional_ba_forms,
     "co-ta" : get_conditional_tara_forms,
+    "pas" : get_passive_forms,
+    "ca" : get_causative_forms,
+    "ca-pas" : get_causative_passive_forms,
 }
 
 _VERB_TENSES_RULES = {
@@ -48,6 +56,9 @@ _VERB_TENSES_RULES = {
     "po-pa" : get_potential_past_rules,
     "co-ba" : get_conditional_ba_rules,
     "co-ta" : get_conditional_tara_rules,
+    "pas" : get_passive_rules,
+    "ca" : get_causative_rules,
+    "ca-pas" : get_causative_passive_rules,
 }
 
 
