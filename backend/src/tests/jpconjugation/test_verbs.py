@@ -458,3 +458,63 @@ def test_conjugate_verbs_potential_past(
     assert forms.get("fp", "") == form_fp
     assert forms.get("in", "") == form_in
     assert forms.get("fn", "") == form_fn
+
+
+VERBS_CO_BA = [
+    ("godan", "matsu", "mateba", "matanakereba"),
+    ("godan", "hashiru", "hashireba", "hashiranakereba"),
+    ("godan", "nomu", "nomeba", "nomanakereba"),
+    ("godan", "shinu", "shineba", "shinanakereba"),
+    ("godan", "asobu", "asobeba", "asobanakereba"),
+    ("godan", "kiku", "kikeba", "kikanakereba"),
+    ("godan", "oyogu", "oyogeba", "oyoganakereba"),
+    ("godan", "hanasu", "hanaseba", "hanasanakereba"),
+    ("godan", "tsukau", "tsukaeba", "tsukawanakereba"),
+    ("ichidan", "taberu", "tabereba", "taberanakereba"),
+    ("exception", "iku", "ikeba", "ikanakereba"),
+    ("exception", "suru", "sureba", "shinakereba"),
+    ("exception", "kuru", "kureba", "konakereba"),
+    ("exception", "aru", "areba", "nakereba"),
+]
+@pytest.mark.parametrize("verb_type, romaji, form_ip, form_in", VERBS_CO_BA)
+def test_conjugate_verbs_conditional_ba(
+        verb_type: str,
+        romaji: str,
+        form_ip: str,
+        form_in: str,
+        ):
+    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
+    forms = conjugate_verb(verb, tense_id="co-ba")
+
+    assert len(forms) == 2
+    assert forms.get("ip", "") == form_ip
+    assert forms.get("in", "") == form_in
+
+
+VERBS_CO_TA = [
+    ("godan", "matsu", "mattara"),
+    ("godan", "hashiru", "hashittara"),
+    ("godan", "nomu", "nondara"),
+    ("godan", "shinu", "shindara"),
+    ("godan", "asobu", "asondara"),
+    ("godan", "kiku", "kiitara"),
+    ("godan", "oyogu", "oyoidara"),
+    ("godan", "hanasu", "hanashitara"),
+    ("godan", "tsukau", "tsukattara"),
+    ("ichidan", "taberu", "tabetara"),
+    ("exception", "iku", "ittara"),
+    ("exception", "suru", "shitara"),
+    ("exception", "kuru", "kitara"),
+    ("exception", "aru", "attara"),
+]
+@pytest.mark.parametrize("verb_type, romaji, form_ip", VERBS_CO_TA)
+def test_conjugate_verbs_conditional_tara(
+        verb_type: str,
+        romaji: str,
+        form_ip: str,
+        ):
+    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
+    forms = conjugate_verb(verb, tense_id="co-ta")
+
+    assert len(forms) == 1
+    assert forms.get("ip", "") == form_ip

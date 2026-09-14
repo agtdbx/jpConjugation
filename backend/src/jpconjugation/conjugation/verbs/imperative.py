@@ -3,7 +3,7 @@ from jpconjugation.conjugation.verbs.bases import get_base_a, get_base_e, get_ba
 from jpconjugation.conjugation.verbs.rules import build_core_rules
 
 ###########################################################################################
-# Soft
+# TE
 ###########################################################################################
 
 def get_imperative_te_rules(verb: Verb) -> dict:
@@ -88,7 +88,7 @@ def _get_imperative_te_exception_forms(verb: Verb) -> dict:
     return {}
 
 ###########################################################################################
-# Hard
+# RO
 ###########################################################################################
 
 def get_imperative_ro_rules(verb: Verb) -> dict:

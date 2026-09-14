@@ -15,6 +15,10 @@ from jpconjugation.conjugation.verbs.potential import (
     get_potential_present_forms, get_potential_present_rules,
     get_potential_past_forms, get_potential_past_rules,
 )
+from jpconjugation.conjugation.verbs.conditional import (
+    get_conditional_ba_forms, get_conditional_ba_rules,
+    get_conditional_tara_forms, get_conditional_tara_rules,
+)
 
 _VERB_TENSES_FUNCTIONS = {
     "pr" : get_present_forms,
@@ -27,6 +31,8 @@ _VERB_TENSES_FUNCTIONS = {
     "vo" : get_volitional_forms,
     "po-pr" : get_potential_present_forms,
     "po-pa" : get_potential_past_forms,
+    "co-ba" : get_conditional_ba_forms,
+    "co-ta" : get_conditional_tara_forms,
 }
 
 _VERB_TENSES_RULES = {
@@ -40,6 +46,8 @@ _VERB_TENSES_RULES = {
     "vo" : get_volitional_rules,
     "po-pr" : get_potential_present_rules,
     "po-pa" : get_potential_past_rules,
+    "co-ba" : get_conditional_ba_rules,
+    "co-ta" : get_conditional_tara_rules,
 }
 
 

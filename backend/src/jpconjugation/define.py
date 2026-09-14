@@ -17,9 +17,9 @@ VERBS_TENSES = {
     "vo" :     "Invitation",         # Volitional
     "po-pr" :  "Potentiel présent",  # Potential present
     "po-pa" :  "Potentiel passé",    # Potential past
+    "co-ba" :  "Conditionnel -ba",   # Conditional -ba
+    "co-ta" :  "Conditionnel -tara", # Conditional -tara
 
-    # "co-ba" :  "Conditionnel -ba",   # Conditional -ba
-    # "co-ta" :  "Conditionnel -tara", # Conditional -tara
     # "pas" :    "Passif",             # Passive
     # "ca" :     "Causatif",           # Causative
     # "ca-pas" : "Causatif passif",    # Causative passive
@@ -36,9 +36,9 @@ VERBS_ALLOWED_FORMS = {
     "vo" :     ["ip", "fp"],
     "po-pr" :  ["ip", "fp", "in", "fn"],
     "po-pa" :  ["ip", "fp", "in", "fn"],
+    "co-ba" :  ["ip", "in"],
+    "co-ta" :  ["ip"],
 
-    # "co-ba" :  ["ip", "in"],
-    # "co-ta" :  ["ip"],
     # "pas" :    ["ip", "fp", "in", "fn"],
     # "ca" :     ["ip", "fp", "in", "fn"],
     # "ca-pas" : ["ip", "fp", "in", "fn"],
