@@ -64,6 +64,10 @@ VERBS_CONJUGATION_ORDER = {
     "ca" :     3,
 }
 
+VERBS_TO_ADJECTIVES_TENSE = [
+    "de"
+]
+
 VERBS_ENDINGS = ["tsu", "ru", "mu", "nu", "bu", "ku", "gu", "su", "u"]
 
 ###########################################################################################
