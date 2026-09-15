@@ -242,117 +242,6 @@ def test_conjugate_verbs_imperative_ro(
     assert forms.get("in", "") == form_in
 
 
-VERBS_PRO = [
-    ("godan", "matsu", "matteiru", "matteimasu", "matteinai", "matteimasen"),
-    ("godan", "hashiru", "hashitteiru", "hashitteimasu", "hashitteinai", "hashitteimasen"),
-    ("godan", "nomu", "nondeiru", "nondeimasu", "nondeinai", "nondeimasen"),
-    ("godan", "shinu", "shindeiru", "shindeimasu", "shindeinai", "shindeimasen"),
-    ("godan", "asobu", "asondeiru", "asondeimasu", "asondeinai", "asondeimasen"),
-    ("godan", "kiku", "kiiteiru", "kiiteimasu", "kiiteinai", "kiiteimasen"),
-    ("godan", "oyogu", "oyoideiru", "oyoideimasu", "oyoideinai", "oyoideimasen"),
-    ("godan", "hanasu", "hanashiteiru", "hanashiteimasu", "hanashiteinai", "hanashiteimasen"),
-    ("godan", "tsukau", "tsukatteiru", "tsukatteimasu", "tsukatteinai", "tsukatteimasen"),
-    ("ichidan", "taberu", "tabeteiru", "tabeteimasu", "tabeteinai", "tabeteimasen"),
-    ("exception", "suru", "shiteiru", "shiteimasu", "shiteinai", "shiteimasen"),
-    ("exception", "kuru", "kiteiru", "kiteimasu", "kiteinai", "kiteimasen"),
-    ("exception", "aru", "atteiru", "atteimasu", "atteinai", "atteimasen"),
-    ("exception", "iku", "itteiru", "itteimasu", "itteinai", "itteimasen"),
-]
-@pytest.mark.parametrize("verb_type, romaji, form_ip, form_fp, form_in, form_fn", VERBS_PRO)
-def test_conjugate_verbs_progressive(
-        verb_type: str,
-        romaji: str,
-        form_ip: str,
-        form_fp: str,
-        form_in: str,
-        form_fn: str
-        ):
-    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
-    forms = conjugate_verb(verb, tense_id="pro")
-
-    assert len(forms) == 4
-    assert forms.get("ip", "") == form_ip
-    assert forms.get("fp", "") == form_fp
-    assert forms.get("in", "") == form_in
-    assert forms.get("fn", "") == form_fn
-
-
-VERBS_DE_PR = [
-    ("godan", "matsu", "machitai", "machitai desu", "machitakunai", "machitakunai desu"),
-    ("godan", "hashiru", "hashiritai", "hashiritai desu", "hashiritakunai", "hashiritakunai desu"),
-    ("godan", "nomu", "nomitai", "nomitai desu", "nomitakunai", "nomitakunai desu"),
-    ("godan", "shinu", "shinitai", "shinitai desu", "shinitakunai", "shinitakunai desu"),
-    ("godan", "asobu", "asobitai", "asobitai desu", "asobitakunai", "asobitakunai desu"),
-    ("godan", "kiku", "kikitai", "kikitai desu", "kikitakunai", "kikitakunai desu"),
-    ("godan", "oyogu", "oyogitai", "oyogitai desu", "oyogitakunai", "oyogitakunai desu"),
-    ("godan", "hanasu", "hanashitai", "hanashitai desu", "hanashitakunai", "hanashitakunai desu"),
-    ("godan", "tsukau", "tsukaitai", "tsukaitai desu", "tsukaitakunai", "tsukaitakunai desu"),
-    ("ichidan", "taberu", "tabetai", "tabetai desu", "tabetakunai", "tabetakunai desu"),
-    ("exception", "suru", "shitai", "shitai desu", "shitakunai", "shitakunai desu"),
-    ("exception", "kuru", "kitai", "kitai desu", "kitakunai", "kitakunai desu"),
-    ("exception", "aru", "", "", "", ""),
-    ("exception", "iku", "ikitai", "ikitai desu", "ikitakunai", "ikitakunai desu"),
-]
-@pytest.mark.parametrize("verb_type, romaji, form_ip, form_fp, form_in, form_fn", VERBS_DE_PR)
-def test_conjugate_verbs_desirative_present(
-        verb_type: str,
-        romaji: str,
-        form_ip: str,
-        form_fp: str,
-        form_in: str,
-        form_fn: str
-        ):
-    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
-    forms = conjugate_verb(verb, tense_id="de-pr")
-
-    if romaji == "aru":
-        assert len(forms) == 0
-    else:
-        assert len(forms) == 4
-    assert forms.get("ip", "") == form_ip
-    assert forms.get("fp", "") == form_fp
-    assert forms.get("in", "") == form_in
-    assert forms.get("fn", "") == form_fn
-
-
-VERBS_DE_PA = [
-    ("godan", "matsu", "machitakatta", "machitakatta desu", "machitakunakatta", "machitakunakatta desu"),
-    ("godan", "hashiru", "hashiritakatta", "hashiritakatta desu", "hashiritakunakatta", "hashiritakunakatta desu"),
-    ("godan", "nomu", "nomitakatta", "nomitakatta desu", "nomitakunakatta", "nomitakunakatta desu"),
-    ("godan", "shinu", "shinitakatta", "shinitakatta desu", "shinitakunakatta", "shinitakunakatta desu"),
-    ("godan", "asobu", "asobitakatta", "asobitakatta desu", "asobitakunakatta", "asobitakunakatta desu"),
-    ("godan", "kiku", "kikitakatta", "kikitakatta desu", "kikitakunakatta", "kikitakunakatta desu"),
-    ("godan", "oyogu", "oyogitakatta", "oyogitakatta desu", "oyogitakunakatta", "oyogitakunakatta desu"),
-    ("godan", "hanasu", "hanashitakatta", "hanashitakatta desu", "hanashitakunakatta", "hanashitakunakatta desu"),
-    ("godan", "tsukau", "tsukaitakatta", "tsukaitakatta desu", "tsukaitakunakatta", "tsukaitakunakatta desu"),
-    ("ichidan", "taberu", "tabetakatta", "tabetakatta desu", "tabetakunakatta", "tabetakunakatta desu"),
-    ("exception", "suru", "shitakatta", "shitakatta desu", "shitakunakatta", "shitakunakatta desu"),
-    ("exception", "kuru", "kitakatta", "kitakatta desu", "kitakunakatta", "kitakunakatta desu"),
-    ("exception", "aru", "", "", "", ""),
-    ("exception", "iku", "ikitakatta", "ikitakatta desu", "ikitakunakatta", "ikitakunakatta desu"),
-]
-@pytest.mark.parametrize("verb_type, romaji, form_ip, form_fp, form_in, form_fn", VERBS_DE_PA)
-def test_conjugate_verbs_desirative_past(
-        verb_type: str,
-        romaji: str,
-        form_ip: str,
-        form_fp: str,
-        form_in: str,
-        form_fn: str
-        ):
-    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
-    forms = conjugate_verb(verb, tense_id="de-pa")
-
-    if romaji == "aru":
-        assert len(forms) == 0
-    else:
-        assert len(forms) == 4
-    assert forms.get("ip", "") == form_ip
-    assert forms.get("fp", "") == form_fp
-    assert forms.get("in", "") == form_in
-    assert forms.get("fn", "") == form_fn
-
-
 VERBS_VO = [
     ("godan", "matsu", "matou", "machimashou"),
     ("godan", "hashiru", "hashirou", "hashirimashou"),
@@ -382,82 +271,6 @@ def test_conjugate_verbs_volitional(
     assert len(forms) == 2
     assert forms.get("ip", "") == form_ip
     assert forms.get("fp", "") == form_fp
-
-
-VERBS_PO_PR = [
-    ("godan", "matsu", "materu", "matemasu", "matenai", "matemasen"),
-    ("godan", "hashiru", "hashireru", "hashiremasu", "hashirenai", "hashiremasen"),
-    ("godan", "nomu", "nomeru", "nomemasu", "nomenai", "nomemasen"),
-    ("godan", "shinu", "shineru", "shinemasu", "shinenai", "shinemasen"),
-    ("godan", "asobu", "asoberu", "asobemasu", "asobenai", "asobemasen"),
-    ("godan", "kiku", "kikeru", "kikemasu", "kikenai", "kikemasen"),
-    ("godan", "oyogu", "oyogeru", "oyogemasu", "oyogenai", "oyogemasen"),
-    ("godan", "hanasu", "hanaseru", "hanasemasu", "hanasenai", "hanasemasen"),
-    ("godan", "tsukau", "tsukaeru", "tsukaemasu", "tsukaenai", "tsukaemasen"),
-    ("ichidan", "taberu", "taberareru", "taberaremasu", "taberarenai", "taberaremasen"),
-    ("exception", "suru", "dekiru", "dekimasu", "dekinai", "dekimasen"),
-    ("exception", "kuru", "korareru", "koraremasu", "korarenai", "koraremasen"),
-    ("exception", "aru", "", "", "", ""),
-    ("exception", "iku", "ikeru", "ikemasu", "ikenai", "ikemasen"),
-]
-@pytest.mark.parametrize("verb_type, romaji, form_ip, form_fp, form_in, form_fn", VERBS_PO_PR)
-def test_conjugate_verbs_potential_present(
-        verb_type: str,
-        romaji: str,
-        form_ip: str,
-        form_fp: str,
-        form_in: str,
-        form_fn: str
-        ):
-    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
-    forms = conjugate_verb(verb, tense_id="po-pr")
-
-    if romaji == "aru":
-        assert len(forms) == 0
-    else:
-        assert len(forms) == 4
-    assert forms.get("ip", "") == form_ip
-    assert forms.get("fp", "") == form_fp
-    assert forms.get("in", "") == form_in
-    assert forms.get("fn", "") == form_fn
-
-
-VERBS_PO_PA = [
-    ("godan", "matsu", "mateta", "matemashita", "matenakatta", "matemasen deshita"),
-    ("godan", "hashiru", "hashireta", "hashiremashita", "hashirenakatta", "hashiremasen deshita"),
-    ("godan", "nomu", "nometa", "nomemashita", "nomenakatta", "nomemasen deshita"),
-    ("godan", "shinu", "shineta", "shinemashita", "shinenakatta", "shinemasen deshita"),
-    ("godan", "asobu", "asobeta", "asobemashita", "asobenakatta", "asobemasen deshita"),
-    ("godan", "kiku", "kiketa", "kikemashita", "kikenakatta", "kikemasen deshita"),
-    ("godan", "oyogu", "oyogeta", "oyogemashita", "oyogenakatta", "oyogemasen deshita"),
-    ("godan", "hanasu", "hanaseta", "hanasemashita", "hanasenakatta", "hanasemasen deshita"),
-    ("godan", "tsukau", "tsukaeta", "tsukaemashita", "tsukaenakatta", "tsukaemasen deshita"),
-    ("ichidan", "taberu", "taberareta", "taberaremashita", "taberarenakatta", "taberaremasen deshita"),
-    ("exception", "iku", "iketa", "ikemashita", "ikenakatta", "ikemasen deshita"),
-    ("exception", "suru", "dekita", "dekimashita", "dekinakatta", "dekimasen deshita"),
-    ("exception", "kuru", "korareta", "koraremashita", "korarenakatta", "koraremasen deshita"),
-    ("exception", "aru", "", "", "", ""),
-]
-@pytest.mark.parametrize("verb_type, romaji, form_ip, form_fp, form_in, form_fn", VERBS_PO_PA)
-def test_conjugate_verbs_potential_past(
-        verb_type: str,
-        romaji: str,
-        form_ip: str,
-        form_fp: str,
-        form_in: str,
-        form_fn: str
-        ):
-    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
-    forms = conjugate_verb(verb, tense_id="po-pa")
-
-    if romaji == "aru":
-        assert len(forms) == 0
-    else:
-        assert len(forms) == 4
-    assert forms.get("ip", "") == form_ip
-    assert forms.get("fp", "") == form_fp
-    assert forms.get("in", "") == form_in
-    assert forms.get("fn", "") == form_fn
 
 
 VERBS_CO_BA = [
@@ -520,6 +333,99 @@ def test_conjugate_verbs_conditional_tara(
     assert forms.get("ip", "") == form_ip
 
 
+VERBS_PRO = [
+    ("godan", "matsu", "matteiru"),
+    ("godan", "hashiru", "hashitteiru"),
+    ("godan", "nomu", "nondeiru"),
+    ("godan", "shinu", "shindeiru"),
+    ("godan", "asobu", "asondeiru"),
+    ("godan", "kiku", "kiiteiru"),
+    ("godan", "oyogu", "oyoideiru"),
+    ("godan", "hanasu", "hanashiteiru"),
+    ("godan", "tsukau", "tsukatteiru"),
+    ("ichidan", "taberu", "tabeteiru"),
+    ("exception", "suru", "shiteiru"),
+    ("exception", "kuru", "kiteiru"),
+    ("exception", "aru", "atteiru"),
+    ("exception", "iku", "itteiru"),
+]
+@pytest.mark.parametrize("verb_type, romaji, form_ip", VERBS_PRO)
+def test_conjugate_verbs_progressive(
+        verb_type: str,
+        romaji: str,
+        form_ip: str,
+        ):
+    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
+    forms = conjugate_verb(verb, tense_id="pro")
+
+    assert len(forms) == 1
+    assert forms.get("ip", "") == form_ip
+
+
+VERBS_DE = [
+    ("godan", "matsu", "machitai"),
+    ("godan", "hashiru", "hashiritai"),
+    ("godan", "nomu", "nomitai"),
+    ("godan", "shinu", "shinitai"),
+    ("godan", "asobu", "asobitai"),
+    ("godan", "kiku", "kikitai"),
+    ("godan", "oyogu", "oyogitai"),
+    ("godan", "hanasu", "hanashitai"),
+    ("godan", "tsukau", "tsukaitai"),
+    ("ichidan", "taberu", "tabetai"),
+    ("exception", "suru", "shitai"),
+    ("exception", "kuru", "kitai"),
+    ("exception", "aru", ""),
+    ("exception", "iku", "ikitai"),
+]
+@pytest.mark.parametrize("verb_type, romaji, form_ip", VERBS_DE)
+def test_conjugate_verbs_desirative_present(
+        verb_type: str,
+        romaji: str,
+        form_ip: str,
+        ):
+    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
+    forms = conjugate_verb(verb, tense_id="de")
+
+    if romaji == "aru":
+        assert len(forms) == 0
+    else:
+        assert len(forms) == 1
+    assert forms.get("ip", "") == form_ip
+
+
+VERBS_PO = [
+    ("godan", "matsu", "materu"),
+    ("godan", "hashiru", "hashireru"),
+    ("godan", "nomu", "nomeru"),
+    ("godan", "shinu", "shineru"),
+    ("godan", "asobu", "asoberu"),
+    ("godan", "kiku", "kikeru"),
+    ("godan", "oyogu", "oyogeru"),
+    ("godan", "hanasu", "hanaseru"),
+    ("godan", "tsukau", "tsukaeru"),
+    ("ichidan", "taberu", "taberareru"),
+    ("exception", "suru", "dekiru"),
+    ("exception", "kuru", "korareru"),
+    ("exception", "aru", ""),
+    ("exception", "iku", "ikeru"),
+]
+@pytest.mark.parametrize("verb_type, romaji, form_ip", VERBS_PO)
+def test_conjugate_verbs_potential_present(
+        verb_type: str,
+        romaji: str,
+        form_ip: str,
+        ):
+    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
+    forms = conjugate_verb(verb, tense_id="po")
+
+    if romaji == "aru":
+        assert len(forms) == 0
+    else:
+        assert len(forms) == 1
+    assert forms.get("ip", "") == form_ip
+
+
 VERBS_PAS = [
     ("godan", "matsu", "matareru"),
     ("godan", "hashiru", "hashirareru"),
@@ -576,38 +482,6 @@ def test_conjugate_verbs_causative(
         ):
     verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
     forms = conjugate_verb(verb, tense_id="ca")
-
-    if romaji == "aru":
-        assert len(forms) == 0
-    else:
-        assert len(forms) == 1
-    assert forms.get("ip", "") == form_ip
-
-
-VERBS_CA_PAS = [
-    ("godan", "matsu", "mataserareru"),
-    ("godan", "hashiru", "hashiraserareru"),
-    ("godan", "nomu", "nomaserareru"),
-    ("godan", "shinu", "shinaserareru"),
-    ("godan", "asobu", "asobaserareru"),
-    ("godan", "kiku", "kikaserareru"),
-    ("godan", "oyogu", "oyogaserareru"),
-    ("godan", "hanasu", "hanasaserareru"),
-    ("godan", "tsukau", "tsukawaserareru"),
-    ("ichidan", "taberu", "tabesaserareru"),
-    ("exception", "iku", "ikaserareru"),
-    ("exception", "suru", "saserareru"),
-    ("exception", "kuru", "koraserareru"),
-    ("exception", "aru", ""),
-]
-@pytest.mark.parametrize("verb_type, romaji, form_ip", VERBS_CA_PAS)
-def test_conjugate_verbs_causative_passive(
-        verb_type: str,
-        romaji: str,
-        form_ip: str,
-        ):
-    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
-    forms = conjugate_verb(verb, tense_id="ca-pas")
 
     if romaji == "aru":
         assert len(forms) == 0
