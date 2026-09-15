@@ -19,7 +19,7 @@ export default function Home({ options, setOptions, onStart }: HomeProps) {
   // Setup first call at first page render
   useEffect(() => {
     // Get schema
-    fetch(`${import.meta.env.VITE_API_URL}/api/options`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/conjugation/options`)
       .then(res => {
         if (!res.ok) throw new Error("Erreur réseau")
         return res.json()
@@ -133,7 +133,7 @@ export default function Home({ options, setOptions, onStart }: HomeProps) {
   const isSubmitDisabled = !checkIsFormValid();
 
   const hanbleButtonClic = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/generate`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/conjugation/generate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

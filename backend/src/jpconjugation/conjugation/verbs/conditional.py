@@ -11,12 +11,12 @@ def get_conditional_ba_rules(verb: Verb) -> dict:
     return build_core_rules(
         verb=verb,
         godan_rules={
-            "ip": "on prend la forme en E et on ajoute 'ba'",
-            "in": "on prend la forme en A et on ajoute 'nakereba'",
+            "ip": "prend la forme en E et ajoute 'ba'",
+            "in": "prend la forme en A et ajoute 'nakereba'",
         },
         ichidan_rules={
-            "ip": "on enlève 'ru' au radical et on ajoute 'reba'",
-            "in": "on enlève 'ru' au radical et on ajoute 'ranakereba'",
+            "ip": "enlève 'ru' au radical et ajoute 'reba'",
+            "in": "enlève 'ru' au radical et ajoute 'ranakereba'",
         }
     )
 
@@ -80,11 +80,11 @@ def _get_conditional_ba_exception_forms(verb: Verb) -> dict:
 def get_conditional_tara_rules(verb: Verb) -> dict:
     return build_derived_rules(
         verb=verb,
-        godan_action="on prend la conjugaison au passé",
-        ichidan_action="on prend la conjugaison au passé",
+        godan_action="prend la conjugaison au passé",
+        ichidan_action="prend la conjugaison au passé",
         base_suffixes={"ip": "ra"},
         exception_rules={
-            "ip": "On prend la conjugaison au passé et on ajoute 'ra'"
+            "ip": "prend la conjugaison au passé et ajoute 'ra'"
         }
     )
 

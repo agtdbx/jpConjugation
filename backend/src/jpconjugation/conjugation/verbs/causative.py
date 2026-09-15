@@ -1,7 +1,6 @@
 from jpconjugation.models import Verb
 from jpconjugation.conjugation.verbs.bases import get_base_a
 from jpconjugation.conjugation.verbs.rules import build_derived_rules
-from jpconjugation.conjugation.verbs.passive import get_passive_forms
 
 
 def get_causative_rules(verb: Verb) -> dict:

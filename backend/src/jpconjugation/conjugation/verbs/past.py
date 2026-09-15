@@ -6,21 +6,21 @@ def get_past_rules(verb: Verb) -> dict:
     return build_core_rules(
         verb=verb,
         godan_rules={
-            "ip": "on prend la forme en TA",
-            "fp": "on prend la forme en I et on ajoute 'mashita'",
-            "in": "on prend la forme en A et on ajoute 'nakatta'",
-            "fn": "on prend la forme en I et on ajoute 'masen deshita'",
+            "ip": "prend la forme en TA",
+            "fp": "prend la forme en I et ajoute 'mashita'",
+            "in": "prend la forme en A et ajoute 'nakatta'",
+            "fn": "prend la forme en I et ajoute 'masen deshita'",
         },
         ichidan_rules={
-            "ip": "on enlève 'ru' au radical et on ajoute 'ta'",
-            "fp": "on enlève 'ru' au radical et on ajoute 'mashita'",
-            "in": "on enlève 'ru' au radical et on ajoute 'nakatta'",
-            "fn": "on enlève 'ru' au radical et on ajoute 'masen deshita'",
+            "ip": "enlève 'ru' au radical et ajoute 'ta'",
+            "fp": "enlève 'ru' au radical et ajoute 'mashita'",
+            "in": "enlève 'ru' au radical et ajoute 'nakatta'",
+            "fn": "enlève 'ru' au radical et ajoute 'masen deshita'",
         },
         exception_rules={
-            "fp": "On utilise l'exception en I + 'mashita'",
-            "in": "On utilise l'exception en A + 'nakatta'",
-            "fn": "On utilise l'exception en I + 'masen deshita'",
+            "fp": "utilise l'exception en I + 'mashita'",
+            "in": "utilise l'exception en A + 'nakatta'",
+            "fn": "utilise l'exception en I + 'masen deshita'",
         }
     )
 

@@ -7,13 +7,13 @@ def get_connective_rules(adjective: Adjective) -> dict:
         if adjective.romaji in ADJECTIVES_EXCEPTIONS:
             exception = f" /!\\Radical '{adjective.stem}'/!\\"
         return {
-            "ip": f"Pour un i adjectif, on enlève 'i' au radical et on ajoute 'kute'.{exception}",
-            "in": f"Pour un i adjectif, on enlève 'i' au radical et on ajoute 'kunakute'.{exception}",
+            "ip": f"Pour un i adjectif,enlève 'i' au radical et ajoute 'kute'.{exception}",
+            "in": f"Pour un i adjectif,enlève 'i' au radical et ajoute 'kunakute'.{exception}",
         }
     elif adjective.type == "na":
         return {
-            "ip": "Pour un na adjectif, on ajoute ' de'",
-            "in": "Pour un na adjectif, on ajoute ' janakute'",
+            "ip": "Pour un na adjectif,ajoute ' de'",
+            "in": "Pour un na adjectif,ajoute ' janakute'",
         }
     return {}
 

@@ -10,22 +10,22 @@ def get_imperative_te_rules(verb: Verb) -> dict:
     return build_core_rules(
         verb=verb,
         godan_rules={
-            "ip": "on prend la forme en TE",
-            "fp": "on prend la forme en TE et on ajoute ' kudasai'",
-            "in": "on prend la forme en A et on ajoute 'naide'",
-            "fn": "on prend la forme en A et on ajoute 'naide kudasai'",
+            "ip": "prend la forme en TE",
+            "fp": "prend la forme en TE et ajoute ' kudasai'",
+            "in": "prend la forme en A et ajoute 'naide'",
+            "fn": "prend la forme en A et ajoute 'naide kudasai'",
         },
         ichidan_rules={
-            "ip": "on enlève 'ru' au radical et on ajoute 'te'",
-            "fp": "on enlève 'ru' au radical et on ajoute 'te kudasai'",
-            "in": "on enlève 'ru' au radical et on ajoute 'naide'",
-            "fn": "on enlève 'ru' au radical et on ajoute 'naide kudasai'",
+            "ip": "enlève 'ru' au radical et ajoute 'te'",
+            "fp": "enlève 'ru' au radical et ajoute 'te kudasai'",
+            "in": "enlève 'ru' au radical et ajoute 'naide'",
+            "fn": "enlève 'ru' au radical et ajoute 'naide kudasai'",
         },
         exception_rules={
-            "ip": "On utilise l'exception en TE",
-            "fp": "On utilise l'exception en TE + ' kudasai'",
-            "in": "On utilise l'exception en A + 'naide'",
-            "fn": "On utilise l'exception en A + 'naide kudasai'",
+            "ip": "utilise l'exception en TE",
+            "fp": "utilise l'exception en TE + ' kudasai'",
+            "in": "utilise l'exception en A + 'naide'",
+            "fn": "utilise l'exception en A + 'naide kudasai'",
         }
     )
 
@@ -95,15 +95,15 @@ def get_imperative_ro_rules(verb: Verb) -> dict:
     return build_core_rules(
         verb=verb,
         godan_rules={
-            "ip": "on prend la forme en E",
-            "in": "on prend la forme du dictionnaire et on ajoute 'na'",
+            "ip": "prend la forme en E",
+            "in": "prend la forme du dictionnaire et ajoute 'na'",
         },
         ichidan_rules={
-            "ip": "on enlève 'ru' au radical et on ajoute 'ro'",
-            "in": "on prend la forme du dictionnaire et on ajoute 'na'",
+            "ip": "enlève 'ru' au radical et ajoute 'ro'",
+            "in": "prend la forme du dictionnaire et ajoute 'na'",
         },
         exception_rules={
-            "in": "On prend la forme du dictionnaire et on ajoute 'na'",
+            "in": "prend la forme du dictionnaire et ajoute 'na'",
         }
     )
 

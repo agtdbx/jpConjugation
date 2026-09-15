@@ -7,8 +7,9 @@ from jpconjugation.define import (
     FORMS
 )
 from jpconjugation.models import JPData
-from jpconjugation.conjugation.verbs.conjugation import conjugate_verb, get_verb_rules
-from jpconjugation.conjugation.adjectives.conjugation import conjugate_adjective, get_adjective_rules
+from jpconjugation.conjugation.word import conjugate_word, get_word_rules
+from jpconjugation.conjugation.verbs.conjugation import get_verb_rules
+from jpconjugation.conjugation.adjectives.conjugation import get_adjective_rules
 from api.models import GenerationOptions, SectionSelection
 
 
@@ -29,11 +30,11 @@ def generate_conjugations(data: JPData, options: GenerationOptions) -> list:
     if verbs_section and verbs:
         for verb in verbs:
             for tense in verbs_section.values:
-                verb_conjugations = conjugate_verb(verb, tense)
+                verb_conjugations = conjugate_word(verb, tense)
                 if not verb_conjugations or len(verb_conjugations) == 0:
                     continue
 
-                rules = get_verb_rules(verb, tense)
+                rules = get_word_rules(verb, tense)
 
                 for form in forms_section.values:
                     if not form in VERBS_ALLOWED_FORMS[tense]:
@@ -56,11 +57,11 @@ def generate_conjugations(data: JPData, options: GenerationOptions) -> list:
     if adjectives_section and adjectives:
         for adjective in adjectives:
             for tense in adjectives_section.values:
-                adjective_conjugations = conjugate_adjective(adjective, tense)
+                adjective_conjugations = conjugate_word(adjective, tense)
                 if not adjective_conjugations or len(adjective_conjugations) == 0:
                     continue
 
-                rules = get_adjective_rules(adjective, tense)
+                rules = get_word_rules(adjective, tense)
 
                 for form in forms_section.values:
                     if not form in ADJECTIVES_ALLOWED_FORMS[tense]:

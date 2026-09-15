@@ -6,15 +6,15 @@ def get_volitional_rules(verb: Verb) -> dict:
     return build_core_rules(
         verb=verb,
         godan_rules={
-            "ip": "on prend la forme en O et on ajoute 'u'",
-            "fp": "on prend la forme en I et on ajoute 'mashou'",
+            "ip": "prend la forme en O et ajoute 'u'",
+            "fp": "prend la forme en I et ajoute 'mashou'",
         },
         ichidan_rules={
-            "ip": "on enlève 'ru' au radical et on ajoute 'you'",
-            "fp": "on enlève 'ru' au radical et on ajoute 'mashou'",
+            "ip": "enlève 'ru' au radical et ajoute 'you'",
+            "fp": "enlève 'ru' au radical et ajoute 'mashou'",
         },
         exception_rules={
-            "fp": "On utilise l'exception en I + 'mashou'",
+            "fp": "utilise l'exception en I + 'mashou'",
         }
     )
 

@@ -7,22 +7,22 @@ def get_present_rules(verb: Verb) -> dict:
     return build_core_rules(
         verb=verb,
         godan_rules={
-            "ip": "on prend la forme du dictionnaire",
-            "fp": "on prend la forme en I et on ajoute 'masu'",
-            "in": "on prend la forme en A et on ajoute 'nai'",
-            "fn": "on prend la forme en I et on ajoute 'masen'",
+            "ip": "prend la forme du dictionnaire",
+            "fp": "prend la forme en I et ajoute 'masu'",
+            "in": "prend la forme en A et ajoute 'nai'",
+            "fn": "prend la forme en I et ajoute 'masen'",
         },
         ichidan_rules={
-            "ip": "on prend la forme du dictionnaire",
-            "fp": "on enlève 'ru' au radical et on ajoute 'masu'",
-            "in": "on enlève 'ru' au radical et on ajoute 'nai'",
-            "fn": "on enlève 'ru' au radical et on ajoute 'masen'",
+            "ip": "prend la forme du dictionnaire",
+            "fp": "enlève 'ru' au radical et ajoute 'masu'",
+            "in": "enlève 'ru' au radical et ajoute 'nai'",
+            "fn": "enlève 'ru' au radical et ajoute 'masen'",
         },
         exception_rules={
             "ip": "Forme du dictionnaire",
-            "fp": "On utilise l'exception en I + 'masu'",
-            "in": "On utilise l'exception en I + 'nai'",
-            "fn": "On utilise l'exception en I + 'masen'",
+            "fp": "utilise l'exception en I + 'masu'",
+            "in": "utilise l'exception en I + 'nai'",
+            "fn": "utilise l'exception en I + 'masen'",
         }
     )
 

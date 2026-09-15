@@ -8,16 +8,16 @@ def get_present_rules(adjective: Adjective) -> dict:
             exception = f" /!\\Radical '{adjective.stem}'/!\\"
         return {
             "ip": f"Forme du dictionnaire.{exception}",
-            "fp": f"Pour un i adjectif, on ajoute ' desu'.{exception}",
-            "in": f"Pour un i adjectif, on enlève 'i' au radical et on ajoute 'kunai'.{exception}",
-            "fn": f"Pour un i adjectif, on enlève 'i' au radical et on ajoute 'kunai desu'.{exception}",
+            "fp": f"Pour un i adjectif,ajoute ' desu'.{exception}",
+            "in": f"Pour un i adjectif,enlève 'i' au radical et ajoute 'kunai'.{exception}",
+            "fn": f"Pour un i adjectif,enlève 'i' au radical et ajoute 'kunai desu'.{exception}",
         }
     elif adjective.type == "na":
         return {
-            "ip": "Pour un na adjectif, on ajoute ' da'",
-            "fp": "Pour un na adjectif, on ajoute ' desu'",
-            "in": "Pour un na adjectif, on ajoute ' janai'",
-            "fn": "Pour un na adjectif, on ajoute ' ja arimasen'",
+            "ip": "Pour un na adjectif,ajoute ' da'",
+            "fp": "Pour un na adjectif,ajoute ' desu'",
+            "in": "Pour un na adjectif,ajoute ' janai'",
+            "fn": "Pour un na adjectif,ajoute ' ja arimasen'",
         }
     return {}
 

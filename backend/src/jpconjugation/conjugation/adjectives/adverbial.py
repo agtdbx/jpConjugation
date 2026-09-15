@@ -7,11 +7,11 @@ def get_adverbial_rules(adjective: Adjective) -> dict:
         if adjective.romaji in ADJECTIVES_EXCEPTIONS:
             exception = f" /!\\Radical '{adjective.stem}'/!\\"
         return {
-            "ip": f"Pour un i adjectif, on enlève 'i' au radical et on ajoute 'ku'.{exception}",
+            "ip": f"Pour un i adjectif,enlève 'i' au radical et ajoute 'ku'.{exception}",
         }
     elif adjective.type == "na":
         return {
-            "ip": "Pour un na adjectif, on ajoute ' ni'",
+            "ip": "Pour un na adjectif,ajoute ' ni'",
         }
     return {}
 

@@ -4,8 +4,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from jpconjugation.parsing.load import load_data_json
 from api.models import GenerationOptions
-from api.endpoints.options import get_conjugation_options
-from api.endpoints.generate_conjugations import generate_conjugations
+from api.conjugation.options import get_conjugation_options
+from api.conjugation.generate_conjugations import generate_conjugations
 
 MAX_CONJUGATIONS = 50
 try:
@@ -30,11 +30,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/api/options")
+@app.get("/api/conjugation/options")
 def options():
     return get_conjugation_options()
 
 
-@app.post("/api/generate")
+@app.post("/api/conjugation/generate")
 def generate(options: GenerationOptions):
     return generate_conjugations(data, options)
