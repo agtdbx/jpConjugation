@@ -1,7 +1,7 @@
 import styles from './ExerciceCard.module.css';
 import { useState } from 'react';
-import Button from "./Button";
-import { type Options } from "../App"
+import Button from "../../components/Button";
+import { type Options } from "../../App"
 
 interface ExerciceCardProps {
   options: Options;

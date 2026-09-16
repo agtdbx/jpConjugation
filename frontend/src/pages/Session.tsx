@@ -1,7 +1,7 @@
 import styles from './Session.module.css';
 import { useState } from 'react';
 import Score from '../pages/Score'
-import ExerciceCard from '../components/ExerciceCard';
+import ExerciceCard from '../features/conjugation/ExerciceCard';
 import { type Options, type ExerciceData } from "../App"
 
 interface SessionProps {

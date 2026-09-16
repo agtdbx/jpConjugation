@@ -1,0 +1,90 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.settingsGrid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 col by default */
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* If screen is wide enough, add an other col */
+@media (min-width: 700px) {
+  .settingsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .fullWidth {
+    grid-column: 1 / -1;
+  }
+}
+
+.optionGroup {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-dark);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 6px -1px var(--shadow-soft);
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.optionGroup h3 {
+  margin-top: 0;
+  color: var(--text-accent);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.slider input[type="range"] {
+  width: 100%;
+  accent-color: var(--primary);
+  cursor: pointer;
+  height: 6px;
+  background: var(--bg-element);
+  border-radius: 4px;
+  outline: none;
+}
+
+.select {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background-color: var(--bg-main);
+  color: var(--text-title);
+  border: 1px solid var(--border-light);
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.select:focus {
+  border-color: var(--primary);
+}
+
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
