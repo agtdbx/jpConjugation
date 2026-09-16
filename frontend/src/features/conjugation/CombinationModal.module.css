@@ -1,0 +1,60 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.modal {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-dark);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.modal h2 {
+  margin: 0;
+  color: var(--text-title);
+}
+
+.preview {
+  background-color: var(--bg-input-readonly);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+  color: var(--text-accent);
+  font-weight: bold;
+  text-align: center;
+  min-height: 1.5rem;
+}
+
+.placeholder {
+  color: var(--text-muted);
+  font-weight: normal;
+}
+
+.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}

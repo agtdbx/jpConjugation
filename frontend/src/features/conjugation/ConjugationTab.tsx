@@ -28,8 +28,6 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
       .then(fetchedSchema => {
         setSchema(fetchedSchema);
 
-        console.log('coucou');
-
         // Get options
         setOptions(prevOptions => {
           const isOutdated = !prevOptions || !prevOptions.categories || !Array.isArray(prevOptions.forms);
@@ -215,7 +213,7 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
           <WordCategorySelector
             key={key}
             categoryKey={key}
-            schema={sectionData}
+            schema={schema}
             categorySelection={options.categories[key]}
             onToggle={handleCategoryToggle}
           />

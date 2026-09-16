@@ -2,23 +2,28 @@ import styles from './WordCategorySelector.module.css';
 import Section from "../../components/Section";
 import Toggle from "../../components/Toggle";
 import Button from "../../components/Button";
-import { type CategorySchema, type CategorySelection } from "../../App";
+import CombinationModal from "./CombinationModal"
+import { useState } from 'react'
+import { type ConjugationSchema, type CategorySelection } from "../../App";
 
 interface WordCategorySelectorProps {
   categoryKey: string;
-  schema: CategorySchema;
+  schema: ConjugationSchema;
   categorySelection: CategorySelection;
   onToggle: (categoryKey: string, subCategory: 'types' | 'tenses' | 'chainedTenses', id: string) => void;
 }
 
 export default function WordCategorySelector({ categoryKey, schema, categorySelection, onToggle }: WordCategorySelectorProps) {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const currentSchema = schema.categories[categoryKey];
   return (
-    <Section title={schema.title}>
+    <Section title={currentSchema.title}>
       {/* Display types */}
       <div className={styles.subCategory}>
         <h3>Types</h3>
-        <div className={styles.toggleContainer}>
-          {Object.entries(schema.types).map(([id, label]) => (
+        <div>
+          {Object.entries(currentSchema.types).map(([id, label]) => (
               <Toggle
                 key={id}
                 text={label}
@@ -32,8 +37,8 @@ export default function WordCategorySelector({ categoryKey, schema, categorySele
       {/* Display tenses */}
       <div className={styles.subCategory}>
         <h3>Temps simples</h3>
-        <div className={styles.toggleContainer}>
-          {Object.entries(schema.values).map(([id, label]) => (
+        <div>
+          {Object.entries(currentSchema.values).map(([id, label]) => (
             <Toggle
               key={id}
               text={label}
@@ -47,7 +52,7 @@ export default function WordCategorySelector({ categoryKey, schema, categorySele
       {/* Display chained tenses */}
       <div className={styles.subCategory}>
         <h3>Combinaisons</h3>
-        <div className={styles.toggleContainer}>
+        <div>
           {categorySelection.chainedTenses.map((id) => (
             <Toggle
               key={id}
@@ -56,14 +61,24 @@ export default function WordCategorySelector({ categoryKey, schema, categorySele
               callback={() => onToggle(categoryKey, 'chainedTenses', id)}
             />
           ))}
+        </div>
           <Button
             text="+ Nouvelle combinaison"
             isDisable={false}
-            callback={()=>{}}
+            callback={() => {setIsModalOpen(true)}}
             variant="secondary"
           />
-        </div>
       </div>
+
+      {isModalOpen && <CombinationModal
+              schema={schema}
+              categoryKey={categoryKey}
+              onClose={() => {setIsModalOpen(false);}}
+              onSave={(chainedTenses: string) => {
+                setIsModalOpen(false);
+                onToggle(categoryKey, 'chainedTenses', chainedTenses)
+              }}
+            />}
     </Section>
   )
 }
