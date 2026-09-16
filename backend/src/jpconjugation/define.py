@@ -1,5 +1,3 @@
-DATA_FILE_PATH = "./data/data.json"
-
 ###########################################################################################
 # VERBS
 ###########################################################################################
@@ -21,8 +19,8 @@ VERBS_TENSES = {
     "co-ta" :  "Conditionnel -tara", # Conditional -tara
 
     # Derivative
-    "pro" :    "Progressif",         # Progressive
     "de" :     "Désiratif",          # Desirative
+    "pro" :    "Progressif",         # Progressive
     "po" :     "Potentiel",          # Potential
     "pas" :    "Passif",             # Passive
     "ca" :     "Causatif",           # Causative
@@ -39,8 +37,8 @@ VERBS_ALLOWED_FORMS = {
     "co-ta" :  ["ip"],
 
     # Derivative
-    "pro" :    ["ip"],
     "de" :     ["ip"],
+    "pro" :    ["ip"],
     "po" :     ["ip"],
     "pas" :    ["ip"],
     "ca" :     ["ip"],
@@ -57,11 +55,11 @@ VERBS_CONJUGATION_ORDER = {
     "co-ta" :  0,
 
     # Derivative
-    "pro" :    1,
     "de" :     1,
-    "po" :     1,
-    "pas" :    2,
-    "ca" :     3,
+    "pro" :    2,
+    "po" :     2,
+    "pas" :    3,
+    "ca" :     4,
 }
 
 VERBS_TO_ADJECTIVES_TENSE = [
@@ -108,6 +106,11 @@ ADJECTIVES_EXCEPTIONS = {
     "kakkoii" : "kakkoyo",
 }
 
+###########################################################################################
+# OTHERS
+###########################################################################################
+
+DATA_FILE_PATH = "./data/data.json"
 
 FORMS = {
     "ip" : "Informel Positif",

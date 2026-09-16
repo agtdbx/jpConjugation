@@ -333,35 +333,6 @@ def test_conjugate_verbs_conditional_tara(
     assert forms.get("ip", "") == form_ip
 
 
-VERBS_PRO = [
-    ("godan", "matsu", "matteiru"),
-    ("godan", "hashiru", "hashitteiru"),
-    ("godan", "nomu", "nondeiru"),
-    ("godan", "shinu", "shindeiru"),
-    ("godan", "asobu", "asondeiru"),
-    ("godan", "kiku", "kiiteiru"),
-    ("godan", "oyogu", "oyoideiru"),
-    ("godan", "hanasu", "hanashiteiru"),
-    ("godan", "tsukau", "tsukatteiru"),
-    ("ichidan", "taberu", "tabeteiru"),
-    ("exception", "suru", "shiteiru"),
-    ("exception", "kuru", "kiteiru"),
-    ("exception", "aru", "atteiru"),
-    ("exception", "iku", "itteiru"),
-]
-@pytest.mark.parametrize("verb_type, romaji, form_ip", VERBS_PRO)
-def test_conjugate_verbs_progressive(
-        verb_type: str,
-        romaji: str,
-        form_ip: str,
-        ):
-    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
-    forms = conjugate_verb(verb, tense_id="pro")
-
-    assert len(forms) == 1
-    assert forms.get("ip", "") == form_ip
-
-
 VERBS_DE = [
     ("godan", "matsu", "machitai"),
     ("godan", "hashiru", "hashiritai"),
@@ -391,6 +362,35 @@ def test_conjugate_verbs_desirative_present(
         assert len(forms) == 0
     else:
         assert len(forms) == 1
+    assert forms.get("ip", "") == form_ip
+
+
+VERBS_PRO = [
+    ("godan", "matsu", "matteiru"),
+    ("godan", "hashiru", "hashitteiru"),
+    ("godan", "nomu", "nondeiru"),
+    ("godan", "shinu", "shindeiru"),
+    ("godan", "asobu", "asondeiru"),
+    ("godan", "kiku", "kiiteiru"),
+    ("godan", "oyogu", "oyoideiru"),
+    ("godan", "hanasu", "hanashiteiru"),
+    ("godan", "tsukau", "tsukatteiru"),
+    ("ichidan", "taberu", "tabeteiru"),
+    ("exception", "suru", "shiteiru"),
+    ("exception", "kuru", "kiteiru"),
+    ("exception", "aru", "atteiru"),
+    ("exception", "iku", "itteiru"),
+]
+@pytest.mark.parametrize("verb_type, romaji, form_ip", VERBS_PRO)
+def test_conjugate_verbs_progressive(
+        verb_type: str,
+        romaji: str,
+        form_ip: str,
+        ):
+    verb = Verb(romaji=romaji, kanji="k", traduction="t", type=verb_type)
+    forms = conjugate_verb(verb, tense_id="pro")
+
+    assert len(forms) == 1
     assert forms.get("ip", "") == form_ip
 
 

@@ -9,7 +9,7 @@ export interface ExerciceData {
   traduction: string;
   form: string;
   tense: string;
-  rules: string;
+  rules: string[];
   result: string;
 }
 

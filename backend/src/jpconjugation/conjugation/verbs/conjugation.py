@@ -25,8 +25,8 @@ _VERB_TENSES_FUNCTIONS = {
     "co-ba" : get_conditional_ba_forms,
     "co-ta" : get_conditional_tara_forms,
 
-    "pro" : get_progressive_forms,
     "de" : get_desirative_forms,
+    "pro" : get_progressive_forms,
     "po" : get_potential_forms,
     "pas" : get_passive_forms,
     "ca" : get_causative_forms,
@@ -41,8 +41,8 @@ _VERB_TENSES_RULES = {
     "co-ba" : get_conditional_ba_rules,
     "co-ta" : get_conditional_tara_rules,
 
-    "pro" : get_progressive_rules,
     "de" : get_desirative_rules,
+    "pro" : get_progressive_rules,
     "po" : get_potential_rules,
     "pas" : get_passive_rules,
     "ca" : get_causative_rules,
