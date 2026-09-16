@@ -16,13 +16,13 @@ def get_conjugation_options() -> dict:
             "verbs": {
                 "title": "Verbes",
                 "types": VERBS_TYPES,
-                "values": VERBS_TENSES,
+                "tenses": VERBS_TENSES,
                 "orders": VERBS_CONJUGATION_ORDER,
             },
             "adjectives": {
                 "title": "Adjectifs",
                 "types": ADJECTIVES_TYPES,
-                "values": ADJECTIVES_TENSES,
+                "tenses": ADJECTIVES_TENSES,
                 "orders": ADJECTIVES_CONJUGATION_ORDER,
             }
         }

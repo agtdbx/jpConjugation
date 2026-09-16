@@ -23,7 +23,7 @@ export interface FormSchema {
 export interface CategorySchema {
   title: string;
   types: Record<string, string>;
-  values: Record<string, string>;
+  tenses: Record<string, string>;
   orders: Record<string, number>;
 }
 

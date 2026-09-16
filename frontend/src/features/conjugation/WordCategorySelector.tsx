@@ -20,8 +20,8 @@ export default function WordCategorySelector({ categoryKey, schema, categorySele
 
   const getChainedTensesName = (id: string) => {
     return id.split('|').map((tenseId) =>
-      schema.categories["verbs"]?.values[tenseId] ??
-      schema.categories["adjectives"]?.values[tenseId] ??
+      schema.categories["verbs"]?.tenses[tenseId] ??
+      schema.categories["adjectives"]?.tenses[tenseId] ??
       'Inconnu'
     ).join(' ');
   }
@@ -47,7 +47,7 @@ export default function WordCategorySelector({ categoryKey, schema, categorySele
       <div className={styles.subCategory}>
         <h3>Temps simples</h3>
         <div>
-          {Object.entries(currentSchema.values).map(([id, label]) => (
+          {Object.entries(currentSchema.tenses).map(([id, label]) => (
             <Toggle
               key={id}
               text={label}

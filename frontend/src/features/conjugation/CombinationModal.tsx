@@ -17,15 +17,15 @@ export default function CombinationModal({ schema, categoryKey, onClose, onSave 
   // Choose which tenses display
   let tensesToDisplay: Record<string, string> = {};
   if (categoryKey === 'verbs' && chain.includes('de')) {
-    tensesToDisplay = { ...schema.categories.adjectives.values };
+    tensesToDisplay = { ...schema.categories.adjectives.tenses };
 
     chain.forEach(id => {
       if (!tensesToDisplay[id]) {
-        tensesToDisplay[id] = schema.categories.verbs.values[id];
+        tensesToDisplay[id] = schema.categories.verbs.tenses[id];
       }
     });
   } else {
-    tensesToDisplay = { ...schema.categories[categoryKey].values };
+    tensesToDisplay = { ...schema.categories[categoryKey].tenses };
   }
 
   // Get last tense
@@ -69,8 +69,8 @@ export default function CombinationModal({ schema, categoryKey, onClose, onSave 
             <span className={styles.placeholder}>Sélectionnez un temps...</span>
           ) : (
             chain.map((tenseId: string) =>
-              schema.categories["verbs"]?.values[tenseId] ??
-              schema.categories["adjectives"]?.values[tenseId] ??
+              schema.categories["verbs"]?.tenses[tenseId] ??
+              schema.categories["adjectives"]?.tenses[tenseId] ??
               'Inconnu').join(' ➔ ')
           )}
         </div>
