@@ -140,12 +140,31 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
   const isSubmitDisabled = !checkIsOptionsValid();
 
   const hanbleButtonClic = () => {
+    const formattedCategories = Object.keys(options.categories).reduce((acc, key) => {
+      const cat = options.categories[key];
+
+      acc[key] = {
+        types: cat?.types ?? [],
+        tenses: [
+          ...(cat?.tenses ?? []),
+          ...(cat?.chainedTenses ?? [])
+        ]
+      };
+
+      return acc;
+    }, {} as Record<string, { types: string[], tenses: string[] }>);
+
+    const sendOptions = {
+      ...options,
+      categories: formattedCategories
+    };
+
     fetch(`${import.meta.env.VITE_API_URL}/api/conjugation/generate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(options),
+      body: JSON.stringify(sendOptions),
     }).then(res => {
         if (!res.ok) throw new Error("Erreur réseau")
         return res.json()
@@ -209,7 +228,7 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
           />
         }
 
-        {schema && Object.entries(schema.categories).map(([key, sectionData]) => (
+        {schema && Object.entries(schema.categories).map(([key]) => (
           <WordCategorySelector
             key={key}
             categoryKey={key}

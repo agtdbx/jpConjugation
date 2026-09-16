@@ -38,13 +38,13 @@ def build_derived_rules(
     ) -> dict:
     if verb.type == "godan":
         return {
-            form: f"Pour un verbe Godan,{godan_action} et ajoute '{godan_prefix}{suffix}'."
+            form: f"Pour un verbe Godan, {godan_action} et ajoute '{godan_prefix}{suffix}'."
             for form, suffix in base_suffixes.items()
         }
 
     elif verb.type == "ichidan":
         return {
-            form: f"Pour un verbe Ichidan,{ichidan_action} et ajoute '{ichidan_prefix}{suffix}'."
+            form: f"Pour un verbe Ichidan, {ichidan_action} et ajoute '{ichidan_prefix}{suffix}'."
             for form, suffix in base_suffixes.items()
         }
 

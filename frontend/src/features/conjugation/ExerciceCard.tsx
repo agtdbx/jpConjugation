@@ -91,8 +91,8 @@ export default function ExerciceCard({ options, data, onNext }: ExerciceCardProp
       {isValidate && isUserRight && <p className={`${styles.right}`}>Bonne réponse !</p>}
       {isValidate && !isUserRight && <p className={`${styles.wrong}`}>Mauvaise réponse ({data.result})</p>}
       {isValidate && !isUserRight && options.conjugation.displayRules &&
-        <div>
-          {data.rules.map((rule) => (<p className={`${styles.explanation}`}>{rule}</p>))}
+        <div className={`${styles.explanation}`}>
+          {data.rules.map((rule) => (<p>{rule}</p>))}
         </div>
         }
       {!isValidate && <Button

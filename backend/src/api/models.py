@@ -1,11 +1,12 @@
-from pydantic import BaseModel, PositiveInt, field_validator
+from pydantic import BaseModel, PositiveInt
 
 
-class SectionSelection(BaseModel):
+class CategorySelection(BaseModel):
     types: list[str] = []
-    values: list[str] = []
+    tenses: list[str] = []
 
 
 class GenerationOptions(BaseModel):
-    number_conjugation: PositiveInt
-    sections: dict[str, SectionSelection]
+    numberConjugation: PositiveInt
+    forms: list[str] = []
+    categories: dict[str, CategorySelection]

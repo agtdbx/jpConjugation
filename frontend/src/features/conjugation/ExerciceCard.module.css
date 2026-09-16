@@ -67,7 +67,7 @@
 .explanation {
   background-color: var(--border-dark);
   border-left: 4px solid var(--primary);
-  padding: 1rem;
+  padding: 0.3rem 1rem;
   border-radius: 0 8px 8px 0;
   margin-top: 1.5rem;
   color: var(--text-hint);

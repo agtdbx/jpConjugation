@@ -17,6 +17,15 @@ export default function WordCategorySelector({ categoryKey, schema, categorySele
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const currentSchema = schema.categories[categoryKey];
+
+  const getChainedTensesName = (id: string) => {
+    return id.split('|').map((tenseId) =>
+      schema.categories["verbs"]?.values[tenseId] ??
+      schema.categories["adjectives"]?.values[tenseId] ??
+      'Inconnu'
+    ).join(' ');
+  }
+
   return (
     <Section title={currentSchema.title}>
       {/* Display types */}
@@ -56,29 +65,29 @@ export default function WordCategorySelector({ categoryKey, schema, categorySele
           {categorySelection.chainedTenses.map((id) => (
             <Toggle
               key={id}
-              text={id} // TODO: Compute id
-              isToggled={true} // false = remove
+              text={getChainedTensesName(id)}
+              isToggled={true} // false = removed
               callback={() => onToggle(categoryKey, 'chainedTenses', id)}
             />
           ))}
         </div>
-          <Button
-            text="+ Nouvelle combinaison"
-            isDisable={false}
-            callback={() => {setIsModalOpen(true)}}
-            variant="secondary"
-          />
+        <Button
+          text="+ Nouvelle combinaison"
+          isDisable={false}
+          callback={() => {setIsModalOpen(true)}}
+          variant="secondary"
+        />
       </div>
 
       {isModalOpen && <CombinationModal
-              schema={schema}
-              categoryKey={categoryKey}
-              onClose={() => {setIsModalOpen(false);}}
-              onSave={(chainedTenses: string) => {
-                setIsModalOpen(false);
-                onToggle(categoryKey, 'chainedTenses', chainedTenses)
-              }}
-            />}
+        schema={schema}
+        categoryKey={categoryKey}
+        onClose={() => {setIsModalOpen(false);}}
+        onSave={(chainedTenses: string) => {
+          setIsModalOpen(false);
+          onToggle(categoryKey, 'chainedTenses', chainedTenses)
+        }}
+      />}
     </Section>
   )
 }

@@ -8,15 +8,14 @@ from jpconjugation.define import (
 )
 from jpconjugation.models import JPData
 from jpconjugation.conjugation.word import get_conjugate_word_and_rules
-from api.models import GenerationOptions, SectionSelection
+from api.models import GenerationOptions, CategorySelection
 
 
 def generate_conjugations(data: JPData, options: GenerationOptions) -> list:
-    forms_section = options.sections.get("forms")
-    verbs_section = options.sections.get("verbs")
-    adjectives_section = options.sections.get("adjectives")
+    verbs_section = options.categories.get("verbs")
+    adjectives_section = options.categories.get("adjectives")
 
-    if not forms_section:
+    if not options.forms:
         raise HTTPException(status_code=400, detail="Aucune combinaison possible avec ces filtres")
 
     # Get verbs and adjective according the options
@@ -27,7 +26,7 @@ def generate_conjugations(data: JPData, options: GenerationOptions) -> list:
 
     if verbs_section and verbs:
         for verb in verbs:
-            for tenses_chain in verbs_section.values:
+            for tenses_chain in verbs_section.tenses:
                 verb_conjugations, rules = get_conjugate_word_and_rules(verb, tenses_chain)
                 if not verb_conjugations or len(verb_conjugations) == 0:
                     continue
@@ -36,7 +35,7 @@ def generate_conjugations(data: JPData, options: GenerationOptions) -> list:
                 last_tense = tenses[-1]
                 tenses_name = ' '.join([_get_tense_name(tense) for tense in tenses])
 
-                for form in forms_section.values:
+                for form in options.forms:
                     if not form in _get_allowed_forms(last_tense):
                         continue
 
@@ -56,7 +55,7 @@ def generate_conjugations(data: JPData, options: GenerationOptions) -> list:
 
     if adjectives_section and adjectives:
         for adjective in adjectives:
-            for tenses_chain in adjectives_section.values:
+            for tenses_chain in adjectives_section.tenses:
                 adjective_conjugations, rules = get_conjugate_word_and_rules(adjective, tenses_chain)
                 if not adjective_conjugations or len(adjective_conjugations) == 0:
                     continue
@@ -65,7 +64,7 @@ def generate_conjugations(data: JPData, options: GenerationOptions) -> list:
                 last_tense = tenses[-1]
                 tenses_name = ' '.join([_get_tense_name(tense) for tense in tenses])
 
-                for form in forms_section.values:
+                for form in options.forms:
                     if not form in _get_allowed_forms(last_tense):
                         continue
 
@@ -87,7 +86,7 @@ def generate_conjugations(data: JPData, options: GenerationOptions) -> list:
         raise HTTPException(status_code=400, detail="Aucune combinaison possible avec ces filtres")
 
     # Compute nb to generate
-    nb_to_generate = min(options.number_conjugation, len(available_conjugations))
+    nb_to_generate = min(options.numberConjugation, len(available_conjugations))
 
     # Suffle and get all conjugations
     return rd.sample(available_conjugations, nb_to_generate)
@@ -95,17 +94,17 @@ def generate_conjugations(data: JPData, options: GenerationOptions) -> list:
 
 def _get_possible_verbs_adjectives(
         data: JPData,
-        verbs_section: SectionSelection | None,
-        adjectives_section: SectionSelection | None
+        verbs_section: CategorySelection | None,
+        adjectives_section: CategorySelection | None
         ) -> tuple[list, list]:
     verbs = []
-    if verbs_section and len(verbs_section.types) != 0 and len(verbs_section.values) != 0:
+    if verbs_section and len(verbs_section.types) != 0 and len(verbs_section.tenses) != 0:
         for verb in data.verbs:
             if verb.type in verbs_section.types:
                 verbs.append(verb)
 
     adjectives = []
-    if adjectives_section and len(adjectives_section.types) != 0 and len(adjectives_section.values) != 0:
+    if adjectives_section and len(adjectives_section.types) != 0 and len(adjectives_section.tenses) != 0:
         for adjective in data.adjectives:
             if adjective.type in adjectives_section.types:
                 adjectives.append(adjective)

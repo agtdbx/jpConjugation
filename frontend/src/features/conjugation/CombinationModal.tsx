@@ -43,14 +43,12 @@ export default function CombinationModal({ schema, categoryKey, onClose, onSave 
 
   // Handle toggle
   const handleToggle = (id: string) => {
-    // Si déjà sélectionné, on coupe la chaîne à partir de cet élément
     if (chain.includes(id)) {
       const index = chain.indexOf(id);
       setChain(chain.slice(0, index));
       return;
     }
 
-    // Sinon on l'ajoute
     setChain([...chain, id]);
   };
 
@@ -62,15 +60,18 @@ export default function CombinationModal({ schema, categoryKey, onClose, onSave 
   };
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
+    <div className={styles.overlay} onClick={onClose}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <h2>Nouvelle combinaison</h2>
 
         <div className={styles.preview}>
           {chain.length === 0 ? (
             <span className={styles.placeholder}>Sélectionnez un temps...</span>
           ) : (
-            chain.join(' ➔ ')
+            chain.map((tenseId: string) =>
+              schema.categories["verbs"]?.values[tenseId] ??
+              schema.categories["adjectives"]?.values[tenseId] ??
+              'Inconnu').join(' ➔ ')
           )}
         </div>
 

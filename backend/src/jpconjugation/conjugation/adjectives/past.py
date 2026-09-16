@@ -7,17 +7,17 @@ def get_past_rules(adjective: Adjective) -> dict:
         if adjective.romaji in ADJECTIVES_EXCEPTIONS:
             exception = f" /!\\Radical '{adjective.stem}'/!\\"
         return {
-            "ip": f"Pour un i adjectif,enlève 'i' au radical et ajoute 'katta'.{exception}",
-            "fp": f"Pour un i adjectif,enlève 'i' au radical et ajoute 'katta desu'.{exception}",
-            "in": f"Pour un i adjectif,enlève 'i' au radical et ajoute 'kunakatta'.{exception}",
-            "fn": f"Pour un i adjectif,enlève 'i' au radical et ajoute 'kunakatta desu'.{exception}",
+            "ip": f"Pour un i adjectif, enlève 'i' au radical et ajoute 'katta'.{exception}",
+            "fp": f"Pour un i adjectif, enlève 'i' au radical et ajoute 'katta desu'.{exception}",
+            "in": f"Pour un i adjectif, enlève 'i' au radical et ajoute 'kunakatta'.{exception}",
+            "fn": f"Pour un i adjectif, enlève 'i' au radical et ajoute 'kunakatta desu'.{exception}",
         }
     elif adjective.type == "na":
         return {
-            "ip": "Pour un na adjectif,ajoute ' datta'",
-            "fp": "Pour un na adjectif,ajoute ' deshita'",
-            "in": "Pour un na adjectif,ajoute ' janakatta'",
-            "fn": "Pour un na adjectif,ajoute ' ja arimasen deshita'",
+            "ip": "Pour un na adjectif, ajoute ' datta'",
+            "fp": "Pour un na adjectif, ajoute ' deshita'",
+            "in": "Pour un na adjectif, ajoute ' janakatta'",
+            "fn": "Pour un na adjectif, ajoute ' ja arimasen deshita'",
         }
     return {}
 
