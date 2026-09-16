@@ -53,9 +53,9 @@ export default function ExerciceCard({ options, data, onNext }: ExerciceCardProp
   };
 
   const getDisplayWord = () => {
-    if (options.displayMode === "romaji") return data.romaji;
-    else if (options.displayMode === "kanji") return data.kanji;
-    else if (options.displayMode === "traduction") return data.traduction;
+    if (options.conjugation.displayMode === "romaji") return data.romaji;
+    else if (options.conjugation.displayMode === "kanji") return data.kanji;
+    else if (options.conjugation.displayMode === "traduction") return data.traduction;
     else return "Error";
   }
 
@@ -90,7 +90,7 @@ export default function ExerciceCard({ options, data, onNext }: ExerciceCardProp
         className={`${styles.userResponse}`} />
       {isValidate && isUserRight && <p className={`${styles.right}`}>Bonne réponse !</p>}
       {isValidate && !isUserRight && <p className={`${styles.wrong}`}>Mauvaise réponse ({data.result})</p>}
-      {isValidate && !isUserRight && options.displayRules &&
+      {isValidate && !isUserRight && options.conjugation.displayRules &&
         <div>
           {data.rules.map((rule) => (<p className={`${styles.explanation}`}>{rule}</p>))}
         </div>

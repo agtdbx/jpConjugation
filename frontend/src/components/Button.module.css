@@ -13,10 +13,35 @@
   letter-spacing: 0.05em;
 }
 
-.container:hover:not(.disable) {
+.success {
+  background-color: var(--success-button);
+  color: var(--text-button);
+}
+.success:hover {
   background-color: var(--success-button-hover);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px var(--shadow-success);
+}
+
+.primary {
+  background-color: var(--primary);
+  color: var(--text-button);
+}
+.primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-primary);
+}
+
+.secondary {
+  background-color: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-light);
+}
+.secondary:hover {
+  background-color: var(--bg-element);
+  color: var(--text-main);
+  transform: translateY(-2px);
 }
 
 .disable, .disable:hover {

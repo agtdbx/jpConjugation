@@ -9,11 +9,42 @@
   box-sizing: border-box;
 }
 
+.tabs {
+  display: flex;
+  width: 100%;
+  background-color: var(--bg-card);
+  padding: 0.25rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px var(--shadow-soft);
+  margin-bottom: 2rem;
+  box-sizing: border-box;
+}
+
 .tabs button {
-  margin: 0rem 0.5rem;
-  padding: 0.75rem 2rem;
+  flex: 1;
+  margin: 0;
+  padding: 0.75rem 0.25rem;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tabs button:hover:not(.activeTab) {
+  color: var(--text-main);
+  background-color: var(--bg-element);
 }
 
 .activeTab {
-  background-color: var(--disable-button);
+  background-color: var(--primary) !important;
+  color: var(--text-button) !important;
+  box-shadow: 0 2px 8px var(--shadow-primary);
 }

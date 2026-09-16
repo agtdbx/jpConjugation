@@ -1,0 +1,26 @@
+.subCategory {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.subCategory h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  border-bottom: 1px solid var(--border-dark);
+  padding-bottom: 0.5rem;
+}
+
+.toggleContainer {
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); */
+  /* gap: 0.5rem; */
+  /* width: 100%; */
+}

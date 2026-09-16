@@ -1,18 +1,19 @@
 import styles from './ConjugationTab.module.css';
 import { useState, useEffect } from 'react'
-import Section from "../../components/Section";
+import FormSelector from "./FormSelector";
+import WordCategorySelector from "./WordCategorySelector";
 import Button from "../../components/Button";
-import { type Options, type ExerciceData, type SchemaData } from "../../App"
+import { type ConjugationOptions, type CategorySelection, type ExerciceData, type ConjugationSchema } from "../../App"
 
 interface ConjugationTabProps {
-  options: Options;
-  setOptions: (data: React.SetStateAction<Options>) => void;
+  options: ConjugationOptions;
+  setOptions: (data: React.SetStateAction<ConjugationOptions>) => void;
   onStart: (data: ExerciceData[]) => void;
 }
 
 export default function ConjugationTab({ options, setOptions, onStart }: ConjugationTabProps) {
   // Create states
-  const [schema, setSchema] = useState<SchemaData | null>(null)
+  const [schema, setSchema] = useState<ConjugationSchema | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -27,19 +28,30 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
       .then(fetchedSchema => {
         setSchema(fetchedSchema);
 
+        console.log('coucou');
+
         // Get options
         setOptions(prevOptions => {
-          // If options exists, don't overwrite them
-          if (Object.keys(prevOptions.sections).length > 0) return prevOptions;
+          const isOutdated = !prevOptions || !prevOptions.categories || !Array.isArray(prevOptions.forms);
 
-          // Else, create options based on schema
-          const initialSections: Record<string, { types: string[], values: string[] }> = {};
+          // If data isn't outdated and not empty, return them
+          if (!isOutdated && Object.keys(prevOptions.categories).length > 0) {
+            return prevOptions;
+          }
 
-          Object.keys(fetchedSchema.sections).forEach(sectionKey => {
-            initialSections[sectionKey] = { types: [], values: [] };
+          // Else, build default data
+          const initialCategories: Record<string, CategorySelection> = {};
+          Object.keys(fetchedSchema.categories).forEach(categoryKey => {
+            initialCategories[categoryKey] = { types: [], tenses: [], chainedTenses: [] };
           });
 
-          return { ...prevOptions, sections: initialSections };
+          return {
+            numberConjugation: prevOptions?.numberConjugation ?? 10,
+            displayMode: prevOptions?.displayMode ?? "romaji",
+            displayRules: prevOptions?.displayRules ?? true,
+            forms: Array.isArray(prevOptions?.forms) ? prevOptions.forms : [],
+            categories: initialCategories
+          };
         });
 
         setLoading(false);
@@ -51,26 +63,33 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
   }, [setOptions])
 
   // Display loading text
-  if (loading) return <div>Chargement des options depuis le serveur... (~50 secondes)</div>
+  if (loading) return <div>Chargement des données depuis le serveur... (~50 secondes)</div>
   // Display error
   if (error) return <div>Erreur : {error}</div>
 
-  const handleToggle = (sectionKey: string, category: 'types' | 'values', id: string) => {
+  const handleFormToggle = (id: string) => {
+    setOptions(prev => ({
+      ...prev,
+      forms: prev.forms.includes(id)
+        ? prev.forms.filter(f => f !== id)
+        : [...prev.forms, id]
+    }));
+  };
+
+  const handleCategoryToggle = (categoryKey: string, subCategory: 'types' | 'tenses' | 'chainedTenses', id: string) => {
     setOptions(prev => {
-      const currentList = prev.sections[sectionKey][category];
-      // If id is in list, remove it. Else, add it.
+      const currentList = prev.categories[categoryKey][subCategory];
       const newList = currentList.includes(id)
         ? currentList.filter(item => item !== id)
         : [...currentList, id];
 
-      // Rebuilt options with modifications
       return {
         ...prev,
-        sections: {
-          ...prev.sections,
-          [sectionKey]: {
-            ...prev.sections[sectionKey],
-            [category]: newList
+        categories: {
+          ...prev.categories,
+          [categoryKey]: {
+            ...prev.categories[categoryKey],
+            [subCategory]: newList
           }
         }
       };
@@ -92,45 +111,35 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
     setOptions(prev => ({ ...prev, displayRules: e.target.checked }));
   };
 
-  const checkIsFormValid = () => {
+  const checkIsOptionsValid = () => {
     // If loading or error, disable
-    if (!schema || !options.sections || Object.keys(options.sections).length === 0) return false;
+    if (!schema || !options.categories || Object.keys(options.categories).length === 0) return false;
 
-    // If empty, disable
-    const sectionKeys = Object.keys(schema.sections);
-    if (sectionKeys.length === 0) return false;
+    // If no form, disable
+    if (options.forms.length === 0) return false;
 
-    // Validate first section (forms)
-    const firstKey = sectionKeys[0];
-    const firstSection = options.sections[firstKey];
-    if (!firstSection || firstSection.values.length === 0) return false;
+    // If no category, disable
+    const categorieKeys = Object.keys(schema.categories);
+    if (categorieKeys.length === 0) return false;
 
-    // Validate all other sections
-    const remainingKeys = sectionKeys.slice(1);
-
-    const hasValidTarget = remainingKeys.some(key => {
-      const sectionOptions = options.sections[key];
-      const sectionSchema = schema.sections[key];
+    // Validate categories
+    const hasValidTarget = categorieKeys.some(key => {
+      const sectionOptions = options.categories[key];
+      const sectionSchema = schema.categories[key];
 
       if (!sectionOptions || !sectionSchema) return false;
 
-      // Check if backend have set type
-      const requiresTypes = Object.keys(sectionSchema.types).length > 0;
-
       const hasSelectedTypes = sectionOptions.types.length > 0;
-      const hasSelectedValues = sectionOptions.values.length > 0;
+      const hasSelectedTenses = sectionOptions.tenses.length > 0;
+      const hasSelectedChainedTenses = sectionOptions.chainedTenses.length > 0;
 
-      if (requiresTypes) {
-        return hasSelectedTypes && hasSelectedValues;
-      } else {
-        return hasSelectedValues;
-      }
+      return (hasSelectedTypes && (hasSelectedTenses || hasSelectedChainedTenses))
     });
 
     return hasValidTarget;
   };
 
-  const isSubmitDisabled = !checkIsFormValid();
+  const isSubmitDisabled = !checkIsOptionsValid();
 
   const hanbleButtonClic = () => {
     fetch(`${import.meta.env.VITE_API_URL}/api/conjugation/generate`, {
@@ -157,12 +166,12 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
         <div className={styles.settingsGrid}>
 
           <div className={`${styles.optionGroup} ${styles.fullWidth}`}>
-            <h3>Nombre d'exercices : {options.number_conjugation}</h3>
+            <h3>Nombre d'exercices : {options.numberConjugation}</h3>
             <input
               type="range"
               min="1"
               max="50"
-              value={options.number_conjugation}
+              value={options.numberConjugation}
               onChange={handleNumberChange}
               className={styles.slider}
             />
@@ -195,13 +204,20 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
 
         </div>
 
-        {schema && Object.entries(schema.sections).map(([key, sectionData]) => (
-          <Section
+        {schema && <FormSelector
+            schema={schema.forms}
+            selectedForms={options.forms}
+            onToggle={handleFormToggle}
+          />
+        }
+
+        {schema && Object.entries(schema.categories).map(([key, sectionData]) => (
+          <WordCategorySelector
             key={key}
-            sectionKey={key}
+            categoryKey={key}
             schema={sectionData}
-            options={options.sections[key]}
-            onToggle={handleToggle}
+            categorySelection={options.categories[key]}
+            onToggle={handleCategoryToggle}
           />
         ))}
 

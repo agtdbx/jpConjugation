@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import Session from './pages/Session'
 import { useLocalStorage } from "./hooks/useLocalStorage"
 
+// Intern type
 export interface ExerciceData {
   romaji: string;
   kanji: string;
@@ -13,30 +14,53 @@ export interface ExerciceData {
   result: string;
 }
 
-export interface SectionSchema {
+// API Return type
+export interface FormSchema {
   title: string;
-  types: Record<string, string>;
   values: Record<string, string>;
 }
 
-export interface SchemaData {
-  sections: Record<string, SectionSchema>;
+export interface CategorySchema {
+  title: string;
+  types: Record<string, string>;
+  values: Record<string, string>;
+  orders: Record<string, number>;
+}
+
+export interface ConjugationSchema {
+  forms: FormSchema;
+  categories: Record<string, CategorySchema>;
+}
+
+// Options type
+export interface CategorySelection {
+  types: string[];
+  tenses: string[];
+  chainedTenses: string[];
+}
+
+export interface ConjugationOptions {
+  numberConjugation: number;
+  displayMode: string;
+  displayRules: boolean;
+  forms: string[];
+  categories: Record<string, CategorySelection>;
 }
 
 export interface Options {
-  number_conjugation: number;
-  displayMode: string;
-  displayRules: boolean;
-  sections: Record<string, { types: string[], values: string[] }>;
+  conjugation: ConjugationOptions;
 }
 
 function App() {
   const [exercices, setExercices] = useState<ExerciceData[] | null>(null);
   const [options, setOptions] = useLocalStorage<Options>('jp-conjugation-options', {
-    number_conjugation: 10,
-    displayMode: "romaji",
-    displayRules: true,
-    sections: {}
+    conjugation: {
+      numberConjugation: 10,
+      displayMode: "romaji",
+      displayRules: true,
+      forms: [],
+      categories: {},
+    }
   })
 
   if (!exercices) {

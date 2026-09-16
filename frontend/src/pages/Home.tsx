@@ -1,6 +1,6 @@
 import styles from './Home.module.css';
-import { useState } from 'react'
-import { type Options, type ExerciceData } from "../App"
+import { useState, useCallback } from 'react'
+import { type Options, type ExerciceData, type ConjugationOptions } from "../App"
 import ConjugationTab from '../features/conjugation/ConjugationTab'
 
 interface HomeProps {
@@ -11,6 +11,22 @@ interface HomeProps {
 
 export default function Home({ options, setOptions, onStart }: HomeProps) {
   const [activeTab, setActiveTab] = useState<'conjugation' | 'vocabulary'>('conjugation');
+
+  const setConjugationOptions = useCallback((
+    updater: React.SetStateAction<ConjugationOptions>
+  ) => {
+    setOptions((prevGlobalOptions) => {
+      const newConjugationOptions =
+        typeof updater === 'function'
+          ? updater(prevGlobalOptions.conjugation)
+          : updater;
+
+      return {
+        ...prevGlobalOptions,
+        conjugation: newConjugationOptions
+      };
+    });
+  }, [setOptions]);
 
   const getTabClass = (tabId: string) => {
     if (tabId === activeTab) return styles.activeTab;
@@ -29,8 +45,8 @@ export default function Home({ options, setOptions, onStart }: HomeProps) {
       {/* Content */}
       {activeTab === 'conjugation' && (
         <ConjugationTab
-          options={options}
-          setOptions={setOptions}
+          options={options.conjugation}
+          setOptions={setConjugationOptions}
           onStart={onStart} />
       )}
       {/* {activeTab === 'vocabulary' && <VocabularyTab />} */}
