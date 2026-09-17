@@ -1,10 +1,7 @@
 from jpconjugation.define import ADJECTIVES_EXCEPTIONS
 from jpconjugation.models import Adjective
 
-# SUFFIXES_PRESENT = {"ip": "ru", "fp": "masu", "in": "nai", "fn": "masen"}
-# SUFFIXES_PAST = {"ip": "ta", "fp": "mashita", "in": "nakatta", "fn": "masen deshita"}
-
-def build_core_rules(
+def build_rules(
         adjective: Adjective,
         i_rules: dict,
         na_rules: dict,
@@ -23,33 +20,3 @@ def build_core_rules(
             for form in na_rules.keys()
         }
     return {}
-
-
-# def build_derived_rules(
-#         adjective: Adjective,
-#         godan_action: str,
-#         ichidan_action: str,
-#         base_suffixes: dict,
-#         godan_prefix: str = "",
-#         ichidan_prefix: str = "",
-#         exception_rules: dict = {}
-#     ) -> dict:
-#     if adjective.type == "godan":
-#         return {
-#             form: f"Pour un adjectif Godan, {godan_action} et ajoute '{godan_prefix}{suffix}'."
-#             for form, suffix in base_suffixes.items()
-#         }
-
-#     elif adjective.type == "ichidan":
-#         return {
-#             form: f"Pour un adjectif Ichidan, {ichidan_action} et ajoute '{ichidan_prefix}{suffix}'."
-#             for form, suffix in base_suffixes.items()
-#         }
-
-#     elif adjective.type == "exception":
-#         return {
-#             form: f"Exception ({adjective.romaji}) : {exception_rules.get(form, "La forme est irrégulière")}."
-#             for form in base_suffixes.keys()
-#         }
-
-#     return {}

@@ -1,12 +1,12 @@
 from jpconjugation.models import Adjective
-from jpconjugation.conjugation.adjectives.rules import build_core_rules
+from jpconjugation.conjugation.adjectives.rules import build_rules
 
 ###########################################################################################
 # BA
 ###########################################################################################
 
 def get_conditional_ba_rules(adjective: Adjective) -> dict:
-    return build_core_rules(
+    return build_rules(
         adjective=adjective,
         i_rules={
             "ip": "enlève 'i' au radical et ajoute 'kereba'",
@@ -47,7 +47,7 @@ def _get_conditional_ba_na_forms(adjective: Adjective) -> dict:
 ###########################################################################################
 
 def get_conditional_tara_rules(adjective: Adjective) -> dict:
-    return build_core_rules(
+    return build_rules(
         adjective=adjective,
         i_rules={
             "ip": "enlève 'i' au radical et ajoute 'kattara'",

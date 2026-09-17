@@ -65,8 +65,6 @@ def get_conjugate_word_and_rules(
             continue
         rules_history.append(tmp_rules["ip"])
 
-        # Conjugate word with root tenses
-
     # Get word rules for last tense
     if isinstance(current_word, Verb):
         word_conjugation = conjugate_verb(current_word, tenses[-1])

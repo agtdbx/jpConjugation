@@ -7,6 +7,8 @@ from jpconjugation.conjugation.adjectives.conditional import (
     get_conditional_ba_forms, get_conditional_ba_rules,
     get_conditional_tara_forms, get_conditional_tara_rules,
 )
+from jpconjugation.conjugation.adjectives.speculative import get_speculative_forms, get_speculative_rules
+from jpconjugation.conjugation.adjectives.excess import get_excess_forms, get_excess_rules
 
 _ADJECTIVE_TENSES_FUNCTIONS = {
     "pr" : get_present_forms,
@@ -15,6 +17,8 @@ _ADJECTIVE_TENSES_FUNCTIONS = {
     "ad" : get_adverbial_forms,
     "co-ba" : get_conditional_ba_forms,
     "co-ta" : get_conditional_tara_forms,
+    "spe" : get_speculative_forms,
+    "ex" : get_excess_forms,
 }
 
 _ADJECTIVE_TENSES_RULES = {
@@ -24,6 +28,8 @@ _ADJECTIVE_TENSES_RULES = {
     "ad" : get_adverbial_rules,
     "co-ba" : get_conditional_ba_rules,
     "co-ta" : get_conditional_tara_rules,
+    "spe" : get_speculative_rules,
+    "ex" : get_excess_rules,
 }
 
 

@@ -214,3 +214,39 @@ def test_conjugate_adjectives_conditional_tara(
     assert len(forms) == 2
     assert forms.get("ip") == form_ip
     assert forms.get("in") == form_in
+
+
+ADJECTIVES_SPE = [
+    ("i", "furui", "furusou"),
+    ("i", "ii", "yosasou"),
+    ("na", "kirei", "kireisou"),
+]
+@pytest.mark.parametrize("adj_type, romaji, form_ip", ADJECTIVES_SPE)
+def test_conjugate_adjectives_speculative(
+        adj_type: str,
+        romaji: str,
+        form_ip: str,
+        ):
+    adjective = Adjective(romaji=romaji, kanji="k", traduction="t", type=adj_type)
+    forms = conjugate_adjective(adjective, tense_id="spe")
+
+    assert len(forms) == 1
+    assert forms.get("ip") == form_ip
+
+
+ADJECTIVES_EX = [
+    ("i", "furui", "furusugiru"),
+    ("i", "ii", "yosasugiru"),
+    ("na", "kirei", "kireisugiru"),
+]
+@pytest.mark.parametrize("adj_type, romaji, form_ip", ADJECTIVES_EX)
+def test_conjugate_adjectives_excess(
+        adj_type: str,
+        romaji: str,
+        form_ip: str,
+        ):
+    adjective = Adjective(romaji=romaji, kanji="k", traduction="t", type=adj_type)
+    forms = conjugate_adjective(adjective, tense_id="ex")
+
+    assert len(forms) == 1
+    assert forms.get("ip") == form_ip

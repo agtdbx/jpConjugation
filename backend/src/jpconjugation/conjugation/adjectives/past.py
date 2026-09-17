@@ -1,9 +1,9 @@
 from jpconjugation.models import Adjective
-from jpconjugation.conjugation.adjectives.rules import build_core_rules
+from jpconjugation.conjugation.adjectives.rules import build_rules
 
 
 def get_past_rules(adjective: Adjective) -> dict:
-    return build_core_rules(
+    return build_rules(
         adjective=adjective,
         i_rules={
             "ip": "enlève 'i' au radical et ajoute 'katta'",

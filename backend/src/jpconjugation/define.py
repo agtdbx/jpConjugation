@@ -86,9 +86,9 @@ ADJECTIVES_TENSES = {
     "co-ba" : "Conditionnel -ba",   # Conditional -ba
     "co-ta" : "Conditionnel -tara", # Conditional -tara
 
-    # # Derivative
-    # "con"   : "Conjecture",         # Conjecture
-    # "ex"    : "Excès",              # Excess
+    # Derivative
+    "spe"   : "Conjecturale",       # Speculative
+    "ex"    : "Excès",              # Excess
 }
 
 ADJECTIVES_ALLOWED_FORMS = {
@@ -100,9 +100,9 @@ ADJECTIVES_ALLOWED_FORMS = {
     "co-ba" : ["ip", "in"],
     "co-ta" : ["ip", "in"],
 
-    # # Derivative
-    # "con"   : ["ip"],
-    # "ex"    : ["ip"],
+    # Derivative
+    "spe"   : ["ip"],
+    "ex"    : ["ip"],
 }
 
 ADJECTIVES_CONJUGATION_ORDER = {
@@ -114,9 +114,9 @@ ADJECTIVES_CONJUGATION_ORDER = {
     "co-ba" : 0,
     "co-ta" : 0,
 
-    # # Derivative
-    # "con"   : 1,
-    # "ex"    : 1,
+    # Derivative
+    "spe"   : 1,
+    "ex"    : 1,
 }
 
 ADJECTIVES_TO_VERBS_TENSE = [
