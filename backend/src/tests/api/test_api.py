@@ -4,7 +4,7 @@ from api.main import app
 
 client = TestClient(app)
 
-def test_options_success():
+def test_conjugation_options_success():
     response = client.get("/api/conjugation/options")
 
     assert response.status_code == 200
@@ -42,14 +42,14 @@ PLAYLOADS_NO_COMBINATIONS = [
     {"numberConjugation": 10, "forms": ["fp"], "categories": {"adjectives": {"types": ["i"], "tenses": ["pr|pa"]}}},
 ]
 @pytest.mark.parametrize("payload", PLAYLOADS_NO_COMBINATIONS)
-def test_generate_no_combinations(payload: dict):
+def test_conjugation_generate_no_combinations(payload: dict):
     response = client.post("/api/conjugation/generate", json=payload)
 
     assert response.status_code == 400
     assert response.json()["detail"] == "Aucune combinaison possible avec ces filtres"
 
 
-def test_generate_success():
+def test_conjugation_generate_success():
     payload = {
         "numberConjugation": 10,
         "forms": ["ip"],
@@ -64,3 +64,32 @@ def test_generate_success():
     result = response.json()
     assert isinstance(result, list)
     assert len(result) == 10
+
+
+def test_vocabulary_success():
+    response = client.get("/api/vocabulary")
+
+    assert response.status_code == 200
+    result = response.json()
+    assert isinstance(result, dict)
+
+    assert isinstance(result.get("forms"), dict)
+    assert len(result["forms"]) > 0
+
+    assert isinstance(result.get("verbs"), list)
+    assert len(result["verbs"]) > 0
+
+    assert isinstance(result.get("adjectives"), list)
+    assert len(result["adjectives"]) > 0
+
+    assert isinstance(result.get("tenses"), dict)
+    tenses = result["tenses"]
+    assert len(tenses) > 0
+
+    assert isinstance(tenses.get("verbs"), list)
+    assert len(tenses["verbs"]) > 0
+
+    assert isinstance(tenses.get("adjectives"), list)
+    assert len(tenses["adjectives"]) > 0
+
+
