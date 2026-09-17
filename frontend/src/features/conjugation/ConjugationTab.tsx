@@ -178,71 +178,71 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
 
   // Display data
   return (
-      <div className={styles.container}>
-        <h1 className={styles.title}>Configuration de la session</h1>
-        <div className={styles.settingsGrid}>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Configuration de la session</h1>
+      <div className={styles.settingsGrid}>
 
-          <div className={`${styles.optionGroup} ${styles.fullWidth}`}>
-            <h3>Nombre d'exercices : {options.numberConjugation}</h3>
-            <input
-              type="range"
-              min="1"
-              max="50"
-              value={options.numberConjugation}
-              onChange={handleNumberChange}
-              className={styles.slider}
-            />
-          </div>
-
-          <div className={styles.optionGroup}>
-            <h3>Écritures du mot à conjuguer</h3>
-            <select
-              value={options.displayMode}
-              onChange={handleViewChange}
-              className={styles.select}
-            >
-              <option value="romaji">Romaji</option>
-              <option value="kanji">Kanji</option>
-              <option value="traduction">Traduction</option>
-            </select>
-          </div>
-
-          <div className={styles.optionGroup}>
-            <div className={styles.checkboxWrapper}>
-              <h3 style={{ margin: 0 }}>Afficher la règle en cas d'erreur</h3>
-              <input
-                type="checkbox"
-                checked={options.displayRules}
-                onChange={handleSwitchChange}
-                className={styles.checkbox}
-              />
-            </div>
-          </div>
-
+        <div className={`${styles.optionGroup} ${styles.fullWidth}`}>
+          <h3>Nombre d'exercices : {options.numberConjugation}</h3>
+          <input
+            type="range"
+            min="1"
+            max="50"
+            value={options.numberConjugation}
+            onChange={handleNumberChange}
+            className={styles.slider}
+          />
         </div>
 
-        {schema && <FormSelector
-            schema={schema.forms}
-            selectedForms={options.forms}
-            onToggle={handleFormToggle}
-          />
-        }
+        <div className={styles.optionGroup}>
+          <h3>Écritures du mot à conjuguer</h3>
+          <select
+            value={options.displayMode}
+            onChange={handleViewChange}
+            className={styles.select}
+          >
+            <option value="romaji">Romaji</option>
+            <option value="kanji">Kanji</option>
+            <option value="traduction">Traduction</option>
+          </select>
+        </div>
 
-        {schema && Object.entries(schema.categories).map(([key]) => (
-          <WordCategorySelector
-            key={key}
-            categoryKey={key}
-            schema={schema}
-            categorySelection={options.categories[key]}
-            onToggle={handleCategoryToggle}
-          />
-        ))}
+        <div className={styles.optionGroup}>
+          <div className={styles.checkboxWrapper}>
+            <h3 style={{ margin: 0 }}>Afficher la règle en cas d'erreur</h3>
+            <input
+              type="checkbox"
+              checked={options.displayRules}
+              onChange={handleSwitchChange}
+              className={styles.checkbox}
+            />
+          </div>
+        </div>
 
-        <Button
-          text={"Passer aux exercices"}
-          isDisable={isSubmitDisabled}
-          callback={hanbleButtonClic}
+      </div>
+
+      {schema && <FormSelector
+          schema={schema.forms}
+          selectedForms={options.forms}
+          onToggle={handleFormToggle}
         />
+      }
+
+      {schema && Object.entries(schema.categories).map(([key]) => (
+        <WordCategorySelector
+          key={key}
+          categoryKey={key}
+          schema={schema}
+          categorySelection={options.categories[key]}
+          onToggle={handleCategoryToggle}
+        />
+      ))}
+
+      <Button
+        text={"Passer aux exercices"}
+        isDisable={isSubmitDisabled}
+        callback={hanbleButtonClic}
+      />
     </div>
   )
 }

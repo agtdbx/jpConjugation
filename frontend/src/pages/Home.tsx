@@ -2,6 +2,7 @@ import styles from './Home.module.css';
 import { useState, useCallback } from 'react'
 import { type Options, type ExerciceData, type ConjugationOptions } from "../App"
 import ConjugationTab from '../features/conjugation/ConjugationTab'
+import VocabularyTab from '../features/vocabulary/VocabularyTab'
 
 interface HomeProps {
   options: Options;
@@ -49,7 +50,7 @@ export default function Home({ options, setOptions, onStart }: HomeProps) {
           setOptions={setConjugationOptions}
           onStart={onStart} />
       )}
-      {/* {activeTab === 'vocabulary' && <VocabularyTab />} */}
+      {activeTab === 'vocabulary' && <VocabularyTab />}
     </div>
   );
 }

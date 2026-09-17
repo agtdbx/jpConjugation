@@ -1,0 +1,73 @@
+.container {
+  width: 100%;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--text-title);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-dark);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 4px 6px -1px var(--shadow-soft);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-light);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.kanji {
+  margin: 0;
+  font-size: 1.75rem;
+  color: var(--primary);
+}
+
+.type {
+  background-color: var(--bg-input-readonly);
+  color: var(--text-muted);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--border-light);
+}
+
+.kana {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.romaji {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.traduction {
+  margin: 0;
+  margin-top: 0.5rem;
+  color: var(--text-title);
+  font-weight: 500;
+}

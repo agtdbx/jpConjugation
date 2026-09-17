@@ -53,7 +53,7 @@ def _get_words(
 
 
 def _word_to_kana(word: Verb | Adjective) -> str:
-    if bool(re.search(r'[\u4E00-\u9FFF]', word.romaji)):
+    if bool(re.search(r'[\u4E00-\u9FFF]', word.kanji)):
         return jaconv.alphabet2kana(word.romaji)
     return word.kanji
 
@@ -70,8 +70,6 @@ def _get_tenses(
     verb_exception_suru = Verb(romaji="suru", kanji="する", traduction="faire", type="exception", stem="su", ending="ru")
     adjective_i = Adjective(romaji="furui", kanji="古い", traduction="vieux", type="i", stem="furu")
     adjective_na = Adjective(romaji="kirei", kanji="綺麗", traduction="joli", type="na", stem="kirei")
-
-    tense_type = "verbs" if verb else "adjectives"
 
     tenses_info = []
     for tense_id, tense_name in tenses.items():
@@ -93,7 +91,6 @@ def _get_tenses(
             "order": conjugation_orders.get(tense_id, -1),
             "info": info.get(tense_id, "Pas de description."),
             "rules": rules,
-            "type": tense_type,
         })
 
     return tenses_info
