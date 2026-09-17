@@ -2,10 +2,12 @@ from jpconjugation.define import (
     VERBS_CONJUGATION_ORDER,
     VERBS_TO_ADJECTIVES_TENSE,
     ADJECTIVES_CONJUGATION_ORDER,
+    ADJECTIVES_TO_VERBS_TENSE
 )
 from jpconjugation.models import Verb, Adjective
 from jpconjugation.conjugation.verbs.conjugation import conjugate_verb, get_verb_rules
 from jpconjugation.conjugation.adjectives.conjugation import conjugate_adjective, get_adjective_rules
+
 
 def conjugate_word(
         word: Verb | Adjective,
@@ -26,23 +28,7 @@ def conjugate_word(
         if not "ip" in tmp_dict.keys():
             return {}
 
-        if isinstance(current_word, Verb) and tense not in VERBS_TO_ADJECTIVES_TENSE:
-            current_word = Verb(
-                romaji=tmp_dict["ip"],
-                kanji=current_word.kanji,
-                traduction=current_word.traduction,
-                type="ichidan",
-                stem=tmp_dict["ip"][:-2],
-                ending="ru"
-            )
-        else:
-            current_word = Adjective(
-                romaji=tmp_dict["ip"],
-                kanji=current_word.kanji,
-                traduction=current_word.traduction,
-                type="i",
-                stem=tmp_dict["ip"][:-1],
-            )
+        current_word = _update_current_word(current_word, tense, tmp_dict)
 
     # Conjugate word with root tenses
     if isinstance(current_word, Verb):
@@ -73,23 +59,7 @@ def get_conjugate_word_and_rules(
         if not "ip" in tmp_dict.keys():
             return ({}, {})
 
-        if isinstance(current_word, Verb) and tense not in VERBS_TO_ADJECTIVES_TENSE:
-            current_word = Verb(
-                romaji=tmp_dict["ip"],
-                kanji=current_word.kanji,
-                traduction=current_word.traduction,
-                type="ichidan",
-                stem=tmp_dict["ip"][:-2],
-                ending="ru"
-            )
-        else:
-            current_word = Adjective(
-                romaji=tmp_dict["ip"],
-                kanji=current_word.kanji,
-                traduction=current_word.traduction,
-                type="i",
-                stem=tmp_dict["ip"][:-1],
-            )
+        current_word = _update_current_word(current_word, tense, tmp_dict)
 
         if not "ip" in tmp_rules.keys():
             continue
@@ -135,6 +105,8 @@ def _is_conjugation_possible(
                 word_type = "adjective"
         else:
             tense_order = ADJECTIVES_CONJUGATION_ORDER.get(tense)
+            if tense in ADJECTIVES_TO_VERBS_TENSE:
+                word_type = "verb"
 
         if tense_order == None:
             return False
@@ -144,3 +116,45 @@ def _is_conjugation_possible(
         tense_order_id = tense_order
 
     return True
+
+
+def _update_current_word(
+        current_word: Verb | Adjective,
+        tense: str,
+        tmp_dict: dict[str, str]
+        ) -> Verb | Adjective:
+    # Verb
+    if isinstance(current_word, Verb):
+        if tense not in VERBS_TO_ADJECTIVES_TENSE:
+            return Verb(
+                romaji=tmp_dict["ip"],
+                kanji=current_word.kanji,
+                traduction=current_word.traduction,
+                type="ichidan",
+                stem=tmp_dict["ip"][:-2],
+                ending="ru"
+            )
+        return Adjective(
+            romaji=tmp_dict["ip"],
+            kanji=current_word.kanji,
+            traduction=current_word.traduction,
+            type="i",
+            stem=tmp_dict["ip"][:-1],
+        )
+    # Adjective
+    if tense not in ADJECTIVES_TO_VERBS_TENSE:
+        return Adjective(
+            romaji=tmp_dict["ip"],
+            kanji=current_word.kanji,
+            traduction=current_word.traduction,
+            type="na",
+            stem=tmp_dict["ip"],
+        )
+    return Verb(
+        romaji=tmp_dict["ip"],
+        kanji=current_word.kanji,
+        traduction=current_word.traduction,
+        type="ichidan",
+        stem=tmp_dict["ip"][:-2],
+        ending="ru"
+    )

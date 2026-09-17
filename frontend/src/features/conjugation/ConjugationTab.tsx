@@ -97,7 +97,7 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value, 10);
     if (!isNaN(value) && value >= 1 && value <= 50) {
-      setOptions(prev => ({ ...prev, number_conjugation: value }));
+      setOptions(prev => ({ ...prev, numberConjugation: value }));
     }
   };
 

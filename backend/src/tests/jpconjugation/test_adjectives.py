@@ -92,6 +92,7 @@ def test_conjugate_adjectives_bad_tense():
 
 ADJECTIVES_PR = [
     ("i", "furui", "furui", "furui desu", "furukunai", "furukunai desu"),
+    ("i", "ii", "ii", "ii desu", "yokunai", "yokunai desu"),
     ("na", "kirei", "kirei da", "kirei desu", "kirei janai", "kirei ja arimasen"),
 ]
 @pytest.mark.parametrize("adj_type, romaji, form_ip, form_fp, form_in, form_fn", ADJECTIVES_PR)
@@ -115,6 +116,7 @@ def test_conjugate_adjectives_present(
 
 ADJECTIVES_PA = [
     ("i", "furui", "furukatta", "furukatta desu", "furukunakatta", "furukunakatta desu"),
+    ("i", "ii", "yokatta", "yokatta desu", "yokunakatta", "yokunakatta desu"),
     ("na", "kirei", "kirei datta", "kirei deshita", "kirei janakatta", "kirei ja arimasen deshita"),
 ]
 @pytest.mark.parametrize("adj_type, romaji, form_ip, form_fp, form_in, form_fn", ADJECTIVES_PA)
@@ -138,6 +140,7 @@ def test_conjugate_adjectives_past(
 
 ADJECTIVES_CO = [
     ("i", "furui", "furukute", "furukunakute"),
+    ("i", "ii", "yokute", "yokunakute"),
     ("na", "kirei", "kirei de", "kirei janakute"),
 ]
 @pytest.mark.parametrize("adj_type, romaji, form_ip, form_in", ADJECTIVES_CO)
@@ -157,6 +160,7 @@ def test_conjugate_adjectives_connective(
 
 ADJECTIVES_AD = [
     ("i", "furui", "furuku"),
+    ("i", "ii", "yoku"),
     ("na", "kirei", "kirei ni"),
 ]
 @pytest.mark.parametrize("adj_type, romaji, form_ip", ADJECTIVES_AD)
@@ -170,3 +174,43 @@ def test_conjugate_adjectives_adverbial(
 
     assert len(forms) == 1
     assert forms.get("ip") == form_ip
+
+
+ADJECTIVES_CO_BA = [
+    ("i", "furui", "furukereba", "furukunakereba"),
+    ("i", "ii", "yokereba", "yokunakereba"),
+    ("na", "kirei", "kirei nara", "kirei janai nara"),
+]
+@pytest.mark.parametrize("adj_type, romaji, form_ip, form_in", ADJECTIVES_CO_BA)
+def test_conjugate_adjectives_conditional_ba(
+        adj_type: str,
+        romaji: str,
+        form_ip: str,
+        form_in: str,
+        ):
+    adjective = Adjective(romaji=romaji, kanji="k", traduction="t", type=adj_type)
+    forms = conjugate_adjective(adjective, tense_id="co-ba")
+
+    assert len(forms) == 2
+    assert forms.get("ip") == form_ip
+    assert forms.get("in") == form_in
+
+
+ADJECTIVES_CO_TARA = [
+    ("i", "furui", "furukattara", "furukunakattara"),
+    ("i", "ii", "yokattara", "yokunakattara"),
+    ("na", "kirei", "kirei dattara", "kirei ja nakattara"),
+]
+@pytest.mark.parametrize("adj_type, romaji, form_ip, form_in", ADJECTIVES_CO_TARA)
+def test_conjugate_adjectives_conditional_tara(
+        adj_type: str,
+        romaji: str,
+        form_ip: str,
+        form_in: str,
+        ):
+    adjective = Adjective(romaji=romaji, kanji="k", traduction="t", type=adj_type)
+    forms = conjugate_adjective(adjective, tense_id="co-ta")
+
+    assert len(forms) == 2
+    assert forms.get("ip") == form_ip
+    assert forms.get("in") == form_in
