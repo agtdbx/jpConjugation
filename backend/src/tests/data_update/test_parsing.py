@@ -40,6 +40,7 @@ CARD_PARSE_OK_TESTS = [
     ("バー", "test", "バー", "ba-", "test"),
     ("かんじ", "ねこ\ntest", "かんじ", "neko", "test"),
     ("かんじ ", "ねこ\n test \ncat", "かんじ", "neko", "test"),
+    ("ダサい ", "Ringard", "ダサい", "dasai", "Ringard"),
 ]
 @pytest.mark.parametrize("recto, verso, kanji, romaji, traduction", CARD_PARSE_OK_TESTS)
 def test_parse_ok_card(

@@ -32,7 +32,7 @@ def get_word_parts_from_card(recto: str, verso: str) -> tuple[str, str, str] | N
     if len(lines) == 0:
         return None
     elif len(lines) == 1:
-        kana = recto
+        kana = kanji
         traduction = lines[0].strip()
     else:
         if _contains_kana(lines[0].strip()):
