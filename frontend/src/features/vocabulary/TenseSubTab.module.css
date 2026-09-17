@@ -16,7 +16,7 @@
 
 .tenseList {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
   width: 100%;
 }
@@ -102,6 +102,13 @@
 }
 
 @media (min-width: 768px) {
+  .tenseList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 2rem;
+    width: 100%;
+  }
+
   .tableHeader {
     display: grid;
     background-color: var(--bg-element);
