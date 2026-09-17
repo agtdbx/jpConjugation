@@ -24,9 +24,10 @@ export default function ExerciceCard({ options, data, onNext }: ExerciceCardProp
   const checkUserInput = () => {
     if (!data.result || !userResponse) return (false);
 
-    const userInputNormalize = userResponse.trim().replace(/\s+/g, ' ').toLowerCase();
+    const userInputNormalize = userResponse.trim().replace(/\s+/g, '').toLowerCase();
+    const resultNormalize = data.result.replace(/\s+/g, '').toLowerCase();
 
-    return (userInputNormalize === data.result.toLowerCase());
+    return (userInputNormalize === resultNormalize);
   }
   const isUserRight = checkUserInput();
 
