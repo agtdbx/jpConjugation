@@ -531,7 +531,7 @@
         {
             "romaji": "wataru",
             "kanji": "渡る",
-            "traduction": "traverser, franchir",
+            "traduction": "Traverser, franchir",
             "type": "godan",
             "stem": "wata",
             "ending": "ru"
@@ -539,7 +539,7 @@
         {
             "romaji": "kiru",
             "kanji": "切る",
-            "traduction": "couper, éteindre",
+            "traduction": "Couper, éteindre",
             "type": "godan",
             "stem": "ki",
             "ending": "ru"
@@ -547,7 +547,7 @@
         {
             "romaji": "aruku",
             "kanji": "歩く",
-            "traduction": "marcher",
+            "traduction": "Marcher",
             "type": "godan",
             "stem": "aru",
             "ending": "ku"

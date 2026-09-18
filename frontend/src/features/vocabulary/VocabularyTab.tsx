@@ -11,7 +11,7 @@ export interface WordData {
   type: string;
 }
 
-interface TenseVerbData {
+export interface TenseVerbData {
   name: string;
   allowedForms: string[];
   order: number;
@@ -23,7 +23,7 @@ interface TenseVerbData {
   };
 }
 
-interface TenseAdjectiveData {
+export interface TenseAdjectiveData {
   name: string;
   allowedForms: string[];
   order: number;
