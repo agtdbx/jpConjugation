@@ -79,7 +79,8 @@ export default function CombinationModal({ schema, categoryKey, onClose, onSave 
           {Object.entries(tensesToDisplay).map(([id, label]) => {
             const tenseWeight = getWeight(id);
 
-            const isDisabled = tenseWeight >= currentWeight;
+            const isDisabled = tenseWeight >= currentWeight ||
+                                (tenseWeight === 0 && chain.length === 0);
             const isSelected = chain.includes(id);
 
             const onClick = isDisabled && !isSelected ? () => {} : () => handleToggle(id);

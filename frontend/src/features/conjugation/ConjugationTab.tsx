@@ -16,6 +16,7 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
   const [schema, setSchema] = useState<ConjugationSchema | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Setup first call at first page render
   useEffect(() => {
@@ -140,6 +141,8 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
   const isSubmitDisabled = !checkIsOptionsValid();
 
   const hanbleButtonClic = () => {
+    setSubmitError(null);
+
     const formattedCategories = Object.keys(options.categories).reduce((acc, key) => {
       const cat = options.categories[key];
 
@@ -165,14 +168,21 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(sendOptions),
-    }).then(res => {
-        if (!res.ok) throw new Error("Erreur réseau")
+    }).then(async res => {
+        if (!res.ok) {
+          if (res.status === 400) {
+            const errData = await res.json();
+            throw new Error(errData.detail || "Pas de combinaison");
+          }
+          throw new Error("Erreur réseau");
+        }
         return res.json()
       }).then(exercices => {
         onStart(exercices);
       })
       .catch(err => {
-        setError(err.message);
+        if (err.message !== "Erreur réseau") setSubmitError(err.message);
+        else setError(err.message);
       });
   }
 
@@ -237,6 +247,12 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
           onToggle={handleCategoryToggle}
         />
       ))}
+
+      {submitError && (
+        <p className={styles.validationError}>
+          ⚠️ {submitError}
+        </p>
+      )}
 
       <Button
         text={"Passer aux exercices"}
