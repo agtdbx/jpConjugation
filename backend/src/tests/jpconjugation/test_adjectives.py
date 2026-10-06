@@ -93,7 +93,7 @@ def test_conjugate_adjectives_bad_tense():
 ADJECTIVES_PR = [
     ("i", "furui", "furui", "furui desu", "furukunai", "furukunai desu"),
     ("i", "ii", "ii", "ii desu", "yokunai", "yokunai desu"),
-    ("na", "kirei", "kirei da", "kirei desu", "kirei janai", "kirei ja arimasen"),
+    ("na", "kirei", "kirei", "kirei desu", "kirei janai", "kirei ja arimasen"),
 ]
 @pytest.mark.parametrize("adj_type, romaji, form_ip, form_fp, form_in, form_fn", ADJECTIVES_PR)
 def test_conjugate_adjectives_present(

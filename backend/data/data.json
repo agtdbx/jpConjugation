@@ -551,6 +551,22 @@
             "type": "godan",
             "stem": "aru",
             "ending": "ku"
+        },
+        {
+            "romaji": "kaeru",
+            "kanji": "帰る",
+            "traduction": "Rentrer (quelque part)",
+            "type": "godan",
+            "stem": "kae",
+            "ending": "ru"
+        },
+        {
+            "romaji": "kureru",
+            "kanji": "くれる",
+            "traduction": "Donner (à moi ou à mon groupe)",
+            "type": "ichidan",
+            "stem": "kure",
+            "ending": "ru"
         }
     ],
     "adjectives": [
@@ -713,7 +729,7 @@
             "kanji": "ダサい",
             "traduction": "Ringard",
             "type": "i",
-            "stem": "ダサ"
+            "stem": "dasa"
         },
         {
             "romaji": "atamagaii",
@@ -945,6 +961,27 @@
             "traduction": "Dangereux / risqué",
             "type": "i",
             "stem": "abuna"
+        },
+        {
+            "romaji": "suzushii",
+            "kanji": "涼しい",
+            "traduction": "Frais",
+            "type": "i",
+            "stem": "suzushi"
+        },
+        {
+            "romaji": "mezurashii",
+            "kanji": "珍しい",
+            "traduction": "Rare",
+            "type": "i",
+            "stem": "mezurashi"
+        },
+        {
+            "romaji": "kibishii",
+            "kanji": "厳しい",
+            "traduction": "Dur / sévère",
+            "type": "i",
+            "stem": "kibishi"
         }
     ]
 }

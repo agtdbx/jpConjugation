@@ -205,7 +205,7 @@ export default function ConjugationTab({ options, setOptions, onStart }: Conjuga
         </div>
 
         <div className={styles.optionGroup}>
-          <h3>Écritures du mot à conjuguer</h3>
+          <h3>Affichage du mot à conjuguer</h3>
           <select
             value={options.displayMode}
             onChange={handleViewChange}

@@ -12,7 +12,7 @@ def get_present_rules(adjective: Adjective) -> dict:
             "fn": "enlève 'i' au radical et ajoute 'kunai desu'",
         },
         na_rules={
-            "ip": "ajoute ' da'",
+            "ip": "prend la forme du dictionnaire",
             "fp": "ajoute ' desu'",
             "in": "ajoute ' janai'",
             "fn": "ajoute ' ja arimasen'",
@@ -40,7 +40,7 @@ def _get_present_i_forms(adjective: Adjective) -> dict:
 
 def _get_present_na_forms(adjective: Adjective) -> dict:
     return {
-        "ip" : adjective.romaji + " da",
+        "ip" : adjective.romaji,
         "fp" : adjective.romaji + " desu",
         "in" : adjective.romaji + " janai",
         "fn" : adjective.romaji + " ja arimasen",
